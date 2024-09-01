@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -460,7 +460,6 @@ document.write(`
     <span class="n">berita</span><span class="p">[</span><span class="s2">&quot;judul&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">text</span>
     
     <span class="n">text_list</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;detail-text text-cnn_black text-sm grow min-w-0&quot;</span><span class="p">)</span>
-    <span class="n">berita</span><span class="p">[</span><span class="s2">&quot;isi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">text_list</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">text_list</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">):</span>
         <span class="n">cleaned_text</span> <span class="o">=</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
         <span class="n">texts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cleaned_text</span><span class="p">)</span>
@@ -615,353 +614,353 @@ document.write(`
   <tbody>
     <tr>
       <th>0</th>
+      <td>FOTO: Vaksinasi Polio Buat Anak-anak Gaza Digeber</td>
+      <td></td>
+      <td>Minggu, 01 Sep 2024 18:10 WIB</td>
+      <td>Internasional</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Pengunjung Incar Sepeda Listrik di Transmart, ...</td>
+      <td>Pengunjung puas belanja di Transmart Kota Kasa...</td>
+      <td>Minggu, 01 Sep 2024 17:55 WIB</td>
+      <td>Ekonomi</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Sepiring New York di Jantung Jakarta</td>
+      <td>Sepotong steak klasik dengan cita rasa New Yor...</td>
+      <td>Minggu, 01 Sep 2024 17:50 WIB</td>
+      <td>Gaya Hidup</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>CdM Paralimpiade: All Indonesian Final Badmint...</td>
+      <td>Chef de Mission (CdM) Kontingen Indonesia di P...</td>
+      <td>Minggu, 01 Sep 2024 17:40 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>VIDEO: Ribuan Massa Israel Demo Tentang Pemeri...</td>
+      <td>Ribuan warga Israel berunjuk rasa menentang pe...</td>
+      <td>Minggu, 01 Sep 2024 17:15 WIB</td>
+      <td>Internasional</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Leo/Bagas Juara Korea Open 2024, Julukan 'Leba...</td>
+      <td>Ganda putra Indonesia Leo Rolly Carnando/Bagas...</td>
+      <td>Minggu, 01 Sep 2024 17:03 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Puan Buka IAPF: RI-Afrika Punya Sejarah Panjan...</td>
+      <td>Ketua Dewan Perwakilan Rakyat Republik Indones...</td>
+      <td>Minggu, 01 Sep 2024 17:02 WIB</td>
+      <td>Nasional</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Wow, LED TV Diskon Jutaan Rupiah di Transmart ...</td>
+      <td>Transmart Full Day Sale datang lagi hari ini (...</td>
+      <td>Minggu, 01 Sep 2024 17:00 WIB</td>
+      <td>Ekonomi</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Smart TV Laku Keras di Transmart Full Day Sale...</td>
+      <td>Produk TV pintar alias smart TV menjadi perang...</td>
+      <td>Minggu, 01 Sep 2024 16:55 WIB</td>
+      <td>Ekonomi</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Satu Keluarga di Bintan Kepri Dilantik Jadi An...</td>
+      <td>Satu keluarga di Bintan,Kepulauan Riau (Kepri)...</td>
+      <td>Minggu, 01 Sep 2024 16:50 WIB</td>
+      <td>Nasional</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Kemenkes: Dokter Risma PPDS Undip 'Dipalak' Se...</td>
+      <td>Kementerian Kesehatan (Kemenkes) mengungkap du...</td>
+      <td>Minggu, 01 Sep 2024 16:25 WIB</td>
+      <td>Nasional</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Susunan Pemain Indonesia vs Korea U-20: Arlyan...</td>
+      <td>Timnas Indonesia U-20 akan menghadapi tuan rum...</td>
+      <td>Minggu, 01 Sep 2024 16:22 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>FOTO: Kenalkan, Rocky Balboa Si Anak Gajah di ...</td>
+      <td></td>
+      <td>Minggu, 01 Sep 2024 16:10 WIB</td>
+      <td>Gaya Hidup</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Bank Mandiri Berikan Promo Tiket MotoGP Mandal...</td>
+      <td>Bank Mandiri kembali menegaskan komitmennya da...</td>
+      <td>Minggu, 01 Sep 2024 16:05 WIB</td>
+      <td>Ekonomi</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Link Live Streaming Indonesia vs Korea Selatan...</td>
+      <td>Timnas Indonesia U-20 akan melawan Korea Selat...</td>
+      <td>Minggu, 01 Sep 2024 16:05 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Hasil Seoul EOU Cup: Argentina Bungkam Thailan...</td>
+      <td>Argentina U-20 mengalahkan Thailand dengan sko...</td>
+      <td>Minggu, 01 Sep 2024 16:04 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Cuma Hari Ini, Aneka Koper Diskon Gede di Tran...</td>
+      <td>Cuma hari ini, Minggu (1/9), aneka koper disko...</td>
+      <td>Minggu, 01 Sep 2024 16:00 WIB</td>
+      <td>Ekonomi</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Rano Karno Bahas Subsidi dan Cas Kendaraan Lis...</td>
+      <td>Bakal calon Wakil Gubernur DKI Jakarta Rano Ka...</td>
+      <td>Minggu, 01 Sep 2024 15:51 WIB</td>
+      <td>Otomotif</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Sulit Keluar dari Tempat Kerja, Jepang Punya A...</td>
+      <td>Ingin berhenti bekerja namun rasanya terlalu s...</td>
+      <td>Minggu, 01 Sep 2024 15:40 WIB</td>
+      <td>Internasional</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Daging Ayam Cuma Rp28 Ribu di Transmart Full D...</td>
+      <td>Sejumlah warga berbondong-bondong ke Transmart...</td>
+      <td>Minggu, 01 Sep 2024 15:35 WIB</td>
+      <td>Ekonomi</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Suvenir Olimpiade 2024 Terasa Murah di Paris, ...</td>
+      <td>Suvenir resmiOlimpiade 2024 dan Paralimpiade 2...</td>
+      <td>Minggu, 01 Sep 2024 15:30 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>VIDEO: Detik-detik Pembongkaran Jaringan Perda...</td>
+      <td>Jaringan perdagangan manusia yang beroperasi d...</td>
+      <td>Minggu, 01 Sep 2024 15:05 WIB</td>
+      <td>Internasional</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Telkom Pastikan Kesiapan Layanan Internet di E...</td>
+      <td>PT Telkom Indonesia (Persero) Tbk (Telkom) tel...</td>
+      <td>Minggu, 01 Sep 2024 15:02 WIB</td>
+      <td>Ekonomi</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Bebas Nyeri Punggung, Kasur Ortopedi di Transm...</td>
+      <td>Jika Anda mencari tempat tidur yang nyaman tan...</td>
+      <td>Minggu, 01 Sep 2024 15:00 WIB</td>
+      <td>Ekonomi</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Syarat Timnas Indonesia U-20 Juara Seoul EOU C...</td>
+      <td>Timnas Indonesia U-20akan menghadapi timnas Ko...</td>
+      <td>Minggu, 01 Sep 2024 14:58 WIB</td>
+      <td>Olahraga</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Turis dan Warga Lokal Barcelona Saling Ejek vi...</td>
+      <td>Berlibur adalah saatnya beramah tamah dengan w...</td>
+      <td>Minggu, 01 Sep 2024 14:49 WIB</td>
+      <td>Gaya Hidup</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Buy 1 Get 1, Pembeli Serbu Aneka Buah di Trans...</td>
+      <td>Produk buah-buahan segar di TransmartKota Kasa...</td>
+      <td>Minggu, 01 Sep 2024 14:48 WIB</td>
+      <td>Ekonomi</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Fadli Zon Singgung Anggaran Bocor saat Ditanya...</td>
+      <td>Wakil Ketua Umum Partai Gerindra, Fadli Zon me...</td>
+      <td>Minggu, 01 Sep 2024 14:39 WIB</td>
+      <td>Nasional</td>
+    </tr>
+    <tr>
+      <th>28</th>
       <td>Alat Skrining Virus Mpox Dipasang di Bandara S...</td>
       <td>PT Angkasa Pura II (Persero), selaku pengelola...</td>
       <td>Minggu, 01 Sep 2024 14:29 WIB</td>
       <td>Nasional</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>29</th>
       <td>Indonesia Pastikan Emas di Ganda Campuran Badm...</td>
       <td>Kontingen Indonesia memastikan medali emas di ...</td>
       <td>Minggu, 01 Sep 2024 14:27 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>30</th>
       <td>Rano Karno Puji Anies Saat Bertemu di CFD Jakarta</td>
       <td>Calon Wakil Gubernur DKI Jakarta, Rano Karno m...</td>
       <td>Minggu, 01 Sep 2024 14:19 WIB</td>
       <td>Nasional</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>31</th>
       <td>FOTO: Terbang dan Menekan, Leo/Bagas Juara Kor...</td>
       <td></td>
       <td>Minggu, 01 Sep 2024 14:10 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>32</th>
       <td>Borong, Mangga Harum Manis Diskon 20% di Trans...</td>
       <td>Mau beli mangga manis dan segar, harganya disk...</td>
       <td>Minggu, 01 Sep 2024 14:00 WIB</td>
       <td>Ekonomi</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>33</th>
       <td>BRI Berhasil Raih Predikat Diamond di Ajang Se...</td>
       <td>PT Bank Rakyat Indonesia (Pesero) Tbk atau BRI...</td>
       <td>Minggu, 01 Sep 2024 13:52 WIB</td>
       <td>Ekonomi</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>34</th>
       <td>Prediksi MU vs Liverpool di Liga Inggris</td>
       <td>Manchester Unitedakan menjamuLiverpool pada pe...</td>
       <td>Minggu, 01 Sep 2024 13:47 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>35</th>
       <td>Kok Bisa Harga BBM Pertamina Non Subsidi Turun?</td>
       <td>Per 1 September 2024 harga BBMPertaminanonsubs...</td>
       <td>Minggu, 01 Sep 2024 13:37 WIB</td>
       <td>Ekonomi</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>36</th>
       <td>Warga Pulau Rempang Diteror, Spanduk Tolak PSN...</td>
       <td>Warga di Pulau Rempang,Kelurahan Sembulang Kec...</td>
       <td>Minggu, 01 Sep 2024 13:20 WIB</td>
       <td>Nasional</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>37</th>
       <td>Kata-kata Leo/Bagas Usai Raih Gelar Pertama di...</td>
       <td>Ganda putra Indonesia Leo Rolly Carnando/Bagas...</td>
       <td>Minggu, 01 Sep 2024 13:12 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>Kata-kata Leo/Bagas Usai Raih Gelar Pertama di...</td>
-      <td>Ganda putra Indonesia Leo Rolly Carnando/Bagas...</td>
-      <td>Minggu, 01 Sep 2024 13:12 WIB</td>
-      <td>Olahraga</td>
-    </tr>
-    <tr>
-      <th>11</th>
+      <th>38</th>
       <td>Lirik Lagu Nasional Pada Pahlawan</td>
       <td>Lirik lagu Pada Pahlawan menggambarkan rasa te...</td>
       <td>Minggu, 01 Sep 2024 13:10 WIB</td>
       <td>Edukasi</td>
     </tr>
     <tr>
-      <th>12</th>
+      <th>39</th>
       <td>2 Megathrust Bikin Khawatir BPBD Bogor hingga ...</td>
       <td>Badan Penanggulangan Bencana Daerah (BPBD) Kot...</td>
       <td>Minggu, 01 Sep 2024 13:08 WIB</td>
       <td>Teknologi</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>BRI Dorong UMKM Kerajinan dan Seni Kriya Naik ...</td>
-      <td>Pameran kerajinan dan seni kriya berskala nasi...</td>
-      <td>Minggu, 01 Sep 2024 13:01 WIB</td>
-      <td>Ekonomi</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Beli Sepeda Listrik di Transmart, Diskonnya Bi...</td>
-      <td>Transmart Full Day Sale kembali lagi dengan di...</td>
-      <td>Minggu, 01 Sep 2024 13:00 WIB</td>
-      <td>Ekonomi</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Netizen Heboh Usai Leo/Bagas Juara Korea Open ...</td>
-      <td>Netizen bereaksi setelah pasangan baru ganda p...</td>
-      <td>Minggu, 01 Sep 2024 12:48 WIB</td>
-      <td>Olahraga</td>
-    </tr>
-    <tr>
-      <th>16</th>
+      <th>40</th>
       <td>Pengamat Nilai PDIP Bakal Kerja Ekstra Keras u...</td>
       <td>PDIPsecara mengejutkanmengusung bapaslonJeje W...</td>
       <td>Minggu, 01 Sep 2024 12:41 WIB</td>
       <td>Nasional</td>
     </tr>
     <tr>
-      <th>17</th>
+      <th>41</th>
       <td>Kiper Timnas Indonesia Dikaruniai Anak Kedua J...</td>
       <td>Istri kiperTimnas Indonesia Muhammad Adi Satry...</td>
       <td>Minggu, 01 Sep 2024 12:16 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>18</th>
+      <th>42</th>
       <td>Penjelasan Ending dan Post-Credit Scene Blue L...</td>
       <td>Blue Lock: Episode Nagitayang di bioskop Indon...</td>
       <td>Minggu, 01 Sep 2024 12:06 WIB</td>
       <td>Hiburan</td>
     </tr>
     <tr>
-      <th>19</th>
+      <th>43</th>
       <td>AC 1 PK di Transmart Rp3 Jutaan Aja, Sudah Bon...</td>
       <td>Transmart Full Day Sale balik lagi hari ini, M...</td>
       <td>Minggu, 01 Sep 2024 12:00 WIB</td>
       <td>Ekonomi</td>
     </tr>
     <tr>
-      <th>20</th>
+      <th>44</th>
+      <td>Shell dan BP Turunkan Harga BBM Hari Ini, Komp...</td>
+      <td>Shell Indonesia dan BP-AKR menurunkan harga ju...</td>
+      <td>Minggu, 01 Sep 2024 11:55 WIB</td>
+      <td>Ekonomi</td>
+    </tr>
+    <tr>
+      <th>45</th>
       <td>Bagas Gendong Leo Usai Juara Korea Open 2024</td>
       <td>Leo Rolly Carnando langsung melompat dan digen...</td>
       <td>Minggu, 01 Sep 2024 11:45 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>21</th>
+      <th>46</th>
       <td>Sinopsis Kaka Boss, Mimpi Bos Penagih Utang Ja...</td>
       <td>Kaka Bossmenjadi film komedi Indonesia terbaru...</td>
       <td>Minggu, 01 Sep 2024 11:35 WIB</td>
       <td>Hiburan</td>
     </tr>
     <tr>
-      <th>22</th>
+      <th>47</th>
       <td>Leo/Bagas Juara Korea Open 2024</td>
       <td>Ganda putra Indonesia Leo Rolly Carnando/Bagas...</td>
       <td>Minggu, 01 Sep 2024 11:17 WIB</td>
       <td>Olahraga</td>
     </tr>
     <tr>
-      <th>23</th>
+      <th>48</th>
       <td>Tanggal Muda Beli Sepeda di Transmart, Diobral...</td>
       <td>Transmart Full Day Sale kembali lagi hari ini,...</td>
       <td>Minggu, 01 Sep 2024 11:15 WIB</td>
       <td>Ekonomi</td>
     </tr>
     <tr>
-      <th>24</th>
+      <th>49</th>
       <td>'No Sugar Diet', Benarkah Tak Boleh Ada Gula S...</td>
       <td>No sugar diet akhir-akhir ini jadi tren para p...</td>
       <td>Minggu, 01 Sep 2024 11:09 WIB</td>
       <td>Gaya Hidup</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Pemerintah Jamin Pertalite Tak Dihapus, Cuma J...</td>
-      <td>Wakil Menteri BUMN Kartika Wirjoatmodjo memban...</td>
-      <td>Minggu, 01 Sep 2024 11:00 WIB</td>
-      <td>Ekonomi</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Yolla Yuliana Resmi Gabung Klub Voli Jepang To...</td>
-      <td>Bintang voli putri Indonesia Yolla Yulianaresm...</td>
-      <td>Minggu, 01 Sep 2024 10:52 WIB</td>
-      <td>Olahraga</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>FOTO: Saling Puji Jokowi-Prabowo Kala Penutupa...</td>
-      <td></td>
-      <td>Minggu, 01 Sep 2024 10:40 WIB</td>
-      <td>Nasional</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>FOTO: Dharma-Kun Jalani Tes Kesehatan di RSUD ...</td>
-      <td></td>
-      <td>Minggu, 01 Sep 2024 10:35 WIB</td>
-      <td>Nasional</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Transmart Full Day Sale, Kulkas SBS Banting Ha...</td>
-      <td>Transmart Full Day Sale datang lagi dengan dis...</td>
-      <td>Minggu, 01 Sep 2024 10:30 WIB</td>
-      <td>Ekonomi</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>Awal Bulan Merapat ke Transmart Full Day Sale,...</td>
-      <td>Awal bulan waktunya merapat keTransmartFull Da...</td>
-      <td>Minggu, 01 Sep 2024 10:00 WIB</td>
-      <td>Ekonomi</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>Mengenal Bentuk-Ciri Investasi Bodong Berkaca ...</td>
-      <td>Kasusinvestasi bodong kian marak dari hari ke ...</td>
-      <td>Minggu, 01 Sep 2024 10:00 WIB</td>
-      <td>Ekonomi</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>Alasan dan Arti Gelar Ali bin Abi Thalib 'Karr...</td>
-      <td>Ali bin Abi Thalibmempunyai gelar atau julukan...</td>
-      <td>Minggu, 01 Sep 2024 10:00 WIB</td>
-      <td>Edukasi</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>Megathrust Mengancam, Bogor Keluarkan Edaran P...</td>
-      <td>Badan Penanggulangan Bencana Daerah (BPBD) Kot...</td>
-      <td>Minggu, 01 Sep 2024 09:50 WIB</td>
-      <td>Nasional</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>3 Manfaat Memanaskan Mesin Motor Sebelum Dipakai</td>
-      <td>Memanaskanmesin sepeda motor injeksi sebelum d...</td>
-      <td>Minggu, 01 Sep 2024 09:50 WIB</td>
-      <td>Otomotif</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>Hasil MLS: Maarten Paes Main, Dallas Kalah Dra...</td>
-      <td>KiperTimnas IndonesiaMaarten Paestampil sebaga...</td>
-      <td>Minggu, 01 Sep 2024 09:42 WIB</td>
-      <td>Olahraga</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>Restoran di Terminal 3 Soetta Kebakaran, Pener...</td>
-      <td>Salah satu tenant makanan di Terminal 3 Bandar...</td>
-      <td>Minggu, 01 Sep 2024 09:33 WIB</td>
-      <td>Nasional</td>
-    </tr>
-    <tr>
-      <th>37</th>
-      <td>Pahami Sanksi Bawa Barang dari Luar Negeri Tak...</td>
-      <td>Membawa barang bawaan dari luar negeri tanpa l...</td>
-      <td>Minggu, 01 Sep 2024 09:30 WIB</td>
-      <td>Ekonomi</td>
-    </tr>
-    <tr>
-      <th>38</th>
-      <td>INFOGRAFIS: 5 Jenis Minyak yang Tak Sehat Buat...</td>
-      <td>Banyak jenis minyak yang digunakan untuk memas...</td>
-      <td>Minggu, 01 Sep 2024 09:20 WIB</td>
-      <td>Gaya Hidup</td>
-    </tr>
-    <tr>
-      <th>39</th>
-      <td>Rapor Indra Sjafri Pimpin Timnas Indonesia vs ...</td>
-      <td>PelatihTimnas Indonesia U-20 Indra Sjafrisudah...</td>
-      <td>Minggu, 01 Sep 2024 09:15 WIB</td>
-      <td>Olahraga</td>
-    </tr>
-    <tr>
-      <th>40</th>
-      <td>Hasil MLS: Maarten Paes Main, Dallas Kalah Dra...</td>
-      <td>KiperTimnas IndonesiaMaarten Paestampil sebaga...</td>
-      <td>Minggu, 01 Sep 2024 09:42 WIB</td>
-      <td>Olahraga</td>
-    </tr>
-    <tr>
-      <th>41</th>
-      <td>Restoran di Terminal 3 Soetta Kebakaran, Pener...</td>
-      <td>Salah satu tenant makanan di Terminal 3 Bandar...</td>
-      <td>Minggu, 01 Sep 2024 09:33 WIB</td>
-      <td>Nasional</td>
-    </tr>
-    <tr>
-      <th>42</th>
-      <td>Pahami Sanksi Bawa Barang dari Luar Negeri Tak...</td>
-      <td>Membawa barang bawaan dari luar negeri tanpa l...</td>
-      <td>Minggu, 01 Sep 2024 09:30 WIB</td>
-      <td>Ekonomi</td>
-    </tr>
-    <tr>
-      <th>43</th>
-      <td>INFOGRAFIS: 5 Jenis Minyak yang Tak Sehat Buat...</td>
-      <td>Banyak jenis minyak yang digunakan untuk memas...</td>
-      <td>Minggu, 01 Sep 2024 09:20 WIB</td>
-      <td>Gaya Hidup</td>
-    </tr>
-    <tr>
-      <th>44</th>
-      <td>Rapor Indra Sjafri Pimpin Timnas Indonesia vs ...</td>
-      <td>PelatihTimnas Indonesia U-20 Indra Sjafrisudah...</td>
-      <td>Minggu, 01 Sep 2024 09:15 WIB</td>
-      <td>Olahraga</td>
-    </tr>
-    <tr>
-      <th>45</th>
-      <td>Mark Mateschitz, Sang Pewaris 'Red Bull' Berha...</td>
-      <td>Mark Mateschitzadalah konglomerat asal Austria...</td>
-      <td>Minggu, 01 Sep 2024 09:10 WIB</td>
-      <td>Ekonomi</td>
-    </tr>
-    <tr>
-      <th>46</th>
-      <td>Rekayasa Lalu Lintas saat Kunjungan Paus Frans...</td>
-      <td>Rekayasa lalu lintas akan diberlakukan sehubun...</td>
-      <td>Minggu, 01 Sep 2024 09:05 WIB</td>
-      <td>Nasional</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>FOTO: Panasnya Perang Lawan Nyamuk di Perbatas...</td>
-      <td></td>
-      <td>Minggu, 01 Sep 2024 09:01 WIB</td>
-      <td>Teknologi</td>
-    </tr>
-    <tr>
-      <th>48</th>
-      <td>Yuk Borong, Minyak Goreng sampai Detergen Lebi...</td>
-      <td>Habis gajian waktunya kembali mengisi keperlua...</td>
-      <td>Minggu, 01 Sep 2024 09:00 WIB</td>
-      <td>Ekonomi</td>
-    </tr>
-    <tr>
-      <th>49</th>
-      <td>Daftar BBM Pertamina yang Turun Harga Hari Ini</td>
-      <td>PT Pertamina(Persero) melalui anak usahanya PT...</td>
-      <td>Minggu, 01 Sep 2024 08:57 WIB</td>
-      <td>Ekonomi</td>
     </tr>
   </tbody>
 </table>
