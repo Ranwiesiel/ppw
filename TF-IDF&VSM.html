@@ -1,0 +1,1207 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TF-IDF &amp; Vector Space Model &#8212; Crawling CNN Indonesia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'TF-IDF&VSM';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Crawling Web Berita CNN Indonesia" href="crawling_news.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Crawling CNN Indonesia - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Crawling CNN Indonesia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to PPW (Pencarian & Penambangan Web)
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="crawling_news.html">Crawling Web Berita CNN Indonesia</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">TF-IDF &amp; Vector Space Model</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Ranwiesiel/ppw" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Ranwiesiel/ppw/issues/new?title=Issue%20on%20page%20%2FTF-IDF&VSM.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/TF-IDF&VSM.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>TF-IDF & Vector Space Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-vsm-vector-space-model">Apa itu VSM (Vector Space Model)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#term-frequency-inverse-document-frequency-tf-idf">Term Frequency-Inverse Document Frequency (TF-IDF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#term-frequency">Term Frequency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-document-frequency">Inverse Document Frequency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency">TF-IDF (Term Frequency-Inverse Document Frequency)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-tf-idf-dan-menjadikannya-vsm-vector-space-model">Proses TF-IDF dan menjadikannya VSM (Vector Space Model)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library-tool-yang-dibutuhkan">Import Library/Tool yang dibutuhkan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-berita-csv">Import data berita CSV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-clean-text">Fungsi clean_text()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-stemming-indo">Fungsi stemming_indo()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-clean-stopword">Fungsi clean_stopword()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-preprosesing-text-setiap-dokumen">Proses preprosesing text setiap dokumen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-tf-idf-dan-pembuatan-vsm">Proses TF-IDF dan pembuatan VSM</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tf-idf-vector-space-model">
+<h1>TF-IDF &amp; Vector Space Model<a class="headerlink" href="#tf-idf-vector-space-model" title="Link to this heading">#</a></h1>
+<section id="apa-itu-vsm-vector-space-model">
+<h2>Apa itu VSM (Vector Space Model)<a class="headerlink" href="#apa-itu-vsm-vector-space-model" title="Link to this heading">#</a></h2>
+<p>Vector Space Model (VSM) adalah kerangka kerja matriks yang digunakan dalam temu kembali informasi dan pemrosesan bahasa alami (NLP) untuk merepresentasikan dan menganalisis data visual. VSM sangat penting dalam penggalian teks, pencarian dokumen, dan tugas-tugas pembelajaran mesin berbasis teks seperti klasifikasi dokumen, pencarian informasi, dan analisis kemiripan teks.</p>
+<p><img alt="image.png" src="https://i0.wp.com/spotintelligence.com/wp-content/uploads/2023/09/vector-space-model.jpg?resize=960%2C540&amp;ssl=1" /></p>
+<p>Setiap dimensi berhubungan dengan term yang unik, sementara dokumen dan query dapat direpresentasikan sebagai vektor di dalam ruang tersebut.</p>
+</section>
+<section id="term-frequency-inverse-document-frequency-tf-idf">
+<h2>Term Frequency-Inverse Document Frequency (TF-IDF)<a class="headerlink" href="#term-frequency-inverse-document-frequency-tf-idf" title="Link to this heading">#</a></h2>
+<p>TF-IDF adalah singkatan dari Term Frequency Inverse Document Frequency. Hal ini dapat didefinisikan sebagai perhitungan seberapa relevan sebuah kata dalam kumpulan atau corpus terhadap sebuah teks. Nilai relevansi meningkat secara relatif terhadap berapa kali sebuah kata muncul di dalam teks, namun dikompensasi oleh frekuensi kata di dalam corpus (kumpulan data).</p>
+</section>
+<section id="term-frequency">
+<h2>Term Frequency<a class="headerlink" href="#term-frequency" title="Link to this heading">#</a></h2>
+<p>Pada dokumen d, frekuensi merepresentasikan jumlah kemunculan kata t. Oleh karena itu, kita dapat melihat bahwa frekuensi akan menjadi lebih relevan ketika sebuah kata muncul dalam teks, yang mana hal ini bersifat relatif. Karena urutan istilah tidak signifikan, kita dapat menggunakan vektor untuk mendeskripsikan teks dalam kumpulan model term. Untuk setiap istilah tertentu dalam teks, ada sebuah entri dengan nilai yang merupakan frekuensi term.</p>
+<p><strong>tf(t,d) = count of t in d / number of words in d</strong></p>
+</section>
+<section id="inverse-document-frequency">
+<h2>Inverse Document Frequency<a class="headerlink" href="#inverse-document-frequency" title="Link to this heading">#</a></h2>
+<p>Pada dasarnya, ini menguji seberapa relevan kata tersebut. Tujuan utama dari pencarian ini adalah untuk menemukan dokumen yang sesuai dengan pencarian. Karena tf menganggap semua istilah sama pentingnya, maka frekuensi term tidak hanya dapat digunakan untuk mengukur bobot term dalam dokumen. Pertama, cari frekuensi dokumen dari suatu istilah t dengan menghitung jumlah dokumen yang mengandung term tersebut:</p>
+<p><strong>idf(t) = log(N/ df(t))</strong></p>
+<p>Penjelasan:<br>
+<strong>df(t)</strong> = <strong>N(t)</strong><br>
+dimana<br>
+<strong>df(t)</strong> = <strong>Document frequency of a term t</strong><br>
+<strong>N(t)</strong> = <strong>Number of documents containing the term t</strong><br></p>
+</section>
+<section id="tf-idf-term-frequency-inverse-document-frequency">
+<h2>TF-IDF (Term Frequency-Inverse Document Frequency)<a class="headerlink" href="#tf-idf-term-frequency-inverse-document-frequency" title="Link to this heading">#</a></h2>
+<p><strong>tf-idf(t, d) = tf(t, d) * idf(t)</strong></p>
+</section>
+<section id="proses-tf-idf-dan-menjadikannya-vsm-vector-space-model">
+<h2>Proses TF-IDF dan menjadikannya VSM (Vector Space Model)<a class="headerlink" href="#proses-tf-idf-dan-menjadikannya-vsm-vector-space-model" title="Link to this heading">#</a></h2>
+<section id="import-library-tool-yang-dibutuhkan">
+<h3>Import Library/Tool yang dibutuhkan<a class="headerlink" href="#import-library-tool-yang-dibutuhkan" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Library untuk data manipulation</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">string</span>
+
+<span class="c1"># Library untuk text preprocessing</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt_tab&#39;</span><span class="p">)</span>
+
+<span class="c1"># Library untuk text vectorization/TF-IDF</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to C:\Users\LAB
+[nltk_data]     SISTER\AppData\Roaming\nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package punkt_tab to C:\Users\LAB
+[nltk_data]     SISTER\AppData\Roaming\nltk_data...
+[nltk_data]   Package punkt_tab is already up-to-date!
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>pandas</strong> digunakan untuk membuat dataframe agar mudah dibaca.</p></li>
+<li><p><strong>tqdm</strong> Untuk mentracking proses program</p></li>
+<li><p><strong>re</strong> (regular expression) digunakan untuk mengenali pola kata/kalimat</p></li>
+<li><p><strong>nltk</strong> (natural language toolkit) berfungsi untuk melakukan proses yang berkaitan dengan bahasa (teks).</p></li>
+<li><p><strong>sklearn</strong> digunakan dalam pemrosesan data untuk kebutuhan machine learning atau data science. Dalam tugas ini, menggunakan TfidfTransformer untuk menghitung TF-IDF</p></li>
+<li><p><strong>sastrawi</strong> berfungsi untuk membersihkan mengurangi kata-kata imbuhan menjadi kata basic (sastrawi untuk stemming bahasa Indonesia)</p></li>
+</ul>
+</section>
+<section id="import-data-berita-csv">
+<h3>Import data berita CSV<a class="headerlink" href="#import-data-berita-csv" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data_100.csv&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>judul</th>
+      <th>isi</th>
+      <th>tanggal</th>
+      <th>kategori</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Putin Dukung Kamala Harris: Tawanya Menular, A...</td>
+      <td>Presiden Rusia Vladimir Putinbergurau bahwa di...</td>
+      <td>Jumat, 06 Sep 2024 14:31 WIB</td>
+      <td>Internasional</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Tinggalkan RI, Paus Fransiskus Twit Perpisahan...</td>
+      <td>Pemimpin Gereja Katolik seluruh dunia Paus Fra...</td>
+      <td>Jumat, 06 Sep 2024 14:01 WIB</td>
+      <td>Internasional</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Pamit ke Menag Yaqut di Bandara, Paus Fransisk...</td>
+      <td>Pemimpin Gereja Katolik seluruh dunia Paus Fra...</td>
+      <td>Jumat, 06 Sep 2024 13:30 WIB</td>
+      <td>Internasional</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>FOTO: Sampai Jumpa Lagi, Paus Fransiskus      ...</td>
+      <td>...</td>
+      <td>Jumat, 06 Sep 2024 13:00 WIB</td>
+      <td>Internasional</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Paus Fransiskus Pilih Nasi Goreng Jadi Menu di...</td>
+      <td>Pemimpin Gereja Katolik seluruh dunia, Paus Fr...</td>
+      <td>Jumat, 06 Sep 2024 12:24 WIB</td>
+      <td>Internasional</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>Rekayasa Lalin saat Paus Fransiskus Misa Akbar...</td>
+      <td>Kepolisian melakukan rekayasa lalu lintas di s...</td>
+      <td>Kamis, 05 Sep 2024 07:45 WIB</td>
+      <td>Nasional</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>VIDEO: Kaesang Bungkam saat Ditanya soal Jet P...</td>
+      <td>Ketua Umum PSI Kaesang Pangarep irit bicara sa...</td>
+      <td>Kamis, 05 Sep 2024 07:33 WIB</td>
+      <td>Nasional</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>Misa Akbar Paus di GBK Hari Ini, Pemprov Imbau...</td>
+      <td>Penjabat (Pj) DKI JakartaHeru Budi Hartono men...</td>
+      <td>Kamis, 05 Sep 2024 07:19 WIB</td>
+      <td>Nasional</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>Nyaris Adu Jotos dengan Silfester Matutina, Ch...</td>
+      <td>Juru Bicara PDIPChico Hakim menjelaskan soal m...</td>
+      <td>Kamis, 05 Sep 2024 07:15 WIB</td>
+      <td>Nasional</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>Kaesang Akhirnya Muncul, Tapi Hanya Tersenyum ...</td>
+      <td>Ketua Umum PSI Kaesang Pangarepakhirnya muncul...</td>
+      <td>Kamis, 05 Sep 2024 06:59 WIB</td>
+      <td>Nasional</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 4 columns</p>
+</div></div></div>
+</div>
+<p>Import data berita csv yang telah disimpan sebelumnya.<br>
+dan membersihkan whitespace pada col header</p>
+</section>
+<section id="fungsi-clean-text">
+<h3>Fungsi clean_text()<a class="headerlink" href="#fungsi-clean-text" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clean_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;((www\.[^\s]+)|(https?://[^\s]+))&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus https* and www*</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;@[^\s]+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus username</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\s]+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus tambahan spasi</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;#([^\s]+)&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus hashtags</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;rt&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus retweet</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">))</span> <span class="c1"># Menghapus tanda baca</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus angka</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="c1">#Menghapus ASCII dan unicode</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\x00-\x7f]&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="c1">#Menghapus baris baru</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+	<span class="k">return</span> <span class="n">text</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fungsi ini untuk membersihkan text, lebih tepatnya membersihkan teks seperti; menghapus hastag, unicode, dsb</p>
+</section>
+<section id="fungsi-stemming-indo">
+<h3>Fungsi stemming_indo()<a class="headerlink" href="#fungsi-stemming-indo" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">stemming_indo</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+	<span class="n">factory</span> <span class="o">=</span> <span class="n">StemmerFactory</span><span class="p">()</span>
+	<span class="n">stemmer</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">create_stemmer</span><span class="p">()</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">text</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fungsi ini digunakan untuk menstemming atau membersihkan kata seperti:</p>
+<p>katanya = kata<br>
+menggunakan = guna</p>
+</section>
+<section id="fungsi-clean-stopword">
+<h3>Fungsi clean_stopword()<a class="headerlink" href="#fungsi-clean-stopword" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clean_stopword</span><span class="p">(</span><span class="n">tokens</span><span class="p">):</span>
+	<span class="n">listStopword</span> <span class="o">=</span>  <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;indonesian&#39;</span><span class="p">))</span>
+	<span class="n">removed</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+		<span class="k">if</span> <span class="n">t</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">listStopword</span><span class="p">:</span>
+			<span class="n">removed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">removed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fungsi untuk membuang kata yang tidak digunakan seperti:</p>
+<p>di, dan, dsb</p>
+</section>
+<section id="proses-preprosesing-text-setiap-dokumen">
+<h3>Proses preprosesing text setiap dokumen<a class="headerlink" href="#proses-preprosesing-text-setiap-dokumen" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">content</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;isi&#39;</span><span class="p">]</span>
+<span class="n">all_docs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+	<span class="n">cleaned_doc</span> <span class="o">=</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+	<span class="n">stemmed_doc</span> <span class="o">=</span> <span class="n">stemming_indo</span><span class="p">(</span><span class="n">cleaned_doc</span><span class="p">)</span>
+	<span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">tokenize</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">stemmed_doc</span><span class="p">)</span>
+	<span class="n">cleaned_tokens</span> <span class="o">=</span> <span class="n">clean_stopword</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+	<span class="n">joined_strings</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">all_docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cleaned_tokens</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">all_docs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                             | 0/100 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|█                                                                                                    | 1/100 [00:00&lt;00:26,  3.73it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  6%|██████                                                                                               | 6/100 [00:00&lt;00:04, 18.83it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 11%|███████████                                                                                         | 11/100 [00:00&lt;00:03, 28.77it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 15%|███████████████                                                                                     | 15/100 [00:00&lt;00:02, 32.22it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 21%|█████████████████████                                                                               | 21/100 [00:00&lt;00:01, 40.66it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 27%|███████████████████████████                                                                         | 27/100 [00:00&lt;00:01, 45.76it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 33%|█████████████████████████████████                                                                   | 33/100 [00:00&lt;00:01, 49.49it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 41%|█████████████████████████████████████████                                                           | 41/100 [00:01&lt;00:01, 54.52it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 47%|███████████████████████████████████████████████                                                     | 47/100 [00:01&lt;00:00, 54.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|█████████████████████████████████████████████████████                                               | 53/100 [00:01&lt;00:00, 47.28it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 59%|███████████████████████████████████████████████████████████                                         | 59/100 [00:01&lt;00:00, 48.46it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|█████████████████████████████████████████████████████████████████                                   | 65/100 [00:01&lt;00:00, 48.32it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 71%|███████████████████████████████████████████████████████████████████████                             | 71/100 [00:01&lt;00:00, 44.84it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 76%|████████████████████████████████████████████████████████████████████████████                        | 76/100 [00:01&lt;00:00, 43.45it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 81%|█████████████████████████████████████████████████████████████████████████████████                   | 81/100 [00:01&lt;00:00, 38.28it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 85%|█████████████████████████████████████████████████████████████████████████████████████               | 85/100 [00:02&lt;00:00, 37.56it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 89%|█████████████████████████████████████████████████████████████████████████████████████████           | 89/100 [00:02&lt;00:00, 37.34it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 94%|██████████████████████████████████████████████████████████████████████████████████████████████      | 94/100 [00:02&lt;00:00, 38.58it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 99%|███████████████████████████████████████████████████████████████████████████████████████████████████ | 99/100 [00:02&lt;00:00, 39.77it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|███████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:02&lt;00:00, 40.34it/s]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;presiden rusia vladimir putinbergurau dukung calon presiden capres amerika serikat pa ai demokrat kamala harris alihalih capres pa ai republik donald trump putin kelakar harris milik tawa tular cermin dunia baikbaik te awa ekspresif tular bera i baikbaik putin sepe i kutip reuters putin lontar canda pe anyaan moderator acara forum ekonomi rusia kamis sang moderator be anya pandang putin kena pilih as putin serius pilih as gantung pilih rakyat amerika kelakar presiden tahana joe biden dukung harris pilih harris laku dukung putin putin komentar pilih biden banding trump biden jadul mudah tebak badan intelijen as percaya putin tuju trump menang pilih presiden pilpres harris trump dukung ukraina perang kremlin&#39;, &#39;pimpin gereja katolik dunia paus fransiskusmenyampaikan pesan pisah bahasa indonesia jelang berangkat papua nugini negara keduayang kunjung jalan apostolik jumat pesan pisah risi terima kasih kesan kunjung indonesia september terima kasih sambut paus x moga tuhan kati be umbuh be ahan damai kasih saudara negara mayoritas umat katolik sambut antusiasme warga indonesia sambut paus fransiskusterasa sang suci sambut riah suka cita darat bandara soekarnohatta ri sederhana paus fransiskusjuga picu decak kagum umat katolik indonesia masyarakat ri gambastwitter jalan apostolik negara asia pasifik paus fransiskus pilih pesawat komersil ketimbang jet pribadi sepe i kepala negara sang kepala negara vatikan pilih pakai aksesoris sederhana sepe i jam tangan sepatu paus fransiskus enggan inap hotel mewah pilih tinggal duta vatikan agenda resmi paus fransiskus segan henti mobil kendara sapa warga jalan warga masuk orang hamil untung berkat langsung sang pimpin umat katolik dunia salah warga jaka a sampaisampai kuasa tahan haru lihat paus langsung lambai tangan sapa hadir acara gereja katedral warga tumpah ruah area anakanak orang usia sapa pimpin umat katolik warga padat duta vatikan bandara internasional soekarnohatta iring pergi paus bandara warga nyanyi viva il papa paus rombong indonesia paus be emu presiden joko widodo jokowi tokoh lintas agama hadir misa kudus warga kunjung indonesia paus tur apostolik papua nugini timor leste singapura&#39;, &#39;pimpin gereja katolik dunia paus fransiskus katakata terbang papua nugini bandara internasional soekarno hatta tangerang jumat pagi tutup kunjung indonesia paus tur apostolik papua nugini pergi sang suci muka agama katolik jabat perintah masuk menteri agama yaqut cholil qoumas beliau paus bilang i pray for you you pray for me doa doa yaqut awak media gedung vvip soetta paus yaqut paus titip salam presiden indonesia joko widodo jokowi paus harap indonesia imbuh menag yaqut beber jokowi titip salam paus jokowi harap paus aman jalan selamat tuju paus rombong jalan tuju papua nugini tur apostolik terbang pakai pesawat komersial garuda a kepala agama katolik papua nugini september papua nugini paus indonesia september be emu jabat tokoh lintas agama paus be emu presiden joko widodo jokowi hadir misa agung gelora karno gbk kamis&#39;, &#39;&#39;, &#39;pimpin gereja katolik dunia paus fransiskusmemilih nasi goreng menu makan pesawat tuju papua nugini jumat pilih menu makan paus ketua konferensi waligereja indonesia kwiantonius subianto bunjamin pergi paus pesawat pilih nasi goreng terang berangkat tim vatikan pilih makan beliau paus pilih nasi goreng antonius awak media ruang vvip terminal bandara soekarnohatta tangerang paus pilih nasi goreng orang pesawat makan menu aju pilih tau jokes canda makan nasi goreng pilih sederhana antonius antonius paus kes indonesia pimpin umat katolik bahagia sambut ramah warga ri beliau keramahtamahan masyarakat indonesia sungguh sentuh hati tiru paus paus jalan tuju papua nugini tur apostolik terbang pesawat komersial garuda a kepala agama katolik papua nugini september papua nugini paus indonesia september bawa pesan damai harmonisasi indonesia paus be emu presiden joko widodo jokowi jabat perintah tokoh masyarakat lintas agama ajar hadir misa agung gelora karno gbk kamis&#39;, &#39;pimpin gereja katolik dunia paus fransiskus pesanpesan indonesia kunjung september indonesia paus be emu presiden joko widodo jokowi jabat perintah tokoh masyarakat lintas agama ajar hadir misa agung gelora karno gbk negara paus sebar pesanpesan damai ramah a sederhana pesanpesan paus indonesia paus singgung rukun be emu jokowi istana merdeka jaka a rabu rukun beda capai perspektifperspektif te entu mempe imbang kebutuhankebutuhan orang kelompok suku denominasi agama be indak semangat saudara seraya kejar tuju luhur layan paus paus gereja katolik tingkat dialog antaragama kuat rukun jamin damai upaya hapus timpang wilayah negara prasangka hapus suasana harga percaya be umbuh imbuh paus singgung konflik keras negara sikap harga intoleransi tingkat paksa kondisi ujung peperangan pe umpahan darah kadangkadang keteganganketegangan unsur keras timbul negaranegara kuasa seragam paksa visi halhal serah otonomi individuindividu kelompokkelompok kait paus be emu jokowi lepas kebijakankebijakan kesan komitmen orientasi terap prinsipprinsip adil sosial paus perang rupa tindak buruk rupa kalah perang selisih be engkar buruk paus be emu ratus ajar indonesia ghra pemuda jaka a rabu tindak be ukar pikir pecah lupa peperangan buah kalah musuh kalah imbuh paus paus indonesia jaga kaya milik kaya ri tambang indonesia negara mozaik budaya suku bangsa adat istiadat agam kaya cermin keanekaragaman ekosistem lingkung paus be emu tokoh lintas agama masjid istiqlal kamis tuan rumah tambang emas dunia ha a harga beda alas be ikai imbuh paus indonesia menyianyiakan anugrah miskin kaya hadir misa gbk paus umat katolik indonesia kutip nyata bunda esa sosok kenal layan advokasi orangorang miskin sakit a kaum papa santa esa kalkuta raya lelah peduli orangorang miskin maju damai dialog milik tiada tuai apaapa lelah tabur paus paus warga indonesia semangat jaga mimpimimpinya saudara saudari bangsa nusantara kagum beranekaragam lelah layar tebar jala lelah mimpi bangun buah adab damai rani mimpi saudara paus dorong warga tabur kasih penuh tempuh jalan dialog lihat hati bangun damai sebar aroma harap keliling imbuh gambasvideo cnn&#39;, &#39;mantan wali kota tarlac filipina alice guo kota manila jumat depo asi indonesia wenang filipina alice guo ekstradisi ri terbang sewa perintah darat bandara internasional manila pagi filipina buron eks wali kota tarlac provinsi bamban tahan polisi nasional filipina alice guo rupa capai sistem adil filipina sorot kolaborasi efektif mitra internasional lembaga tegak hukum komisaris biro imigrasi filipina norman tansingco kutip afp alice guo tangkap interpol indonesia selasa tuduh matamata china kejar juli kabur negara malaysia singapura indonesia perempuan nama lengkap alice leal guo rupa orang bisnis politikus jabat wali kota tarlac bamban juni agustus juni perempuan milik nama china guo hua ping skors wali kota ombudsman filipina menteri negeri perintah daerah layang tuduh gratifikasi hadap kemendagri filipina tuding alice libat sindikat kriminal china perempuan milik dwi kewarganegaraan filipina china duga libat philippine offshore gaming operator pogo daerah filipina tuding alice rekanrekan konspirator laku cuci uang juta peso hasil giat kriminal ombudsman pecat alice wali kota agustus presiden filipina ferdinand marcos terima kasih perintah ri bantu tangkap alice guo biar coba hindar adil tindak siasia hukum jangkau marcos&#39;, &#39;warga padat duta vatikan jaka a bandara internasional soekarnohatta tangerang banten iring pulang pimpin gereja katolik paus fransiskus warga berduyunduyun dubes vatikan pagi warga ramai area vvip terminal puluh orang vvip bandara kalang orang usia anakanak salah warga antonia haryani ningsih purworejo jawa bandara anak handayani theresia ketemu berkah antonia antonia senang bangga be emu paus bandaradia tiket misa gelora karno gbk kamis masuk area vvip bandara senang nolong terima kasih tuhan kati antonia puji tuhan masuk nyalami aduh neng paus indonesia september bawa pesan damai harmonisasi indonesia paus be emu presiden joko widodo jokowi jabat perintah tokoh masyarakat lintas agama ajar hadir misa agung gelora karno gbk kamis terbang papua nugini pesawat komersial garuda a kepala agama katolik papua nugini september papua nugini be emu tokoh lintas agama perdana menteri papua nugini james marape hadir misa kudus stadion sir john guise po moresby&#39;, &#39;pimpin gereja katolik dunia kepala negara takhta suci vatikan paus fransiskustiba bandara internasional soekarnohatta tangerang wib jumat paus jalan apostolik po moresby papua nugini pergi paus menteri agama yaqut cholil qoumas duta vatikan indonesia piero pioppo dewan pe imbang presiden republik indonesia gandi sulistiyanto uskup agung jaka a kardinal ignatius suharyo ketua konferensi waligereja indonesia antonius subianto bunyamin ketua panitia kunjung apostolik paus fransiskus indonesia ignatius jonan lepas pergi paus paus terbang papua nugini pesawat komersial garuda a kepala agama katolik papua nugini september papua nugini be emu tokoh lintas agama perdana menteri papua nugini james marape hadir misa kudus stadion sir john guise po moresby papua nugini paus indonesia september indonesia paus be emu presiden joko widodo jokowi jabat perintah tokoh masyarakat lintas agama ajar hadir misa agung gelora karno gbk kamis misa hadir umat katolik sabang merauke misa paus pesan damai semangat serah&#39;, &#39;orang pemuda menang peluk paus fransiskus kunjung kantor konferensi wali gereja indonesia kwi jaka a pusat kamis pemuda cium tangan paus fransiskus menang paus langsung peluk pemuda paus kunjung indonesia september kamis paus fransiskus pimpin misa suci gbk hadir ribu umat katolik&#39;, &#39;pimpin gereja katolik dunia kepala negara takhta suci vatikan paus fransiskus kunjung pergi indonesia pesawat komersial jet pribadi jumat paus be olak papua nugini giat indonesia september wakil koordinator media panitia kunjung suci paus fransiskusanthonius gregoriusmengonfirmasi pimpin vatikan papua nugini pakai pesawat komersial paus jalan papua nugini timor leste singapura jaka apo moresby pesawat garuda anthonius cnnindonesiacom kamis malam pimpin umat katolik papua nugini september jalan apostolik timor leste singapura terbang roma italia indonesia september paus pesawat komersial ita airways paus pesawat alitalia jet pribadi anthonius senin paus indonesia turun pesawat paus mobil innova zenix putih duduk samping sopir buka kaca lambai tangan awak media paus indonesia september bawa pesan damai harmonisasi indonesia paus be emu presiden joko widodo jokowi jabat perintah tokoh masyarakat lintas agama ajar hadir misa agung gelora karno gbk kamis misa hadir umat katolik sabang merauke misa paus pesan damai semangat serah saudara saudari bangsa nusantara kagum beranekaragam lelah layar tebar jala lelah mimpi bangun buah adab damai paus fransiskus rupa rupa paus kunjung indonesia kunjung pe ama laku paulus vi desember paus santo yohanes paulus ii oktober&#39;, &#39;kepala gereja katolik dunia paus fransiskus kunjung indonesia jumat ri paus sorot utama sederhana ramah hadap warga indonesia a umat katolik indonesia paus be emu presiden indonesia joko widodo jokowi jabat perintah tokoh agama ajar hadir misa agung gelora karno gbk faktafakta tarik paus fransiskus kunjung indonesia paus kunjung indonesia pesawat komersial ita airways jet pribadi wakil koordinator media panitia kunjung bapa suci fransiskus anthonius gregorius paus fransiskus pesawat alitalia maskapai terbang nasional italia ambil alih ita airways paus pesawat alitalia jet pribadi anthonius cnnindonesiacom senin turun bandara paus kena sepatu hitam sederhana usang uskup agung jaka a kardinal ignatius suharyo cerita sengaja perhati sepatu pakai paus fransiskus sambut sang pimpin umat katolik dunia bandara soekarnohatta selasa siang kemarin sengaja perhati sepatu ya lihat sepatu suharyo gereja katedral jaka a pusat rabu bapa suci pakai sepatu merah putih kemarin lihat sepatu hitam lekuklekuk tanda pakai pilih imbuh paus keliling innova zenix putih indonesia anthonius abar paus fransiskus mobil mobil mewah mobil anti peluru indonesia mobil mobil mewah mobil anti peluru turun pesawat paus duduk samping sopir jalan duta vatikan jaka a paus buka jendela sapa awak media warga kali jalan paus pilih inap duta vatikan jaka a alihalih hotel paus lihat sederhana kelompok miskin te indas paus sedia sapa warga jaka a jalan bandara dubes vatikan jalan hotel indonesia warga haru menang saksi paus giat jaka a paus usaha sapa warga mobil masjid istiqlal keliling stadion madya jelang misa agung paus kati mangrove tanam jaka a kota indonesia kota nusantara ikn mangrove bawa paus menteri koordinator bidang maritim investasi indonesia luhut binsar pandjaitan hadir graha pemuda jaka a rabu luhut paus doa mangrove tanam jaka a kota indonesia kota nusantara ikn pohon doa paus tanam wilayah tampil pohon simbol simbolik paus blessing doa mangrove acara luhut tanam provinsi jaka a ikn bal imam masjid istiqlal nasaruddin umar cium kening paus agenda nazaruddin cium kening paus fransiskus balas paus cium tangan imam masjid istiqlal paus fransiskus selesai hadir kunjung masjid istiqlal pagi kunjung terowongan silaturahmi hubung gereja katedral masjid istiqlal tanah&#39;, &#39;misa suci pimpin langsung paus fransiskusdi stadion utama gbk kamis langsung penuh khidmat hadir ribu orang gbk paus kunjung masjid istiqlal lihat langsung terowongan silaturahmi hubung masjid seasia tenggara gereja katedral seberang rangkum kilas internasional jumat paus fransiskus nyata pesan tutup misa suci stadion gelora karno gbk jaka a kamis salah pesan sang suci terima kasih perintah rakyat indonesia jamu fasilitas jalan apostolik selasa terima kasih orang indonesia ramah khusus orang tua terima kasih presiden joko widodo hadir rakyat indonesia paus fransiskus paus fransiskus pimpin misa suci gbk hadir umat katolik misa suci rupa rangkai kunjung apostolik republik indonesia ri september pimpin gereja katolik dunia kepala negara takhta suci vatikan paus fransiskus kaya indonesia tambang nyata paus pidato masjid istiqlal kunjung indonesia kamis indonesia negara mozaik budaya suku bangsa adat istiadat agam kaya cermin keanekaragaman ekosistem lingkung paus rumah tambang emas dunia ha a harga beda alas be ikai ketua dewan masjid indonesia dmi jusuf kalla jk alas pimpin gereja katolik dunia kepala negara vatikan paus fransiskus ajak masuk masjid istiqlal jk bicara jk masjid istiqlal kamis rujuk hormat agama masingmasing imam masjid istiqlal nasaruddin umar bicara kena pe emuan selenggara rumah ibadah umat islam nasaruddin pe emuan bahas topik utama manusia lingkung usaha bawa bahasa agama&#39;, &#39;misa suci pimpin paus fransiskus stadion utama gelora karno jalan lancar penuh khidmat kamis misa akbar wib hadir puluh ribu umat katolik misa paus fransiskus keliling stadium sapa umat sang bapa suci cium kening orang anak kati orang bayi indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam&#39;, &#39;pimpin gereja katolik dunia kepala negara takhta suci vatikan paus fransiskus terbang indonesia papua nugini pesawat garuda jumat maskapai indonesia konfirmasi wakil koordinator media panitia kunjung suci paus fransiskus anthonius gregorius paus jalan papua nugini timor leste singapura anthonius cnnindonesiacom kamis malam jaka apo moresby pesawat garuda paus papua nugini september timor leste september pimpin agama katolik jalan singapura september paus indonesia september bawa pesan damai harmonisasi indonesia paus be emu presiden joko widodo jokowi jabat perintah tokoh masyarakat lintas agama ajar hadir misa agung gelora karno gbk kamis misa hadir umat katolik sabang merauke pidato misa paus pesan damai dorong semangatumat serah saudara saudari bangsa nusantara kagum beranekaragam lelah layar tebar jala lelah mimpi bangun buah adab damai paus paus fransiskus rupa rupa paus kunjung indonesia kunjung pe ama laku paulus vi desember paus santo yohanes paulus ii oktober&#39;, &#39;kepala gereja katolik dunia paus fransiskus kunjung indonesia jumat agenda rilis panitia kunjung suci paus tuju bandara internasional soekarnohatta jumat wib upacara pisah bandara internasional soekarnohatta agenda rilis panitia paus rombong berangkat pesawat tuju papua nugini jalan jaka apo moresby rilis paus papua nugini september timor leste september pimpin agama katolik jalan singapura september paus indonesia september be emu presiden indonesia joko widodo jokowi jabat perintah tokoh masyarakat ajar hadir misa agung gelora karno gbk misa hadir umat katolik sabang merauke paus fransiskus rupa rupa paus kunjung indonesia kunjung pe ama laku paulus vi desember paus santo yohanes paulus ii oktober&#39;, &#39;kim jong un perintah eksekusi mati jabat perintah korea utara bencana banjir tewas ribu orang juli lapor stasiun televisi korut tv chosun sepe i lansir straits times jabat perintah daerah landa banjir eksekusi mati tembak agustus kabar eksekusi mati korut lapor badan intelijen nasional korea selatan pantau situasi informasi intelijen berita juli buah pe emuan kim jong un nyata hukum keras jabat abai tugas kim jabat be anggung jatuh korban jiwa juli hujan deras rusak rumah warga genang jalan rel kereta api rusak hektar lahan pe ani kota sinuiju media rugi akibat banjir luas wilayah utara provinsi jagang batas china mayat temu proses bersih tanah muka surut pasca banjir banjir duga tewas ribu orang daerah parah landa banjir provinsi jagang banjir kim jong un langsung turun tangan pimpin operasi selamat helikopter sekoci militer badan meteorologi korea selatan rupa suhu te inggi catat korea utara&#39;, &#39;donald trumpmenjanjikanelon musk masuk kabinet jabat terpilihmenjadi presiden amerika serikat trump bentuk komisi efisiensi perintah be ugas laku audit uang negara percaya bos tesla pimpin trump sosok elon musk komisi efisiensi perintah bentuk tekan boros negara triliun dolar saran elon musk dukung penuh total mebentuk komisi efisiensi perintah be ugas laku audit uang kerja lengkap hadap perintah federal rekomendasi reformasi drastis trump pidato economic club of new york pidato trump urai proposal tangan regulasi perintah masuk kait produksi energi janji tarik dana perintah biden pidato singgung dukung hadap cryptocurrency rencana laku tarif impor trump pa ai republik sorot upaya boros tipu penyalahgunaan hemat uang perintah federal&#39;, &#39;baku tembak polisijerman orang pria senjata laras konsulatisrael munich jerman kamis pria curiga tewas hadap anggota polisi polisi hasil identifikasi pria austria usia kendati polisi enggan komentar kabar pria afiliasi kelompok isis antisemitisme islamisme milik tulis kanselir jerman olaf scholz buah posting x dikutipafp kantor berita jerman spiegel lapor media austria laku selidik duga sebar propaganda kelompok negara islam isis henti perdana menteri bavaria markus soeder duga aksi kait serang hadap atlet israel olimpiade munich militan palestina peristiwa tewas anggota tim israel orang perwira polisi jerman serang&#39;, &#39;gubernur jenin kamal abu alrub situasi daerah militer tutup israel buruk rabu abu alrub tentara israel cegah air makan masuk keluargakeluarga jebak daerah kepung keluargakeluarga paksa tinggal rumah ratus tentara israel laku gerebek tepi barat rabu salah aksi wilayah israel be uju basmi militan hamas dukung iran operasi pasuk enam rusa parah infrastruktur kota kamp ungsi buah kota padat duduk bangun rusak jalan buldoser lapis baja buru bom tepi jalan hancur ekonomi lokal gubernur&#39;, &#39;&#39;, &#39;paus fransiskus sayang peperangan konflik dunia picu eksploitasiagama krisis lingkung umat agama wajib be anggung ancam be anggung hadap krisis serius terkadang dramatis ancam umat manusia khusus perang konflik sayang picu eksploitasi agama krisis lingkung paus pidato unjung masjid istiqlal jaka a kamis paus nilai deklarasi istiqlal judul teguh rukun umat agama manusia inspirasi deklarasi umat agama be anggung hadap pelbagai krisis serius lantar hambat pe umbuhan hidup masyarakat hadap skenario maju kuat nilainilai tradisi agama bantu masyarakat kalah budaya keras ketidakpedulian maju rekonsiliasi damai sisi paus singgung indonesia negara budaya suku bangsa adat istiadat agam samping milik tambang emas kaya ha a harga beda alas be ikai perbedaanbisa selaras rukun hormat siasiakan anugerah miskin kaya kembang waris utama kaum muda&#39;, &#39;paus fransiskusmenyatakan pesan tutup misa suci stadion gelora karno gbk jaka a kamis salah pesan sang suci terima kasih perintah rakyat indonesia jamu fasilitas jalan apostolik selasa terima kasih orang indonesia ramah khusus orang tua terima kasih presiden joko widodo hadir rakyat indonesia paus fransiskus paus fransiskus pimpin misa suci gbk hadir umat katolik misa suci rupa rangkai kunjung apostolik republik indonesia ri september indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam paus fransiskus dinantinanti utama umat katolik indonesia pimpin misa suci paus kunjung masjid istiqlal jaka a kantor konferensi waligereja indonesia kwi masjid istiqlal paus unjung terowongan silaturahmi hubung masjid istiqlal gereja katedral pidato harap terowongan dialog jumpa semangat rukun sahabat kwi paus be emu terima manfaat organisasi amal momen paus pesanpesannya undang warga sandang disabilitas masyarakat harga ha a rawat gereja negara&#39;, &#39;&#39;, &#39;pimpin gereja katolik dunia kepala negara vatikan paus fransiskusmenyampaikan pesan sentuh hadap jemaat misa suci gelar stadion gelorbung karnogbk jaka a kamis salah paus fransiskusberpesan umat katolik indonesia senantiasa pantang serah jalan hidup sebaikbaiknya milik santa esa kalkuta raya lelah peduli orangorang miskin maju damai dialog milik tiada tuai apaapa lelah tabur paus fransiskus pimpin misa suci stadion utama gelora karno gbk kamis saudara saudari bangsa nusantara kagum beranekaragam lelah layar tebar jala lelah mimpi bangun buah adab damai rani impi saudara bimbing sabda tuhan dorong tabur kasih penuh tempuh jalan dialog lihat budi hati senyum khas beda bangun damai sebar aroma harap keliling paus mantan uskup agung buenos aires gaung pesan uskupuskup indonesia jalan masyarakat gereja bangun harap harap injil kecewa buka tuju sukacita paus fransiskus pimpin misa suci gbk hadir umat katolik misa suci rupa rangkai kunjung apostolik republik indonesia ri september indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam paus fransiskus dinantinanti utama umat katolik indonesia pimpin misa suci paus kunjung masjid istiqlal jaka a kantor konferensi waligereja indonesia kwi masjid istiqlal paus unjung terowongan silaturahmi hubung masjid istiqlal gereja katedral pidato harap terowongan dialog jumpa semangat rukun sahabat kwi paus be emu terima manfaat organisasi amal momen paus pesanpesannya undang warga sandang disabilitas masyarakat harga ha a rawat gereja negara&#39;, &#39;serang udara israel hantam buah kampus tampung ungsi palestina selasa serang hantam kampus wilayah saftawi gaza utara tewas orang pasu israel tewas warga palestina gaza jam agresi israel gaza tewas ribu warga palestina&#39;, &#39;sosok pria rambut gondrong curi perhati raya misa suci paus fransiskusdi stadion utama gelora karno gbk kamis lihat jubah pria rambut gondrong duga rupa rohaniawan undang misa suci sosok tampil layar video umat hadir raya misa suci langsung sorak lihat sosok yesus kristus mc canda yesus hadir acara misa suci wow tuhan yesus layar mc pria senyum kamera layar sorot sosok pria pastor india abdi gereja maumere nusa tenggara timur ntt misa suci pimpin paus fransiskus langsung jam misa puluh ribu umat katolik indonesia langsung khidmat misa suci paus doa berkat umat hadir gambastwitter&#39;, &#39;&#39;, &#39;misa suci pimpin paus fransiskusyang puluh ribu umat katolik doa perintah wakil rakyat indonesia doa baca wakil umat bahasa daerah bahasa toraja doa umat doa tuhan bimbing perintah wakil rakyat pilih putus juang sejati harap bela mempe ahankan hidup ma abat pribadi maju adil damai dipatutun lako to maparenta sia akkelena to buda o puang ayokai massola nasang denno upa anna tu nakombongan sia naalan kada rapa la umpabutu sia umpopembua kameloanna to buda tenmi denno upa anna tontong kinaa ungkarimmanni katuoan sia anggana simisamisa tau untannun katuoanna to buda tu naponnoi kasikaeloan sia kamarampasan baca doa umat misa suci langsung jam puluh ribu umat katolik indonesia langsung khidmat misa suci paus doa berkat umat hadir puluh ribu umat katolik padat stadion utama gelora karnogbk misa agung paus fransiskus misa suci rupa rangkai kunjung apostolik republik indonesia ri september indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam paus fransiskus dinantinanti utama umat katolik indonesia&#39;, &#39;&#39;, &#39;orang remaja difabel baca baca pe ama misa suci pimpin pimpin gereja katolik dunia kepala negara vatikan paus fransiskus gelora karno gbk kamis remaja lakilaki baca surat pe ama rasul paulus jemaat korintus teks huruf braille saudarasaudara orang tipu sangka hikmat nilai dunia bodoh hikmat hikmat dunia bodoh allah te ulis allah tangkap orang hikmat cerdik tuhan rancanganrancangan orang hikmat sungguh siasia belaka orang megah manusia milik paulus apolos kefas dunia hidup mati milik milik kristus kristus milik allah baca paus fransiskus pimpin misa suci gbk hadir umat katolik misa suci rupa rangkai kunjung apostolik republik indonesia ri september indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam paus fransiskus dinantinanti utama umat katolik indonesia pimpin misa suci paus kunjung masjid istiqlal jaka a kantor konferensi waligereja indonesia kwi masjid istiqlal paus unjung terowongan silaturahmi hubung masjid istiqlal gereja katedral pidato harap terowongan dialog jumpa semangat rukun sahabat kwi paus be emu terima manfaat organisasi amal momen paus pesanpesannya undang warga sandang disabilitas masyarakat harga ha a rawat gereja negara&#39;, &#39;presiden joko widodojokowi umat katolik indonesia sukacita jalan misa suci paus fransiskus warga indonesia sukacita sambut paus fransiskus jokowi selamat ibadah umat katolik umat katolik indonesia sukacita laku misa suci mulia suci paus fransiskus jokowi rekam video misa akbar paus fransiskus stadion madya gelora karno gbk jaka a kamis jokowi umat katolik indonesia bangsa umat katolik peran jaga a sebar kasih toleransi umat agama beda kaya toleransi pupuk damai bangsa jokowi sore paus fransiskus hadir misa akbar stadion madya gelora karno ribu umat katolik a ibadah jokowi temu paus fransiskus masuk lokasi misa bincang sebentar jokowi damping menko marves luhut binsar pandjaitan kapolri jenderal listyo sigit prabowo panglima tni jenderal agus subiyanto pe emuan jokowi anak buah pamit paus fransiskus masuk stadion madya gbk pimpin misa suci&#39;, &#39;pimpin gereja katolik dunia kepala negara vatikan paus fransiskus sapa puluh ribu umat katolik stadion utama gelora karno gbk kamis momen sang bapa suci cium kening orang anak kati orang bayi paus fransiskus keliling stadion mobil maung mv pindad jelang misa suci helat wib kali henti laju kendara lapis baja salam jemaat kati orang bayi bayi gendong serah paus kati paus fransiskus pimpin misa suci gbk hadir umat katolik misa suci rupa rangkai kunjung apostolik republik indonesia ri september indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam paus fransiskus dinantinanti utama umat katolik indonesia paus kunjung masjid istiqlal jaka a kantor konferensi waligereja indonesia&#39;, &#39;wakil kepala bidang selenggara ibadat masjid istiqlal abu hurairah abdul salam salah alas paus fransiskustak masuk masjid istiqlal kunjung mempe imbang efisiensi sisi efisien segi pe emuan tenda halaman masjid abu cnnindonesiacom kamis abu kondisi paus fransiskus pakai kursi roda mudah acara gelar halaman masjid beliau agenda lihat terowongan silaturrahim abu paus fransiskus gelar acara pe emuan tokohtokoh lintas agama masjid istiqlal kamis pagi momen paus unjung terowongan silaturahmi hubung masjid istiqlal gereja katedral pidato paus harap terowongan dialog jumpa semangat rukun sahabat paus fransiskus laku kunjung apostolik republik indonesia ri september&#39;, &#39;paus fransiskus kali henti laju mobil defile sugbk kamis henti kati anak bawa anakanak gendong pasu paus garda swiss vatikan kati cium paus anakanak lantas orang tua paus gelar defile rangkai misa akbar gelar sugbk misa tutup rangkai giat paus fransiskus indonesia&#39;, &#39;paus fransiskus henti mobil kati orang hamil tunggu kawasan masjid istiqlal gereja katedral jaka a pusat kamis video lihat orang hamil langsung arah mobil paus franskisus mobil henti paus langsung ajak hamil bicara elus perut paus fransiskus be anya bayi lahir nama&#39;, &#39;kepala gereja katolik dunia paus fransiskus salam warga keliling stadion madya stadion utama gelora karno gbk jaka a pusat kamis paus fransiskus julur tangan salam perempuan salam pasu kam minggir warga salam paus usaha jangkau sembari keliling paus fransiskus lambai tangan sapa umat cinta paus fransiskus pimpin misa suci gbk wib hadir umat katolik misa suci rupa rangkai kunjung apostolik republik indonesia ri september indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam paus fransiskus dinantinanti utama umat katolik indonesia&#39;, &#39;paus fransiskus rangkai misa akbar jaka a laku defile stadion madya sugbk paus lihat sulit mobil maung defile mobil jalan paus semangat sapa umat katolik tari irama lagu lantun lintas misa akbar gbk tutup rangkai giat paus fransiskus indonesia besok jumat be olak papua nugini tur asia tenggara&#39;, &#39;pimpin gereja katolik dunia kepala negara vatikan paus fransiskus sapa umat katolik gelora karno gbk jelang misa suci kamis pantau cnnindonesiacom lokasi sang bapa suci mobil maung pindad keliling stadion madya stadion utama gbk sore sorak sorai unjung gema guncang stadion sembari keliling paus fransiskus lambai tangan sapa umat cinta paus fransiskus pimpin misa suci gbk wib hadir umat katolik misa suci rupa rangkai kunjung apostolik republik indonesia ri september indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam paus fransiskus dinantinanti utama umat katolik indonesia paus kunjung masjid istiqlal jaka a kantor konferensi waligereja indonesia&#39;, &#39;presiden joko widodo jokowi stadion madya gbk kamis wib jelang misa kudus paus fransiskus jokowi mobil mpv toyota innova zenix warna hitam jokowi pakai kemeja batik warna coklat langsung sambut menko marves luhut binsar pandjaitan mensesneg pratikno panglima tni jenderal tni agus subiyanto kapolri jenderal pol listyo sigit prabowo jokowi rombong tunggu paus jadwal wib wib paus rombong lokasi langsung sambut jokowi jokowi pimpin umat katolik dunia ibadah jokowi masuk ibadah misa paus fransiskus pimpin misa suci gbk sapa umat katolik sebar stadion stadion madya stadion utama paus keliling stadion mobil maung mv pindad komisi komunikasi sosial komsos konferensi waligereja indonesia kwi umat katolik raya misa suci paus fransiskus gbk tiket gelang milik tiket gelang misa suci siar langsung kanal media sosial komsos kwi tayang tv nasional raya misa suci gbk komsos kwi imbau mempe imbang jalan gerbang buka wib tutup wib akses masuk plaza utara plaza timur plaza tenggara umat katolik imbau transpo asi parkir area gbk kendara pribadi giat misa suci rupa kunjung apostolik paus fransiskus republik indonesia ri september indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam paus fransiskus dinantinanti utama umat katolik indonesia&#39;, &#39;presiden joko widodo jokowi stadion madya gbk kamis wib jelang misa kudus paus fransiskus jokowi mobil mpv toyota innova zenix warna hitam jokowi pakai kemeja batik warna coklat langsung sambut menko marves luhut binsar pandjaitan mensesneg pratikno panglima tni jenderal tni agus subiyanto kapolri jenderal pol listyo sigit prabowo jokowi rombong tunggu paus jadwal wib wib paus rombong lokasi langsung sambut jokowi jokowi pimpin umat katolik dunia ibadah jokowi masuk ibadah misa paus fransiskus pimpin misa suci gbk sapa umat katolik sebar stadion stadion madya stadion utama paus keliling stadion mobil maung mv pindad komisi komunikasi sosial komsos konferensi waligereja indonesia kwi umat katolik raya misa suci paus fransiskus gbk tiket gelang milik tiket gelang misa suci siar langsung kanal media sosial komsos kwi tayang tv nasional raya misa suci gbk komsos kwi imbau mempe imbang jalan gerbang buka wib tutup wib akses masuk plaza utara plaza timur plaza tenggara umat katolik imbau transpo asi parkir area gbk kendara pribadi giat misa suci rupa kunjung apostolik paus fransiskus republik indonesia ri september indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam paus fransiskus dinantinanti utama umat katolik indonesia&#39;, &#39;pimpin gereja katolik dunia kepala negara takhta suci vatikan paus fransiskus singgung tambang hadir dialog antarumatberagama nyata paus hadir pe emuan agama masjid istiqlal kamis pe emuan hadir ormas masuk nu muhammadiyah organisasi kristen hinduisme budha perma budhi believer ketua pbnu yahya cholil staquf hadir pe emuan paus indonesia negara rupa mozaik budaya milik suku bangsa adat istiadat agam kaya tuan rumah tambang emas dunia ha a harga beda alas be ikai paus ha a harga beda api pe ikaian siasiakan anugerah miskin kaya kembang waris utama kaum muda paus harap orang jerumus pesona fundamentalisme keras moga orang pesona impi manusia bebas saudara damai paus indonesia september hadir pe emuan perintah tokoh agama ajar misa akbar gelora karno gbk&#39;, &#39;&#39;, &#39;ribu umat katolik wilayah padat stadion gelora karno gbk jelang misa suci paus fransiskuspada kamis umat katolik pulau sumatra jawa bal papua penuh kursikursi tribun gbk pakai cerah agam warna khusyuk jalan acara wib acara misa akbar wib paus fransiskus pimpin misa suci gbk sapa umat katolik sebar stadion stadion madya stadion utama paus keliling stadion mobil maung mv pindad komisi komunikasi sosial komsos konferensi waligereja indonesia kwi umat katolik raya misa suci paus fransiskus gbk tiket gelang milik tiket gelang misa suci siar langsung kanal media sosial komsos kwi tayang tv nasional raya misa suci gbk komsos kwi imbau mempe imbang jalan gerbang buka wib tutup wib akses masuk plaza utara plaza timur plaza tenggara umat katolik imbau transpo asi parkir area gbk kendara pribadi giat misa suci rupa kunjung apostolik paus fransiskus republik indonesia ri september indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam paus fransiskus dinantinanti utama umat katolik indonesia&#39;, &#39;pimpin gereja katolik dunia kepala negara takhta suci vatikan paus fransiskusmenjadi sorot kunjung indonesia kunjung paus kawal pasu kam indonesia jaga ketat usaha ramah sapa warga jaka a paus milik pasu aman swiss guard garda swiss mei rekrut garda swiss sumpah tradisional vatikan sumpah setia paus kena seragam seremonial gaya renaisans kombinasi warna merah kuning biru pasu wajib pakai helm baju zirah berat kg upacara gelar paus titip pesan pemuda luang giat kenal roma momen saudara bincang paus kutip dariabc news lantik rangkai latih ketat sepe i jalan cepat lambat latih awas latih ajar detail gaya postur personel latih acara khidmat tugas resmi libat tegak berjamjam pegang tombak upacara ambil sumpah gelar mei rupa sejarah garda swiss kenang orang tewas jarah roma kaisar charles v selamat lantas selamat paus clement vii tangkap garda swiss paus julius ii rekrut kota desa swiss sedia pasu vatikan jaga paus a istana apostolik pasu vatikan penuh syarat syarat laklak lajang usia daftar minimal sedia tinggal vatikan anut katolik taat syarat rekrut milik badan minimal kaki cm selesai wajib militer swiss korban nyawa paus&#39;, &#39;&#39;, &#39;ketua dewan masjid indonesia dmi jusuf kalla jk alas pimpin gereja katolik dunia kepala negara vatikan paus fransiskus ajak masuk masjid istiqlal jk bicara jk masjid istiqlal kamis rujuk hormat agama masingmasing imam masjid istiqlal nasaruddin umar bicara kena pe emuan selenggara rumah ibadah umat islam nasaruddin pe emuan bahas topik utama manusia lingkung usaha bawa bahasa agama bahasa agama susah pa isipasi aktif capai bahasa agama lubuk hati nasaruddin paus fransiskus laku kunjung apostolik republik indonesia ri september indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam paus fransiskus dinantinanti utama umat katolik indonesia paus kunjung masjid istiqlal kantor konferensi waligereja indonesia stadion utama gelora karno paus fransiskus pimpin misa akbar gbk hadir umat katolik&#39;, &#39;paus fransiskus lihat henti mobil kendara kati orang hamil tunggu kawasan masjid istiqlal gereja katedral jaka a pusat kamis buah video viral media sosial lihat orang calon tunggu mobil paus fransiskus jalan mobil sang pimpin gereja katolik dunia hamil langsung usaha perhati paus fransiskus lihat duduk jok belah sopir suami hamil antusias kandung istri kati paus fransiskus paus please bless my child please bless my child paus tolong berkat anak sang suami ambil video momen sejarah mobil henti paus fransiskus langsung ajak hamil bicara when the baby born paus dengar video next week suami hamil paus fransiskus langsung usap perut hamil suami istri haru menang bahagia paus fransiskus be anya nama calon bayi kadung laju paus fransiskus hadiah hamil for cecilia nama calon anak paus fransiskus buah kantong warna cokelat tua hamil gambastwitter paus fransiskus laku kunjung apostolik indonesia selasa jumat indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam paus fransiskus dinantinanti utama umat katolik indonesia&#39;, &#39;paus fransiskus kagum terhadapterowongan silaturahmi hubung masjid istiqlal gereja katedral jaka a pusat pidato paus harap terowongan dialog jumpa semangat rukun sahabat pikir buah terowongan mudah bayang lorong gelap utama takut beda terang paus fransiskus pidato masjid istiqlal terang sari terowongan sahabat rukun pelihara dukung laku jalan tuntun tuju terang sempurna imbuh paus fransiskus bangun terowongan silaturahni usul presiden joko widodo usul bangun terowongan muncul proyek renovasi masjid istiqlal bangun terowongan rancang renovasi masjid renovasi liput interior eksterior masjid sepe i sungai taman lahan parkir usul bangun terowongan muncul proyek presiden jokowi bangun terowongan simbol silaturahmi masingmasing rumah ibadah bangun terowongan lepas kritik terowongan silaturahmi bangun meter lebar meter meter anggar rp miliar dana renovasi istiqlal&#39;, &#39;menteri koordinator bidang maritim investasi indonesia luhut binsar pandjaitan bawa pohon mangrove hadap pimpin gereja katolik dunia kepala negara takhta suci vatikan paus fransiskus mangrove bawa paus hadir graha pemuda jaka a rabu luhut paus kati mangrove tanam jaka a kota indonesia kota nusantara ikn pohon doa paus tanam wilayah tampil pohon simbol simbolik paus blessing doa mangrove acara luhut tanam provinsi jaka a ikn bal luhut bawa pohon paus tuang tanah pot siram air paus unjung graha pemuda be emu kelompok muda wakil siswasiswi sekolah jaka a wilayah agenda inisiasi organisasi didik global scholas occurentes kunjung langsung paus hadir misa gereja katedral jaka a paus be emu presiden indonesia joko widodo jabat istana merdeka pe emuan keras timbul kuasa seragam paus indonesia september terbang papua nugini timor leste singapura&#39;, &#39;polisi motif laku perkosa bunuh hadap orang siswi smp inisial aa palembang sumatera selatan kapolrestabes palembang kombes harryo sugihha ono aksi bejat laku laku umur salur hasrat tonton video porno harryo sangka is kumpul video porno ponsel milik tonton film perkosa bunuh korban sita bukti temu hp milik laku temu video cabul film porno kumpul is laku utama wa awan kamis harryo laku is kumpul sangka mz ns as rumah sangka is rencana aksi perkosa be emu korban niat laku rudapaksa perkosa hadap korban sadar laku tindak akibat fatal mati korban jasad aa temu warga kubur cina camat sukarami palembang minggu periksa is ajak korban tonton pe unjuk kuda kepang belok lokasi kubur cina lokasi laku bekap hidung mulut korban lemas rekanrekan laku lokasi inisial mz nz as cabul korban cabul korban laku pindah lokasi jarak menit pe ama lokasi titik temu jasad korban warga baca berita lengkap&#39;, &#39;anggota dewan wakil rakyat daerah dprd kabupaten bangkal jawa timur gadai surat putus sk jabat bank lantik wakil rakyat sk jabat agun aju kredit bank jatim sistha sedia kredit bank jatim cabang bangkal aju pinjam variasi anggota dprd bangkal gadai sk aju pinjam bank jatim sistha hubung puluh anggota aju pinjam nilai pinjam kisar rp juta rp miliar sistha anggota dewan gadai sk be ambah proses kumpul berkas langsung be ahap tunggu kumpul berkas aju pinjam be ahap langsung kena identitas anggota dprd aju pinjam sistha enggan rincian masuk pimpin dewan anggota pa ai te entu pa ai unsur pimpin anggota anggota dprd bangkal aju pinjam sistha harap anggota dprd pilih kabupaten bangkal orang gadai sk aju pinjam bank jatim harap anggota dprd kabupaten bangkal aju pinjam bank jatim gadai sk tutup peristiwa kabupaten sampang pasca wakil rakyat lantik direktur utama bank sampang syaifulloh asyik legislator aju pinjam anggota dprd pilih a anggota dprd proses aju pinjam prosedur perban masuk tuju sekretariat dprd bendahara potong gaji syaifulloh alas wakil rakyat lantik gadai sk bank variasi bayar hutang kampanye beli rumah renovasi rumah keluarga nyata anggota dprdterkait gadai sk cnnindonesia upaya terang dprdterkait&#39;, &#39;daftar pasang calon bupati wakil bupati tapanuli tapteng masinton pasaribudan mahmud efendidi pilkada tapteng ditolakkpu ditolakkarena pa ai usung daftar masinton mahmud sistem informasi calon silon wakil ketua dpd pdi juang sumutsarma hutajulumenyebut daftar silon pdip pa ai buruh kendala coba daftar manual tolak itusarmameminta kpumembuat berita acara tolak buah putus kpu kabupaten tapanuli berita acara te ulis sarma kutip detikcom rabu ketua kpu tapteng wahid pasaribu terima berkas calon silon debat pdip kpu kait silon pdip daftar manual terima kpu tolak hormat berkas wahid pasaribu tolak berkas daftar pasang masintonmahmud baca berita lengkap&#39;, &#39;keluarga remaja putrikorban perkosa bunuh palembang inisial aa desak laku hukum berat jasad aa temu kondisi mengenaskanoleh warga kubur cina tputalang kerikil camat sukarami palembang minggu siang remaja putri korban perkosa bunuh polisi tangkap duga laku umur harap hukum timpal aksi laku nyata umur hukum seberatberatnya marlinayang rupa bibi korban rabu marlina orang tua aa stres berat sedih duka timpa putri kondisi orang tua korban stres ayah sangka pisah kapolrestabespalembang kombes pol harryosugiha onomengatakan duga otak laku bejat is pacar korban periksa is ajak korban tonton pe unjuk kuda kepang lurah pipa reja bawa kubur cina modus ajak korban jalan korban ajak lokasi tpu krematorium rabu lokasi korban aa bekap hidung mulut lemas laku is harryo lokasi rekan laku tunggu mz nz as korban lemas laku cabul perkosa korban gilir is mz nz as perkosa korban laku pindah tkp lokasi jarak menit pe ama harryo lokasi korban temu nyawa tkp korban cabul tinggal dunia cabul korban masingmasing hasil periksa polisi duga motif laku umur aa perkosa bunuh korban niat bejat muncul kasih korban otak bunuh is tonton film porno laku periksa hadap laku pandu psikolog biro sdm polda sumsel motif salur nafsu harryo is kumpul film porno video cabul hp milik picu eksplorasi nafsu laku utama sita bukti temu hp laku temu video cabul film porno kumpul is laku utama is rekannyamemang milik niat cabul hadap korban niat laku rudapaksa perkosa hadap korban sadar laku tindak akibat fatal mati korban harryo baca berita lengkap&#39;, &#39;presiden joko widodo jokowi negara korban rakyat selesai dampak ubah iklim jokowi tangan ubah iklim butuh kolaboratif perikemanusiaan kolaborasi negara maju negara kembang manusia proses korban rakyat jokowi buka indonesia international sustainability forum jcc jaka a pusat kamis jokowi tekan ubah iklim selesai negaranegara dunia ekonomi hitung untung egosentris sendirisendiri ekonomi hijau lindung lingkung cipta sejahtera rakyat ragu komitmen indonesia capai net zero emissions kontribusi dunia papar indonesia milik potensi energi limpah capai gigawatt pamer indonesia milik plts apung waduk cirata kapasitas megawatt peak mwp asia tenggara dunia jokowi pamer indonesia milik potensi serap karbon hutan mangrove dunia luas juta hektare juta hektare hutan mangrove indonesia serap karbon kali banding hutan hujan tropis indonesia milik kawasan industri hijau luas ribu hektare dampak signifikan cepat tangan dampak ubah iklim jokowi negara maju berani investasi riset teknologi buka luas dana skema ringan negara kembang imbuh&#39;, &#39;jaksa sumatera utaramemperoleh harga juara i lapor aplikasi inteliz kait capai kerja bidang intelijen giat rapat kerja teknis rakernis jaksa ri jaka a piagam harga serah langsung plt jam intel leonard ebenezer simanjuntak sesjamintel sarjono turin kajati sumut idianto hadir idianto wakil asintel kejat sumut andri ridwan aplikasi inteliz jaksa milik fungsi mudah lapor intelijen aplikasi main peran tingkat efisiensi kumpul analisis meta data intelijen acara tutup rakernis jaksa ri jaksa agung st burhanuddin wakil jaksa agung muda kepala badan resmi tutup sambut tutup rapat kerja teknis rakernis jaksa ri jaksa agung terima kasih selenggara pese a bersamasama sukses rangkai giat rakernis jaksa agung harap kerja serap masingmasing bidangbadan tingkat lampau capai serap anggar hasil rakernis yogia refleksi capai kerja jaksa jalan rencana pembangungan jangka nasional rpjmn prioritas nasional perintah a rancang teknokratik rpjmn rpjpn tuju indonesia emas jaksa agung&#39;, &#39;komisi pilih kpu dki jaka a pasang calon gubernur wakil gubernurpilkada serah dokumen visi misi halaman ketua kpudki jaka a wahyu dinata terburuburu proses daftar naskah visi misi naskah visi misi halaman buruburu kemarin naskah visi misi sesuai rpjpd rencana bangun jangka daerah wahyu jaka a pusat kamis wahyu paslon maksud visi misi syarat lengkap paslon surat terang pailit tanda terima pemberitahuan pajak setor pas foto backgroundnya warna putih backgroundnya warna biru backgroundnya warna merah ketua divisi teknis kpu dki jaka a dody wijaya batas halaman dokumen visi misi imbau dokumen komprehensif imbau komprehensif holistik masyarakat referensi pilih dody halaman dody paslon lengkap dokumen visi misi macammacam ya lengkap tunggu naskah visi misi upload website kpu dki jaka a kpu dki jaka a nyata dokumen syarat pasang calon gubernur wakil gubernur daftar penuh syarat pasang calon jumat minggu kpu periksa lengkap dokumen syarat pasang daftar pilgub jaka a pe ama pasang pramono anungrano karno usung pdip hanura total persentase suara pdip hanura persen pasang ridwan kamilsuswono usung pa ai gerindra pks golkar demokrat nasdem psi pkb gelora pbb perindo pan ppp garuda pkn akumulasi suara pa ai persen pasang daftar dharma pongrekunkun wardana maju jalur orang independen&#39;, &#39;kpu nyata laksana pilkada serentak daerah laksana pasang calon lawan kotak kosong kpu tutup daftar calon kepala daerah khusus daerah calon tunggal september wib komisioner kpu idham holik pilkada lawan kotak kosong pasang calon kabupaten puhowatu gorontalo kabupaten pulau siau tagulandang biaro sulawesi utara kabupaten puhowato pulau sitaro agustus pasang calon pasang idham hubung kamis tinggal provinsi kabupatenkota pasang calon pasang calon imbuh dirinci pilkada kotak kosong provinsi kabupaten kota daftar kpu daerah calon tunggal calon tunggal berkontestasi pilkada serentak lawan kotak kosong pilih tuju pasang calon coblos kotak kosong pasang calon tunggal nyata kalah hasil kumpul persen suara sah kalah perintah pusat jabat pj kepala daerah pimpin daerah pilkada serentak&#39;, &#39;divisi hubung internasional hubinterpolri resmi serah buron bekas wali kota alice guokepada perintah filipina kadiv hubinter polri irjen krishna mu i serah buron laksana sesuai arah kapolri jenderal listyo sigit prabowo krishna langsung koordinasi otoritas filipina dukung penuh upaya tega hukum hadap alice guo kapolri dukung penuh perintah filipina sangkut alice pulang mekanisme depo asi kerja polisi wa awan kamis krishna harap tangkap a serah tingkat kerja tega hukum negara bukti hubung indonesia filipina hubung erat kerja indonesiafilipina jalan wakil otoritas filipina benjamin abalos terima kasih hadap polri bantu tangkap alice guo benjamin proses administrasi laku kait pulang alice guo filipina malam milik alice milik proses proses laku divisi hubung internasional hubinter polri tangkap buron alice guo rupa mantan wali kota filipina polri harap perintah filipina kirim buron utama badan narkotika nasional bnn gregor has harap filipina kirim buron utama bnn an gregor has negosiasi upaya pe ukarannya kadiv hubinter polri irjen krishna mu i konfirmasi rabu alice guo milik nama china guo hua ping buron senat filipina tolak hadir lidi kongres duga libat sindikat kriminal china guo ban tuduh sikeras nyata lahir filipina hadap tuduh jahat badan antipencucian uang antimoney laundering councilamlc masuk tuntut duga cuci uang hadap guo lapor depa emen hakim amlc duga guo sangka laku cuci uang nila juta peso tara rp miliar guo henti jabat wali kota bamban provinsi tarlac duga kabur malaysia singapura juli terbang indonesia agustus paspor filipina terang otoritas antikriminalitas filipina&#39;, &#39;calon gubernur jaka a ridwan kamil gagas bangun huni stasiun pasar solusi respons cawagub jaka a rival rano karnoyang ragu ide laku stasiun puluh pasarpasar kombinasi insya allah solusi rk temu jaka a pusat kamis rk nilai ide realistis ragu rano ide solusi utama stasiun jaka a nyata poin gagas be umpu stasiun harga lahan jaka a mahal lahanlahan didensifikasi rumah rakyat social housing sesuai aspirasi arah prabowo rk cerita alam pribadi huni stasiun tinggal hong kong silam hidup produktif mudah akses tinggal turun basemen langsung ketemu stasiun kereta pulang rano nilai gagas rk huni stasiun jaka a solusi utama kait stasiun jaka a salah solusi solusi utama stasiun jaka a hitung tanah abang manggarai populasi situ sih rano bogor selasa kutip detikcom ya ya intuisi orang arsitek lihat bakar daerah manggarai korban rumah ya gang sumber air nggak infrastruktur imbuh&#39;, &#39;calon gubernur jaka a ridwan kamilmenemui mantan wakil presiden ri jusuf kalladi diam jalan brawijaya jaka a selatan kamis pantau cnnindonesiacom rk sore orang kena batik biru muda lengan rk patah lokasi lambai tangan arah awak media langsung masuk rumah rk temu eks gubernur dki jaka a fauzi bowo alias foke budaya betawi kawasan pusat kampung budaya betawi setu babakan jaka a selatan kemarin rk salah kontestan pilkada jaka a pasang kader pks suswono usung koalisi indonesia maju plus isi pa ai gerindra pks golkar demokrat nasdem psi pkb gelora pbb perindo pan ppp garuda pkn rksuswono hadap pramonorano karno usung pdip hanura dharma pongrekunkun darma jalur independen kpujaka a periksa berkas syarat cagubcawagub ketua kpujaka awahyu dinatamenyatakan dokumen syarat pasang calon gubernur wakil gubernur daftar penuh syarat pasang calon penuh syarat lengkap laku jaka a pusat kamis ketua divisi teknis kpu dki jaka a dody wijaya salah cawagubyakni ranokarnomasih serah surat undur dpr dodymenyebutrano serah surat undur anggota dpr periode pa ainya kpu rano lengkap surat sekretariat jenderal dpr katadodyrano lengkap surat terang mundur anggota dpr rano pilih pileg beliau pilih anggota dpr surat pa ai politik kpu ri sangkut undur calon pilih dpr laku ganti calon anggota kpu ri katanyadi jaka a pusat kamis&#39;, &#39;komisi pilih umumkpu dki jaka a calon wakil gubernur rano karnomelengkapi syarat administrasi maju pilkada jaka a ketua divisi teknis kpu dki jaka a dody wijaya rano serah surat undur anggota dpr periode pa ainya kpu rano lengkap surat sekretariat jenderal dpr surat undur beliau pa ai politik laku lengkap surat terang proses undur proses kesetjenan dpr dody jaka a pusat kamis dody rano lengkap surat terang mundur anggota dpr rano pilih pileg beliau pilih anggota dpr surat pa ai politik kpu ri sangkut undur calon pilih dpr laku ganti calon anggota kpu ri kpu dki jaka a nyata dokumen syarat pasang calon gubernur wakil gubernur daftar penuh syarat pasang calon penuh syarat lengkap laku ketua kpu wahyu dinata jaka a pusat kamis wahyu nyata pasang calon jumat minggu kpu periksa lengkap dokumen syarat dokumen syarat penuh syarat surat terang pailit surat tanda terima lapor lhkpn pas foto gelar akademik surat undur anggota dpr caleg pilih pasang daftar pe ama pasang pramono anungrano karno usung pdip hanura total persentase suara pdip hanura persen pasang ridwan kamilsuswono usung pa ai gerindra pks golkar demokrat nasdem psi pkb gelora pbb perindo pan ppp garuda pkn akumulasi suara pa ai persen pasang daftar dharma pongrekunkun wardana maju jalur orang independen&#39;, &#39;badan tanggulang bencana daerah bpbd bandung barat sulit jangkau titik apikebakaran kawasan hutan gunung tangkubanparahu titik api sulit jangkau medan terjal dansusah dilaluioleh mobil madam api kobar kawasan hutan medan kendara off road jalur kendara masuk tembus kebun teh sukawana parongpong katakepala laksana bpbd bandung barat meidi kamis saran area wisata alam gunung tangkuban perahu kabupaten bandung barat jawa barat tutup susul bakar landa kawasan rabu meidipenutupan laku selamat unjung area api benarbenar padam saran tutup a inya tutup imbas unjung pikir wajar jaga korban bpbdbandung barat terjun personel gabung unsur bpdb tnipolri dinas madam rawan jibaku madam api luas area mukim warga upaya madam api kerah personel gabung dukung alat madam bakar meidi badan nasional tanggulang bencana bnpb kerah helikopter water bombing bakar area hutan luas hektare kondisi sepe i komunikasi bnpb berani analisa pahit cepat bantu kirim madam api udara&#39;, &#39;&#39;, &#39;komisi pilih umumkpu maros pasang calon bupati wakil bupati maros be arung pilkada daftar buka kemarin tanggal september hasil nihil daftar ketua kpu maros jumaedi kamis jumaedimenyebuthanya pasang cabup cawabuppetahana chaidir syamsuha ina bohariyang daftar agustus pilkadakabupaten maros pasang be arung pasang petahanatersebut lawan kotak kosong peluang kotak kosong arah kpu informasi sepe i proses verifikasi administrasi maros posisi kotak kosong komisi pilih kpu ri nyata calon tunggal pilkada daerah komisioner kpu idham holik nyata pasang calon kabupaten puhowatu gorontalo kabupaten pulau siau tagulandang biaro sulawesi utara kabupaten puhowato pulau sitaro agustus pasang calon pasang idham hubung kamis idham calon tunggal provinsi kabupatenkota tinggal provinsi kabupatenkota pasang calon pasang calon&#39;, &#39;komite aksi solidaritas munir kasum desak perintah joko widodo be anggungjawab selesai kasuspembunuhan aktivis ham munirsaid thalib tim cari fakta tpf direktur eksekutif amnesty international indonesia usman hamid mengingatkanbahwa bunuh munir inisiatif formal perintah masuk ambil langkah hukum buka bunuh bunuh hadap munir simbol simbol problem struktural indonesia konferensi pers bunuh munir ylbhi jaka a kamis munir advokasi langgar hak asasi manusia bunuh ikan tindak henti juang korbanpelanggaran hak asasi manusia imbuh usman hasil temu tpf bunuh munir sistematis aksi bunuh munir bunuh cekcok akibat berani munir hidup kritik bijak perintah bijak sorot munir ruu tni ruu komisi rekonsiliasi uu sah munir tinggal bunuh ikan usaha bunuh pa isipasi warga lahir bijak adil bijak bangun aman bijak selesai ham imbuh lantas sayang putus adil bongkar libat dalang utama bunuh munir sistem adil pidana dugaandugaan temu tpf usman desak perintah munir langgar ham berat bunuh lensa uu ham bunuh munir lihat bunuh hukum extra judicial killing lensa adil jahat hadap manusia serang tuju duduk sipil kandung unsur sistematis bunuh pungkas&#39;, &#39;ribu umat katolik wilayah padat stadion gelora karnomenjelang misa suci paus fransiskus kamis umat katolik pulau sumatra jawa bal papua penuh kursi tribun gbk pakai cerah paus fransiskus pimpin misa suci gbk sapa umat katolik sebar stadion stadion madya stadion utama giat misa suci rupa kunjung apostolik paus fransiskus indonesia september indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura&#39;, &#39;sekjen pdip hasto kristiyantomengatakan paus fransiskusdi indonesia anugerah umat katolik bangsa indonesia hasto hadir acara misa akbar pimpin paus fransiskus stadion utama gelora karno kamis hasto momen peristiwa kunjung paus yohanes paulus ii indonesia puluh paus yohanes mahasiswa misa syukur pimpin bapa suci rupa anugerah umat katolik bangsa indonesia hasto pesan pesan damai manusia sederhana adil bawa bapa suci fransiskus imbuh hasto harap pesan damai bawa paus jalan apostolik gaung semangat jalan juang pdip ya pesan damai beliau sederhana beliau sosok paus suara semangat cinta bumi nafas juang pdip ya pimpin gereja katolik dunia paus fransiskus laku giat kunjung indonesia kamis paus fransiskusmelakukan kunjung masjid istiqlal jaka a pagi istiqlal paus fransiskusmengunjungi kantor konferensi waligereja indonesia kwi pimpin umat katolik be emu terima manfaat organisasi amal tuju malam paus fransiskus gelar misa akbar stadion gelora karno gbk paus fransiskus pimpin ribu umat katolik misa langsung komisi komunikasi sosial komsos kwi umat katolik raya misa suci paus fransiskus tiket gelang milik tiket gelang misa suci siar langsung kanal media sosial komsos kwi tayang tv nasional&#39;, &#39;komedian lies ha ono aliascak lontongdidapuk ketua tim menang calon gubernur wakil gubernur pdip pramono anungrano karno pilgub jaka a nama cak lontong langsung pramono kunjung museum bang yos milik eks gubernur jaka a sutiyoso kawasan jatisampurna kota bekas kamis cak lontong kenal lawak presenter aktor pria lahir oktober kenal kerap menggunakansilogisme nyeleneh materi lawa kadang suka selip peribahasa cipta nama juluk cak lontong postur tubuh sepe i lontong cak semat panggil orang lakilaki jawa timur lulus teknik elektro its kenal luas orang bintang tamu buah acara bawa effendi ghazali kenal bawa lawa tunggal anak perempuan gabung buah grup lawak ludruk surabaya nama tjap toegoe pahlawan tjap toegoe pahlawan rupa grup lawak mayoritas anggota mahasiswa tempuh didik its surabaya kenal an salah nama jawa timur grup lawak tjap toegoe pahlawan kerap tampil acara bawa lakon akrab telinga masyarakat sepe i cerita legenda tema pahlawan cak lontong rutin isi acaraacara televisi usung unsur komedi presenter bawa acara acara televisi kenal indonesia lawak klub tayang trans indonesia canda pasahur nama cak lontong kenal luas bintang iklan produk rambah dunia seni peran main sinetron cameo film layar lebar komedi gaya lawak cak lontong utama acaraindonesia lawak klub sarat masuk isu kritik hadap politik nasional pelan cak lontong kian rutin kritik politik fenomena sosial bahan lawa cak lontong peristiwaperistiwa politik hukum bungkus buah guyon ironi indonesia negara hukum masyarakatatau rakyat mata hukum mata hakim mata hakim hukum hukum hakim bera i ribet hakim hukum hakim cak lontong buah acara nasional iring popularitas lejit cak lontong kerap undang tampil acaraacara pa ai hibur kerap undang presiden joko widodo jokowi isi acara keluarga makan malam istana cak lontong turun lapang kampanye pasang pdip ganjar pranowomahfud md pilpres cak lontong te arik terjun dunia politik praktis libat dukung ganjarmahfud a rekan lawak daftar calon anggota legislatif pdip sepe i denny cagur ronal cak lontong ketua timses pramonoanungranokarnodi pilgubjaka a benang merah aktivitas pilpres samasama dukung calon pdip nyata cak lontong kait afiliasi politik daku komedian&#39;, &#39;komisi pilih kpu ri nyata calon tunggal padapilkada daerah komisioner kpu idham holik nyata pasang calon kabupaten puhowatu gorontalo kabupaten pulau siau tagulandang biaro sulawesi utara kabupaten puhowato pulau sitaro agustus pasang calon pasang idham hubung kamis idham calon tunggal provinsi kabupatenkota tinggal provinsi kabupatenkota pasang calon pasang calon kpu daerah milik pasang calon pilkada serentak sesuai atur kpu buka daftar senin kemarin pasang calon kpu pilkada tahap pasang calon hadap kotak kosong surat suara warga tuju pasang calon coblos kotak kosong pasang calon menang kumpul persen suara sah kotak kosong menang perintah pusat jabat pj kepala daerah pimpin daerah pilkada serentak&#39;, &#39;anggota dprd kabupaten pasuruanyang lantik kabar berbondongbondong aju pinjam utang bank menggadaikansurat putus sk angkat anggota dewan plt ketua dprd kabupaten pasuruan abdul karim pegawai bank gedung dprd kabupaten pasuruan pegawai bank daerah urus janji utang aju anggota dewan karim anggota dprd aju pinjam uang anggota aju pinjam uang laku pinjam tuju tandatangan ketua dprd karim kamis karim prediksi anggota dewan aju pinjam be ambah anggota dewan tunggu gaji dprd terima pinjam uang aju kisar rp juta rp miliar gaji pokok anggota dewan rp juta gaji pokok rp juta masuk tunjang minjam uang kisar rp juta rp miliar pinjam urus masingmasing anggota anggota dprd kabupaten pasuruan pilih periode resmi lantik gedung dprd kabupaten pasuruan rabu lantik pimpin langsung ketua adil negeri pn bangil enan sugia o anggota dprd kabupaten pasuruan pilih anggota dapil bangil beji gempol samsul hidaya helm sudiono fauzan saad muafi rusdi sutedjo adinda denisa elyas harifin nik sugiha i najib anggota dprd pilih dapil wonorejo rembang kraton pohjentrek mshobih asrori mashuda hidayatulloh hm sudiono fauzan zakaria nurul muhammad zaini mahdi haris fatiyyah az zahro dapil liput grati nguling rejoso lekok legislator pilih hasan bisri laily qomariah akhmad soleh muawir abdul salam gaung andaka ranggi eko suryono misto leo faisal mathoillah mawardi wakil rakyat pilih dapil lumbang pasrepan kejayan gondangwetan myusuf daniyal shonhaji abd wahid m khoirul anam eko suyono rias judikari drastika hj nikmah jam mghozali bambang yuliantoro putro dapil purwodadi puspo purwosari tosari merekamereka lantik abd karim rudi ha ono jumain m aminuddin agus setiya wardana akhmad mujangki sugia o achmad aidzin utama dapil sukorejo prigen pandaan anggota dprd pilih sepe i a wasik rahman hamzah agus suyanto kasim faizaturrohman andri wahyudi sugiyanto heru veri nur cahya tri laksono adi priyanto adib ghoni atqon&#39;, &#39;calon gubernur jaka a ridwan kamilmenyebut ketua tim menang pilkada isi tokoh internal parpol usung sadar komposisi koalisi indonesia maju kim plus ketua timses milik tingkat terima spek cari terima koalisi lihat internal pimpinanpimpinan dewan golong pa aipa ai rk temu bilang cikini jaka a pusat kamis rk cari sosok ketua timses latar publik figur komposisi kim plus butuh ketua timses sosok belaka manajerial rk kim plus butuh sosok ketua timses insya allah minggu beres rk salah kontestan pilkada jaka a pasang kader pks suswono usung kim plus isi pa ai gerindra pks golkar demokrat nasdem psi pkb gelora pbb perindo pan ppp garuda pkn rksuswono hadap pramonorano karno usung pdip hanura dharma pongrekunkun darma jalur independen&#39;, &#39;polisi telahmenangkap laku perkosa pembunuhanseorang siswi smp inisial aa jasad temu kubur cina palembang sumateraselatan pelakuyang usia umur ituadalah is mz nz as is otak bejat tersebutsempat tahlil yasinan rumah korban polisi is aji almarhumah senin curiga keluarga korban is pacar aa laku utama is hadir acara yasinan keluarga curiga laku ujarkapolrestabes palembang kombes harryo sugihha ono kamis sambung harryo tigapelaku mz ns as coba samar jejak kubur cina warga ramairamai lihat temu jasad aa ms ns as kubur cinadikecamatan sukarami palembang minggu sambung harryo kerumun seolaholah timpa aa laku baur kerumun warga aa temu polisi kabur pulang anak umur hadap hukum abh is kawankawannya harryo sangka bunuh perkosa siswi kelas smp laku utama is ancam hukum pidana penjara denda maksimal rp miliar laku rehabilitasi sesuai koordinasi bapas palembang lindung anak status sangka motif aksi is duga salur nafsu tonton film porno ponsel is kumpul film porno video cabul hp milik picu eksplorasi nafsu laku utama sita bukti temu hp milik laku temu video cabul film porno kumpul is laku utama kapolrestabes palembang kombes harryo sugihha ono harryo is rencana aksi cabul rumah be emu korban laku is laku mz ns as kumpul rumah niat laku rudapaksa perkosa hadap korban sadar laku tindak akibat fatal mati korban berita jasad orang remaja putriyang identitas aaditemukan warga kubur cina camat sukarami palembang minggu periksa is ajak korban tonton pe unjuk kuda kepang belok lokasi kubur cina lokasi laku bekap hidung mulut korban lemas rekanrekan laku lokasi inisial mz nz as cabul korban cabul korban laku pindah lokasi jarak menit lokasi pe ama lokasi titik ditemukannyajasad korban warga baca berita lengkap&#39;, &#39;hakim agung nonaktif gazalba saleh tuntut pidana penjara denda rp miliar subsider enam kurung jaksa kpk gazalba nilai bukti terima gratifikasi laku tindak pidana cuci uang tppu jatuh pidana hadap dakwa gazalba saleh pidana penjara pidana denda rp miliar subsider pidana kurung ganti jaksa kpk wawan yunarwanto baca amar tuntut pidana adil tindak pidana korupsi tipikor adil negeri pn jaka a pusat kamis gazalba tuntut pidana upa wajib bayar uang ganti sin rp selambatlambatnya putus adil hukum jangka gazalba bayar ha a benda sita jaksa lelang tutup uang ganti gazalba ha a benda bayar uang ganti pidana penjara tahan jalan dakwa rang pidana jatuh jaksa dakwa tahan sambung gazalba tangan perkara tinjau pk nama pidana jaffar abdul gaffar register perkara nomor pkpidsus jaffar abdul gaffar damping advokat neshawaty arsjad milik hubung keluarga gazalba april pk kabul gazalba urus perkara maksud neshawaty gazalba terima uang rp miliar jaffar abdul gaffar gazalba hakim agung terima gratifikasi sin dakwa terima upa sin us a rp nilai langgar pasal b jo pasal undangundang berantas tindak pidana korupsi uu tipikor jo pasal ayat kuhp gazalba duga laku tindak pidana cuci uang tppu laku bersamasama edy ilham shooleh fify mulyani edy ilham shooleh rupa kakak kandung gazalba nama pakai beli mobil toyota alphard fify mulyani rupa teman gazalba nama beli rumah dayu city at kelapa gading gazalba beli unit kendara toyota new alphard g at warna hitam bidang tanah bangun jalan swadaya ii tanjung barat jagakarsa jaka a selatan ifikat hak milik shm nomor bidang tanah bangun tanjungrasa bogor shm nomor tanah bangun citra grand cibubur shm nomor bayar lunas kredit milik rumah kpr unit rumah dayu city at kelapa gading cakung jaka a timur a tukar mata uang asing upa dolar singapura sin dolar amerika us rp gazalba nilai langgar pasal undangundang nomor cegah berantas tppu jo pasal ayat kuhp jo pasal ayat kuhp&#39;, &#39;presiden joko widodoakan mobil mpv toyota innova zenix misa akbar paus fransiskusdi gelora karno gbk sore kepala kantor komunikasi presiden hasan nasbi pilih mobil bentuk hormat paus fransiskus mobil indonesia hadir misa paus kendara wajar paus kendara hasan pesan singkat kamis bentuk hormat hasan cari banding beda diplomasi komunikasi laku jokowi ganti mobil presiden jokowi hasan laku rupa pakai nada pa ai politik silaturahmi sepe i hadir acara pa ai presiden pakai nada warna pa ai emosional komunikasi jalan hangat paus fransiskus pilih mobil mpv toyota zenix kendara kunjung indonesia pilih sorot publik cermin sederhana paus pe emuan paus kemarin jokowi mobil toyota zenix warna hitam pulang istana presiden bogor kemarin sore acara misa akbar sore iya besok beliau mobil danpaspampres mayjen achiruddin&#39;, &#39;paus fransiskusmenggoreskan tinta cat pe ama buah as kanvas buah lukis kunjung kantor konferensi wali gereja indonesia kwi jaka a pusat kamis gores tinta paus peluk difabel momen paus fransiskus pidato acara pe emuan terima manfaat organisasi amal hadir sandang disabilitas orang sakit orang miskin paus lihat jalan kursi roda arah buah as kanvas sedia gores kuas cat warna kuning kiri as kanvas ketua kwi mgr antonius subianto bunjamin paus fransiskus gores tinta pe ama kanvas bentuk buah lukis lukis peluk kalang disabilitas gores pe ama goresangoresan peluk sandang disabilitas anonius acara antonius lukis sepe i peluk hasil lukis paus fransiskus gores pe ama sepe i video proses&#39;, &#39;staf sekretariat kantor paroki santo antonius padua kotabaruyogyaka a eka rahayu anggota serikat yesus jesuit wilayah yogyaka a audiensi paus fransiskusdi duta vatikan ri jaka a anggota serikat be emu langsung sri paus romoujar eka yogyaka a kamis siang setiapgereja katolik wilayah uskup agung semarangyang cakup area kevikepan semarang suraka a kedu diydijatah masingmasing wakil umat misa akbar pimpin paus stadion utama gelora karno gbk jaka a pusat kamissore eka tekan kuota umat langsung uskup agung semarang paroki naung paroki uskup ya kuota umat sepe i jaka a eka eka rombong umat berangkat rabu kemarin sore sesuai jadwal jaka a kamis pagi eka masingmasing paroki skema seleksi beda umat berangkat gbk paroki santo antonius padua kotabaru model undang umat komunitas lingkung paroki laku daftar cepat eka paroki batas umat masuk kategori usia lansia a berangkat gbk timbang faktor sehat berangkat eka paroki bantu fasilitas transpo asi inap muda kemarin usia sma sepuh an imbuh eka komsos paroki live streaming misa akbar gbk gereja santo antonius kotabaru sore umat raya ekaristi pimpin paus fransiskus pisah jarak komuni umat hadir gereja terima hosti konsekrasi gereja live streaming pungkas paus fransiskus gelar misa akbar stadion gelora karno gbk sore paus fransiskus pimpin ribu umat katolik misa langsung sapa langsung puluh ribu umat katolik keliling stadion gbk mobil maung mv pindad uskup agung jaka a ignatius kardinal suharyo hardjoatmodjo umat katolik isi stadion gbk stadion utama stadion madya stadion utama isi ribu umat stadion madya ribu komunitas didik anak sekolah mahasiswa guru dosen damping suharyo gereja katedral jaka a rabu paus mobil buka pt pindad maung keliling stadion madya paus kati komunitas ajar beliau tuju stadion utama keliling sapa umat hadir laksana misa jam sore komisi komunikasi sosial komsos kwi umat katolik raya misa suci paus fransiskus tiket gelang milik tiket gelang misa suci siar langsung kanal media sosial komsos kwi tayang tv nasional raya misa suci gbk komsos kwi imbau mempe imbang jalan gerbang buka wib tutup wib&#39;, &#39;hujan deras guyur wilayah kabupaten parigi moutong sulawesi sulteng rumah milik warga camat sausu rendam banjir warga dampak kk warga dampak warga ungsi kepala pusat data informasi komunikasi bencana bnpb abdul muhari terang te ulis kamis dasar lapor bpbd parigi moutong banjir desa piore camat sausu selasa wita hujan intensitas akibat banjir air sungai luap rugi materil catat unit rumah hektare kebun hektare sawah rendam banjir bpbd koordinasi laku tangan warga dampak bnpb imbau masyarakat waspada kait potensi risiko banjir susul langkah mitigasi laku bersih drainase sekunder sekitarrumahnya&#39;, &#39;mantan menteri koordinator bidang politik hukum aman menko polhukam mahfud mdmembandingkan duga gratifikasi anak presiden joko widodo jokowi kaesang pangarepdengan korupsi eks jabat menteri uang rafael alun mahfud mempe anyak alas kpk usut duga gratifikasi kaesang status jabat korupsi rafael alun gaya hidup hedonisme anak banyakkoruptor lacak anak isterinyayang bukanpejabat periksa contoh ra orang jabat eselon iii kemenkeu sekarangmendekam penjara korupsi setelahanaknya hedon flexing tangkap anak ra denganmobil mewah aniaya orang kpk lacak kait ha a jabat ayah si anak nyata hasil korupsi kpk proses ra penjara tulis mahfud akun x kamis mahfud sadar paksa kpk panggil kaesang iktikad kpk alas kpk kaesang ahistoris timbul celah hukum alas jabat patut duga anggap proses jabat gratifikasi serah anak keluarga mahfud koordinator masyarakat antikorupsi indonesia maki boyamin saiman dosen universitas negeri jaka a unj ubaidilah badrun lapor duga gratifikasi kaesang pangarep kpk lapor geger kabar kaesang istri erina gudono pesawat jet pribadi amerika serikat telusur duga jet pribadi milik garena usaha singapura gambastwitter&#39;, &#39;komisi pilih kpu dki jaka a nyata dokumen syarat daritiga pasang calon gubernur wakil gubernur daftar penuh syarat pasang calon penuh syarat lengkap laku ketua kpu wahyu dinata jaka a pusat kamis wahyu nyata pasang calon september lengkap berkas kpuakan periksa lengkap dokumen syarat dokumen syarat penuh syarat surat terang pailit surat tanda terima lapor lhkpn pas foto gelar akademik surat undur anggota dpr caleg pilih tanda terima lapor kaya setor surat terang tunggak pajak pas foto warnawarnanya bedabeda wahyu gelar akademik bukti ijazah garis pasang calon penuh syarat imbuh pasang daftar pilgub jaka a pe ama pasang pramono anungrano karno usung pdip hanura total persentase suara pdip hanura persen pasang ridwan kamilsuswono usung pa ai gerindra pks golkar demokrat nasdem psi pkb gelora pbb perindo pan ppp garuda pkn akumulasi suara pa ai persen pasang daftar dharma pongrekunkun wardana maju jalur orang independen&#39;, &#39;cornelia agatha maudy koesnaeditergabung tim sukses pasang calon gubernurwakil gubernur pramono anungrano karnodi pilkada jaka a gabung wakil ketua timses pramonorano karno nama elfonda once mekel putra nababan darmadi durianto posisi cornelia agatha maudy koesnadi jabat timses pramonorano seakanakan bawa nostalgia sinetron si doel anak sekolah cornelia agatha peran sarah sinetron maudy koesnadi zaenab rano karno doel main peran sentral sinetron hubung jalin cinta segitiga doel utama bimbang pilih sarah zaenab istri sarah zaenab doel konflik sinergi timses menang pramonorano cornelia maudydidapuk wakil ketua jabat cak lontong daftar timses pramonorano cornelia agatha maudy koesnadi todung mulya lubis adi widjadja aming kh taufik damas witaryono soni harsono cak lontong lies ha ono prasetio edi marsudi elfonda once mekel dpr ri dapil dki putra nababan dpr ri dapil dki maudy koesnaedi darmadi durianto dpr ri dapil dki cornelia agatha ario bimo ima mahdiah dprd dkj ilham wiratmadja ichsan sofyan mangatta toding allo beno muhamad ibnu charles honor dpr ri dapil dki hardiyanto kenneth dprd dkj haikal fachry toto sugito chica koeswoyo dprd dkj andre ronald benito hehanusa ronny sianturi agustina tina toon hermanto dprd dkj kevin widaya pangeran siahaan chiko hakim aldy perdana putra aris setiawan yodi bonnie triyana ahmad zaky badrudin ahmad shihab hendra gunawan mandira bienna elmir aprillia putriningrum sri widuri awyanpraba rizka ida mahmudah dprd dkj yuke yurike dprd dkj jhonny simanjuntak dprd dkj erwin usman usul eksternal suheryatno prof nindyo pramono m nuzul wibawa sh mh azis fahri pasaribu sh ridwan dharmawan sh mh dr c alvon kurnia palma sh mh aries surya sh amarsyah&#39;, &#39;anggotatni duga laku serang teror rumah milik ketua bappilu pa ai gerindrasulawesi selatan harmansyahdiperiksaoleh detasemen polisi militer denpom iv makassar iya oknum anggota panggil denpom ivmakassar laku periksa proses lidi kapendam xiv hasanuddin kolonel inf mangapul hutajulu cnnindonesiacom rabu mangapul enggan personel tni duga laku serang rumah ketua bappilu pa ai gerindra sulsel selasa proses lidi laku ya anggota tni rumah harmansyahdan acung senjata warga rekam kamera cctv lokasi salah oknum tni ancam bunuh ketua bappilu gerindra sulsel culik istri a anak bawa pistol kasih masuk peluru tunjuktunjuk warga pakai senjata malam subuh malam ketemu harmansyah culik istri anak istri harmansyahreny akibat reny orang anak alami trauma takut lapor denpom makassargerombolan pria baju loreng renny anggota tni be ugas kabupaten barru denpom lapor trauma takut anakanak trauma tentara bondong masuk teras rumah tentara barru&#39;, &#39;ketua pa ai solidaritas indonesia psi kaesang pangarepbersama sang istri erina gudonotengah sorot publik gaya hidup mewah salah duga jet pribadi pergi keamerika serikat as kaesangdiduga kuat sewa jet pribadi istrinyayang sekolah lahir negeri paman sam pasang suami istri sinyalir pinjam jet orang usaha singapura kaesangyang indonesia jet pribadi putra bungsu presiden jokowidodoitu tutup rapat mulut jet kaesang sejati milik nyata kait polemik dpp psi rabu kemarin dpp psi rapat bahas pilkada serentak pergi tinggal markas psi rapat kaesang nyata kait kontroversi sorot publik duga gratifikasi lapor koordinator masyarakat antikorupsi indonesia maki boyamin saiman dosen universitas negeri jaka a unj ubaidilah badrunke kpk lapor masuk tahap telaah juru bicara kpk tessa mahardhika sugia o proses lihat lengkap dokumen dukung lapor penuh laku lidi direktorat terima layan adu masyarakat info proses lapor lapor nama saudara boyamin unj masuk tahap telaah tessa konfirmasi pesan te ulis rabu pakar hukum pidana universitas trisakti abdul fickar hadjar lapor boyamin ubaidilah pintu masuk kpk usut duga gratifikasikaesang lapor fickar dasar lembaga antirasuah panggil terang kaesang duga gratifikasi jet pribadi kpk masuk lapor masyarakat undang kaesang putra presiden jokowi pesawat fickar cnnindonesiacom rabu malam fickarmenyebut terang hadap kaesang laku jet pribadi kait urus bisnis dampak timbul bilang panggil kaesangnantinya kait jet pribadi proyekproyek kerja negara kait status putra presiden proyekproyek negara kerja sang fasilitas pesawat inti situ kualifikasi diindikadikan korupsi halaman&#39;, &#39;calon wakil gubernur dki jaka a rano karnomengungkapkan aktor iko uwais pimpin tim sukses pramono anung pilgub jaka a iko gabung pe ama kali sahabat nama iko uwais masuk rano jumpa pers struktur jajar tim menang kota bekas kamis rano iko uwais wakil ketua timses nama iko tolak kerja jaka a bang iko wakil ketua ketua cak lontong lies ha ono wakil ketua situ tugas rano iko jalan proses syuting film china indonesia oktober struktur tim menang serah kpud dki maksimal september pasang calon kendati gabung timses iko klaim dukung rano pramono pilgub jaka a bilang bang udah gue abang udah dicatatcatat takut cuman catat dateng nama enak rano si doel sinetron si doel anak sekolah harap iko bantu bangun budaya silat identitas jaka a pramono rano lies ha ono alias cak lontong ketua tim menang pasang usung pdip maju pilgub jaka a hadap ridwan kamilsuswono dharma pongrekunkun wardhana&#39;, &#39;calon gubernur dki jaka a pdip pramono anungmengumumkan daftar nama struktur tim menang rano karno pilgub jaka a namanama pram pe emuannya mantan gubernur dki jaka a sutiyoso museum bang yos kota bekas rabu pram hadir langsung tani rano keliling museum milik sutiyoso susun tim menang sengaja berkalikali izin bang doel pram pram cak lontong alias lies ha ono ketua pram tim tim gembira serius namanama unsur internal pdip daftar lengkap struktur lengkap tim menang pramonorano pilgub jaka a ketua todung mulya lubis anggota adi widjadja aming kh taufik damas witaryono soni harsono cak lontong lies ha ono prasetio edi marsudi elfonda once mekel dpr ri dapil dkiputra nababan dpr ri dapil dkimaudy koesnaedydarmadi durianto dpr ri dapil dkicornelia agatha ario bimo ima mahdiah dprd dkjilham wiratmadjaichsan sofyanmangatta toding allobeno muhamad ibnu charles honor dpr ri dapil dki hardiyanto kenneth dprd dkjhaikal fachrytoto sugito chica koeswoyo dprd dkjandre ronald benito hehanusaronny sianturi agustina tina toon hermanto dprd dkjkevin widaya pangeran siahaan chiko hakimaldy perdana putraaris setiawan yodi bonnie triyanaahmad zaky badrudinahmad shihab hendra gunawanmandira bienna elmiraprillia putriningrumsri widuri awyanprabarizka ida mahmudah dprd dkjyuke yurike dprd dkjjhonny simanjuntak dprd dkj erwin usman usul eksternalsuheryatno prof nindyo pramonoanggota m nuzul wibawa sh mh azis fahri pasaribu sh ridwan dharmawan sh mh dr c alvon kurnia palma sh mh aries surya sh amarsyah&#39;, &#39;divisi hubung internasional hubinterpolri harap perintah filipina tukar buron utama badan narkotika nasional bnn fernando tremendo chimenea alias gregor johannhaas alice guo tangkap indonesia alice guo rupa eks walikota filipina buron hasil tangkap tangerang duga hubung geng kriminal china kadiv hubinter polri irjen krishna mu i rabu nyata polisi upaya kirim gregor johann haaske indonesia harap filipina kirim buron utama bnn nama gregor haas negosiasi upaya pe ukarannya khrisna kabar penangkapangregor johann haasdi filipina polisi mei krishna buron bnn rupa warga negara australia peran selundup narkoba wilayah asia gregor johann haasjuga tinggal gili terawang lombok nusa tenggara barat ntb mei karo humas protokol bnn brigjen sulistyo pudjo johan libat selundup sabu indonesia desember libat johan sidik kembang hadap jaring sabu indonesia tanggal desember barang bukti sabu jaring tangkap pudjo bnn frekuensi gembong narkoba selundup narkoba indonesia aksi johan libat jaring sepe i negara tangkap filipina bnn harap tindak pidana laku johan proses hukum indonesia koordinasi aparat polisi filipina sangkut aman jemput mempe anggungjawabkan jaring indonesia pudjo komisaris imigrasi filipina norman tansingco berita associated press mei indonesia buru haas libat kirim keramik lantai isi kg zat metamfetamin obatobatan sita wenang indonesia dasar saksi kurir narkoba tangkap paketpaket kirim haas guadalajara meksiko tansingco sepe i kutip ap tansingco gambar haas buron kelas kakap duga anggota ka el sinaloa sindikat jahat internasional markas culiacan sinaloa meksiko khusus giat dagang narkoba cuci uang ka el sinaloa sohor meksiko perintah amerika serikat ka el selundup narkotika dunia ka el sinaloa joaquain el chapo guzman an&#39;, &#39;komedian liesha ono aliascak lontongdiumumkan ketua tim menang calon gubernur wakil gubernur pdip pramono anungrano karno pilgubjaka a nama cak lontong langsung pramonosaat kunjung museum bang yos milik eks gubernur jaka asutiyoso kawasan jatisampurna kota bekas kamis ketua tim menang duga cak lontong pram jumpa pers pe emuan pram kontestasidi pilkada langsung gembira serius tim tim gembira ria serius cak lontong nama cak lontong lies ha ono pram ahok anies libat tim menang pilkada pram ahok be anggung pilkada nasional pdip pram ahok dukung berkalikali komunikasi ahok nyata kolega pa ainya dukung penuh ketua tim menang ditunggutunggu pe anyaannya mas anies ahok ahok be anggung jawa nasional pikada pram ahok berkalikali komunikasi bantu all out masuk ahokers sekrang trbuka deklarasi dukung bang doel imbuh&#39;, &#39;direktur eksekutif network for democracy and electoral integrity netgrit hadar naf gumay mewantiwanti potensi konflik kait calon suami anggota kpu ri betty epsilon idroosdi pilkada suami betty zulkarnain awat amir maju calon bupati malu hadar orang hak maju milu masuk keluarga anggota kpu manfaat posisi anggota kpu pengaruh proses kontestasi ruang conflictconflict of interest manfaat hadar hubung rabu timbul konflik betty calon zulkarnain publik publik laku awas laku tugas betty tugas hubung langsung daerah pilih suami jaga persepsi publik hubung pisah betty dasar pasal huruf c g pkpu anggota kpu wajib menyalahgunakan wenang pengaruh putus lembaga selenggara milu pengaruh wenang jabat selenggara milu untung pribadi pasal huruf b pkpu anggota kpu wajib nyata buka rapat pleno diberitahukan publik surat resmi media massa papan laman kpu milik hubung keluarga sanak saudara calon pese a milu pese a milu danatau tim kampanye betty pasal huruf c atur dkpp nomor laksana prinsip mandiri selenggara milu nyata buka rapat milik hubung keluarga saudara calon pese a milu tim kampanye dasar maju suami rapat pleno kpu jaga integritas hormat mandiri kredibilitas selenggara milu buka hubung kawin calon bupati malu pilih rapat pleno pimpin komisi pilih tuang berita acara rapat pleno betty mundur koordinator wilayah malu nyata resmi bebas bentur selenggara pilih mundur koordinator wilayah malu surat nyata bebas bentur tanggal mei betty nyata surat nyata bebas bentur buka laman kpu laksana tugas anggota kpu sebenarbenarnya pegang teguh kode etik selenggara milu sumpah janjianggota kpu&#39;, &#39;anies baswedanturut belasungkawa tinggal ekonom senior faisal basriia kenang faisal sosok intelektual kritis manfaat masyarakat anies unggah akun x twitter kamis innalillahi wa inna ilaihi rajiun duka dengar kabar pulang bang insan cendekia pikir rang jalan layak lentera kabut anies katakatanya tajam penuh bijaksana tuntun lihat lampau muka imbuh anies harap laku faisal teladan masyarakat indonesia doa faisal sisi tuhan maha esa keluarga tabah moga waris pikir berani beliau kekal inspirasi moga allah swt lapang jalan beliau terima amal ampun khilaf tabah keluarga yg tinggal aamiin yra faisal basri tinggal dunia kamis pria lahir bandung november rupa ekonom lantang kritik bijak perintah faisal selesai didik sarjana fakultas ekonomi bisnis universitas indonesia raih gelar master of a s bidang ekonomi vanderbilt university nashville tennessee amerika faisal institute for development of economics finance indef ekonom senior bidang perintah faisal emban amanah anggota tim kembang ekonomi dunia asisten ii menteri koordinator bidang ekuin anggota tim asistensi ekuin presiden ri&#39;, &#39;imam masjid istiqlal nasaruddin umarmenegaskan masjid istiqlal rumah ibadah umatislam rumah manusia paus fransiskus hadir unjung masjid istiqlal jaka a kamis masjid istiqlal renovasi presiden jokowi rumah ibadah umat islam rumah manusia prinsip humanity is only one nasaruddin nasaruddin masjid istiqlal bangun presiden pe ama ri sukarno resmi presiden ri soha o masjid istiqlal desain orang arsitek kalang kristiani nama friedrich silaban menyebutsilabanmembangun istiqlal visi cipta harmoni hidup bangsa indonesia dunia nasaruddin masuk masjid istiqlal cari masuk manfaat masjid istiqlal adat istiadat lingkung masjid istiqlal masuk cari masjid istiqlal fungsi budaya layan orang paus fransiskusmengunjungi masjid istiqlalpagi paus rombong langsung ajak terowongan silaturahmi hubung masjid gerjakatedral&#39;, &#39;polisi laku sterilisasi area gelora karno gbk senayan jaka a jelang acara misa akbar paus fransiskusyang gelar kamis sore selesai apel jam wib pagi langsung steril kasi humas polres metro jaka a pusat ipda ruslan konfirmasi ruslan masuk area gbk tamu warga misa akbar masuk area gbk tugas tamu undang masuk bersih pisah kasatgas humas operasi tribrata jaya brigjen tjahyono saputro polisi rekayasa lintas bantu lancar arus misa akbar rekayasa lintas sifat situasional a inya terap gantung situasi kondisi lapang rekayasa lalin sifat situasional pimpin gereja katolik dunia paus fransiskus laku giat kunjung indonesia kamis pagi paus fransiskus laku kunjung masjid istiqlal jaka a istiqlal paus fransiskus kunjung kantor konferensi waligereja indonesia kwi pimpin umat katolik be emu terima manfaat organisasi amal tuju malam paus fransiskus gelar misa akbar stadion gbk paus fransiskus pimpin ribu umat katolik misa langsung komisi komunikasi sosial komsos kwi umat katolik raya misa suci paus fransiskus tiket gelang milik tiket gelang misa suci siar langsung kanal media sosial komsos kwi tayang tv nasional&#39;, &#39;presiden joko widodo jokowi sorot permasalahanperubahan iklim dunia nilai butuh kerja global korban rakyat jokowi pidato buka indonesia international sustainability forum jcc senayan jaka a pusat kamis tekan ubah iklim selesai dunia ekonomi dunia hitung untung dunia egosentris sendirisendiri jokowi jokowi sikap ubah iklim butuh kolaboratif butuh perikemanusiaan kolaborasi negara maju negara kembang manusia proses korban rakyat imbuh jokowi ekonomi hijau lindung lingkung cipta sejahtera rakyat jokowi dunia ragu komitmen indonesia capai net zero emissions salah indonesia milik potensi energi limpah capai gigawatt milik plts apung waduk cirata kapasitas megawatt peak mwp asia tenggara dunia jokowi pamer indonesia milik potensi serap karbon hutan mangrove dunia luas juta hektare juta hektare hutan mangrove indonesia serap karbon kali banding hutan hujan tropis indonesia milik kawasan industri hijau luas ribu hektare dampak signifikan cepat tangan dampak ubah iklim negara maju berani investasi riset teknologi buka luas dana skema ringan negara kembang jokowi jokowi indonesia buka mitra maksimal potensi dunia hijau akses energi hijau adil a dorong pe umbuhan ekonomi inklusif harap indonesia international sustainability forum be emunya alam sumber daya modal kolaborasi hadap tantang iklim kolaborasi pilih manusia opsi buah wajib&#39;, &#39;wakil ketua komisi berantas korupsi kpk nurul ghufron hadir langsung sidang baca putus kode etik dewan awas dewas kpk besok jumat insyaallah hadir ghufron konfirmasi pesan te ulis kamis dewas kpk putus gelar sidang baca putus kode etik majelis hakim adil tata usaha negara ptun jaka a cabut nomor gtf ptunjkt tanggal mei tunda laksana tindak periksa duga langgar etik nama nurul ghufron majelis hakim ptun jaka a tolak gugat ghufron kena tugas wewenang dewas kpk perkara nomor gtf ptunjkt adil ketua majelis hakim irvan mawardi anggota yuliant prajaghupta ganda kurniawan panitera ganti risma hutajulu putus baca selasa putus majelis hakim ptun jaka a dewas kpk tunda periksa etik hadap nurul ghufron putus proses jaring calon pimpin kpk periode ghufron masuk orang calon pimpin kpk be ahan jalan tes nilai profil profile assessment ghufron sangka langgar kode etik kait penyalahgunaan pengaruh mutasi pegawai menteri pe ani tan ri inisial admdalam perjalanannyaghufron libat konflik anggota dewas kpk albe ina ho lapor albe ina dewas kpk ghufron hak lapor duga langgar kode etik insan komisi atur pasal ayat huruf b perdewas nomor itughufron bawa ptun jaka a gugat atur dewan awas perdewas kpk nomor mahkamah agung mama tolak gugat ghufron&#39;, &#39;komisi berantas korupsi kpk kumpul bahan menindaklanjuti foto viral wali kota medan bobby nasutionyang fasilitas jet pribadi istri kahiyang ayu kait subjek saudara b kumpul bahanbahannya direktorat gratifikasi juru bicara kpk tessa mahardhika sugia o gedung merah putih kpk jaka a rabu malam tessa bobby undang jalan klarifikasi langsung kantor kpk proses klarifikasi laku hadap jabat menantu presiden ri jokowidodojokowi undang posisi zoom era digital ya mudah makan biaya tessa juru bicara latar pensiun polri proses direktorat gratifikasi rupa cegah tindak pidana korupsi tipikor tindak saudara b ya apresiasi klarifikasi direktorat gratifikasi hubung menindaklanjuti tessa bobby sorot foto sang istri kahiyang ayu jet pribadi viral media sosial foto edar lokasi pesawat jet pribadi eks bandara polonia medan ganti lanud soewondo mantu presiden ri jokowi jet pribadi bobby gamblang jet sesuai foto edar pesawat bobby selasa malam bobby sila masyarakat ecek asalusul uang kait jet pribadi coba lihat tanggal pesawat pakai dana sewa uang silah cek suami anak jokowitersebut&#39;, &#39;polisi resor metro jaka a barat tangkap puluh anggotaormas duga laku keroyok terhadappedagang buah inisial ar kembang selasa malampelaku aman orang aman kapolres metro jaka a barat kombes polisi m syahduddi konfirmasi jaka a rabukepala reserse kriminal kasat reskrim polres metro jaka a barat akbp andri kurniawan laku periksa polisi selidik libat aman tersebutsedang laku periksa libat aman tuturnyaperistiwa keroyok selasa malam polisi picu setor uang aman korban jual buah alpukat tkp saksi orang uang aman ikhlas kasih uang rp ribu orang ngotot kabid humas polda metro jaya kombes polisi ade ary syam indradi wa awan jaka a rabu gambasinstagram laku pergi bawa orang teman mengacakacak lapak jual keroyok korbandatang bawa orang mengacakacak dagang korban lempar kaca batu bata orang emosional korban kena dahi mata laku kepala korban teman saksi kepala korban alami luka memar dahi muka saksi luka memar telinga kanan ade ary akibat korban alami luka korban lapor peristiwa keroyok polisi video keroyok viral media sosial instagram unggah akun video lihat oknum anggota ormas laku keroyok hadap dagang buah kembang jaka a barathidup susahsusahnya oknum ormas uang dagang buah deket taman alfa indah joglo kembang jaka a barat info oknum ormas terima rp ribu rp ribu tulis akun&#39;, &#39;polisi laku rekayasa lintas ruas jalan dki jaka a giat paus fransiskus rekayasa lintas pagi terap masjid istiqlal laku paus hadir pe emuan tokoh antaragama masjid istiqlalsekitar wib sore rekayasa lintas terap senayan paus fransiskus hadir misa suci raya ekaristi stadion gelora karno gbksenayan wib rencana ribu orang misa antisipasi macet perintah saran kerja jaka a kerja rumah atauwork from home wfh rekayasa lintas ruas jalan dki jaka a giat paus fransiskus wib lokasi masjid istiqlal jaka a pusat rute alih lintas selatan bundar hi tanah abang kebon sirihbudi mulia tuju timur stasiun senen jalan thamrin sisi baratjalan medan merdeka barat sisi baratjalan majapahitjalan juandajalan posjalan gunung saharidan lintas timur menteng tuju barat tanah abang jalan hos cokroaminotojalan wahid hasyimjalan mas mansyurdan wib lokasi gbk lintas arah selatan cipete tuju barat slip utara monas jalan kyai majajalan kebayoran barujalan a eri pondok indahberputar uturn gandaria cityjalan teuku nyak ariefjalan tentara pelajardan lintas utara harmoni tuju selatan blok m jalan medan merdeka baratjalan budi kemuliaanjalan abdul muisjalan fachrudinjalan kh mas mansyurjalan penjernihanjalan pejomponganjalan tentara pelajarjalan teuku nyak ariefjalan kebayoran barujalan kyai majajalan panglima polimdan lintas timur tebet barat slip jalan kapten tendeanjalan wolter monginsidijalan trunojoyojalan kyai majajalan kebayoran barujalan a eri pondok indah putar uturn gandaria cityjalan teuku nyak ariefjalan tentara pelajarjalan s parmandan lintas barat slip tuju timur tebet jalan s parmanjalan pejomponganjalan penjernihanjalan rm margonojalan galunggungjalan dr saharjojalan prof dr soepomojalan mt haryonodan&#39;, &#39;ketua psi kaesang pangarep irit bicara awak media dugaangratifikasi fasilitas jet pribadi kaesang kantor dpp psi rabu wib rapat jam keluarkaesang sapa awak media bungkam klarifikasi kpk senyum sembari langsung pasuk mobil pergi tinggal lokasi&#39;, &#39;jabat pj dki jaka aheru budi ha ono imbau kerja jaka a kerja rumah alias work from home wfh kamis imbau susul acara langsung heru acara potensi timbul padat lintas indonesia sustainability forum isf jaka a convention center jcc misa akbar paus fransiskus kompleks gelora karno gbk imbau padat tanggal giat harap masyarakat lihat cermat ambil putus laku work from home mandiri heru jumpa pers istana presiden jaka a senin pemprov dki jaka a surat edar pese a didik ajar rumah laksana tugas plt kepala dinas didik dki jaka a budi awaluddin dinas didik surat asn pese a didik didik sekolah wilayah jaka a pusat jaka a selatan jaka a selatan camat kebayoran kebayoran setiabudi pasar minggu jaka a pusat sekolah camat gambir sawah menteng tanah abang paus fransiskus laku kunjung apostolik indonesia selasa jumat agenda misa akbar hadir ribu orang penjuru jaka a indonesia negara pe ama kunjung paus fransiskus rangkai kunjung asiapasifik lawat papua nugini timor leste singapura rupa kunjung paus ri pe ama kunjung paus yohanes paulus ii silam paus fransiskus dinantinanti utama umat katolik indonesia&#39;, &#39;juru bicara pdipchico hakim momen bersitegang ketua solidaritas merah putih silfester matutina program inews tv rakyat suara selasa malam acara silfester bersitegang rocky gerung debat panas maki buntut debat panas bawa acara aiman witjaksono henti acara acara silfester bersitegang chiko video adu mulut edar media sosial picu tegang hubung pisah chico enggan reda tegang silfester rocky inti niat cekcok ujung chico hubung kamis chico tegang silfester selesai salam rawan joko widodo jokowi alhamdulillah adegan clear bersalamsalaman segmen closing statement masingmasing cnnindonesiacom coba hubung silfester respons&#39;, &#39;ketua psi kaesang pangarepakhirnya muncul hadap publik mempe anyak putra bungsu presiden jokowiitu sorotangaya hidup mewah jet pribadi eksponen aktivis adu hilang kaesang polda metro jaya tuju bantu kpkmencari kaesang kpkdiketahui proses telaah lapor kait duga gratifikasi pesawat jet pribadi kaesangdan niat undang klarifikasi alihalih pe anyaan publik kaesangmemilih bungkam gaduh jet pribadi kaesang sejati milik nyata kait polemik dpppsi rabu kemarin dpp psi rapat bahas pilkada serentak pergi tinggal markas psi rapat kaesang nyata kait kontroversi sorot publik dpp psi kaesang rapat nyata rapat rapat kaesang limajam selang rapat kaesang nyata kait polemik hangat sapa wa awan tunggu harap awak media sehat halo selamat malam sehatsehat kaesang singkat cecar awak media duga jet pribadi klarifikasi kpk kaesang bungkam senyum sembari langsung pasuk mobil pergi tinggal lokasi kaesang duga jet pribadi sang istri erina gudono berangkat amerika serikat viral sorot publik kaesang hilang kpkmenyatakan butuh klarifikasi kaesang duga jet pribadi butuh saudara kaesang kait duga patut duga kait selenggara negara orang tua kaesang sepe i wakil ketua kpk alexander marwata jumpa pers gedung merah putih kpk jaka a jumat&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Proses untuk mempersiapkan teks pada setiap dokumen yang diproses menggunakan fungsi-fungsi yang sudah dibuat sebelumnya, yang selanjutnya akan di tf-idf dan vsm</p>
+</section>
+<section id="proses-tf-idf-dan-pembuatan-vsm">
+<h3>Proses TF-IDF dan pembuatan VSM<a class="headerlink" href="#proses-tf-idf-dan-pembuatan-vsm" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">all_docs</span><span class="p">)</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="n">tfidf</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+<span class="n">df_tfidf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">df_tfidf</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;doc</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">))])</span>
+
+<span class="n">df_tfidf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>doc</th>
+      <th>aa</th>
+      <th>aaditemukan</th>
+      <th>aamiin</th>
+      <th>abai</th>
+      <th>abalos</th>
+      <th>abang</th>
+      <th>abar</th>
+      <th>abat</th>
+      <th>abd</th>
+      <th>...</th>
+      <th>zahro</th>
+      <th>zaini</th>
+      <th>zakaria</th>
+      <th>zaky</th>
+      <th>zat</th>
+      <th>zenix</th>
+      <th>zero</th>
+      <th>zirah</th>
+      <th>zoom</th>
+      <th>zulkarnain</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>doc1</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>doc2</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>doc3</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>doc4</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>doc5</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>doc96</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.089077</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>doc97</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>doc98</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.069371</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>doc99</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>doc100</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 2992 columns</p>
+</div></div></div>
+</div>
+<p>Proses untuk membuat TF-IDF dan membentuk VSM dalam dataframe</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="crawling_news.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Crawling Web Berita CNN Indonesia</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-vsm-vector-space-model">Apa itu VSM (Vector Space Model)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#term-frequency-inverse-document-frequency-tf-idf">Term Frequency-Inverse Document Frequency (TF-IDF)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#term-frequency">Term Frequency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-document-frequency">Inverse Document Frequency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-term-frequency-inverse-document-frequency">TF-IDF (Term Frequency-Inverse Document Frequency)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-tf-idf-dan-menjadikannya-vsm-vector-space-model">Proses TF-IDF dan menjadikannya VSM (Vector Space Model)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library-tool-yang-dibutuhkan">Import Library/Tool yang dibutuhkan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-data-berita-csv">Import data berita CSV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-clean-text">Fungsi clean_text()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-stemming-indo">Fungsi stemming_indo()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-clean-stopword">Fungsi clean_stopword()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-preprosesing-text-setiap-dokumen">Proses preprosesing text setiap dokumen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-tf-idf-dan-pembuatan-vsm">Proses TF-IDF dan pembuatan VSM</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ronggo Widjoyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
