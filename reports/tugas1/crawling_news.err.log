@@ -37,8 +37,6 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-# halaman = int(input('Crawling berapa Halaman? '))
-halaman = 5
-news = main(halaman)
+news = main(nasional=50, internasional=50)
 -------------------
 
