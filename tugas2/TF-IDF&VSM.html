@@ -398,10 +398,14 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-stemming-indo">Fungsi stemming_indo()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-clean-stopword">Fungsi clean_stopword()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-preprosesing-text-setiap-dokumen">Proses preprosesing text setiap dokumen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-tf-idf-dan-pembuatan-vsm">Proses TF-IDF dan pembuatan VSM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-tf-idf-dan-pembuatan-vsm">Proses TF-IDF dan pembuatan VSM</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data">Split data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-vsm">TF-IDF &amp; VSM</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-dataset">Save Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-dataset-model">Save Dataset &amp; Model</a></li>
 </ul>
             </nav>
         </div>
@@ -466,6 +470,9 @@ dimana<br>
 
 <span class="c1"># Library untuk text vectorization/TF-IDF</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+
+<span class="c1"># Library untuk save model</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
 </pre></div>
 </div>
 </div>
@@ -475,7 +482,9 @@ dimana<br>
 [nltk_data]   Package stopwords is already up-to-date!
 [nltk_data] Downloading package punkt_tab to C:\Users\LAB
 [nltk_data]     SISTER\AppData\Roaming\nltk_data...
-[nltk_data]   Package punkt_tab is already up-to-date!
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data]   Package punkt_tab is already up-to-date!
 </pre></div>
 </div>
 </div>
@@ -487,6 +496,7 @@ dimana<br>
 <li><p><strong>nltk</strong> (natural language toolkit) berfungsi untuk melakukan proses yang berkaitan dengan bahasa (teks).</p></li>
 <li><p><strong>sklearn</strong> digunakan dalam pemrosesan data untuk kebutuhan machine learning atau data science. Dalam tugas ini, menggunakan TfidfTransformer untuk menghitung TF-IDF.</p></li>
 <li><p><strong>sastrawi</strong> berfungsi untuk membersihkan mengurangi kata-kata imbuhan menjadi kata basic (sastrawi untuk stemming bahasa Indonesia).</p></li>
+<li><p><strong>pickle</strong> unutk menyimpan model.</p></li>
 </ul>
 </section>
 <section id="import-data-berita-csv">
@@ -699,61 +709,61 @@ menggunakan = guna</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                                        | 0/100 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                                                              | 0/100 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|█                                                                                                               | 1/100 [00:00&lt;00:11,  8.51it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  1%|█▎                                                                                                                                    | 1/100 [00:00&lt;00:09, 10.00it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|███████▊                                                                                                        | 7/100 [00:00&lt;00:02, 35.71it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  7%|█████████▍                                                                                                                            | 7/100 [00:00&lt;00:02, 38.65it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 12%|█████████████▎                                                                                                 | 12/100 [00:00&lt;00:02, 41.84it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 14%|██████████████████▌                                                                                                                  | 14/100 [00:00&lt;00:01, 49.25it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 18%|███████████████████▉                                                                                           | 18/100 [00:00&lt;00:01, 45.97it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 20%|██████████████████████████▌                                                                                                          | 20/100 [00:00&lt;00:01, 52.10it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 24%|██████████████████████████▋                                                                                    | 24/100 [00:00&lt;00:01, 48.13it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 26%|██████████████████████████████████▌                                                                                                  | 26/100 [00:00&lt;00:01, 49.96it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 29%|████████████████████████████████▏                                                                              | 29/100 [00:00&lt;00:01, 48.69it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 32%|██████████████████████████████████████████▌                                                                                          | 32/100 [00:00&lt;00:01, 52.77it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 34%|█████████████████████████████████████▋                                                                         | 34/100 [00:00&lt;00:01, 49.05it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 38%|██████████████████████████████████████████████████▌                                                                                  | 38/100 [00:00&lt;00:01, 52.58it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 41%|█████████████████████████████████████████████▌                                                                 | 41/100 [00:00&lt;00:01, 55.43it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 44%|██████████████████████████████████████████████████████████▌                                                                          | 44/100 [00:00&lt;00:01, 54.02it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 47%|████████████████████████████████████████████████████▏                                                          | 47/100 [00:00&lt;00:00, 54.20it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|██████████████████████████████████████████████████████████████████▌                                                                  | 50/100 [00:00&lt;00:00, 55.31it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 53%|██████████████████████████████████████████████████████████▊                                                    | 53/100 [00:01&lt;00:00, 55.85it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 57%|███████████████████████████████████████████████████████████████████████████▊                                                         | 57/100 [00:01&lt;00:00, 53.18it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 59%|█████████████████████████████████████████████████████████████████▍                                             | 59/100 [00:01&lt;00:00, 49.32it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 63%|███████████████████████████████████████████████████████████████████████████████████▊                                                 | 63/100 [00:01&lt;00:00, 52.05it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 65%|████████████████████████████████████████████████████████████████████████▏                                      | 65/100 [00:01&lt;00:00, 50.04it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 69%|███████████████████████████████████████████████████████████████████████████████████████████▊                                         | 69/100 [00:01&lt;00:00, 52.65it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 71%|██████████████████████████████████████████████████████████████████████████████▊                                | 71/100 [00:01&lt;00:00, 52.67it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 76%|█████████████████████████████████████████████████████████████████████████████████████████████████████                                | 76/100 [00:01&lt;00:00, 53.28it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 77%|█████████████████████████████████████████████████████████████████████████████████████▍                         | 77/100 [00:01&lt;00:00, 48.38it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 82%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████                        | 82/100 [00:01&lt;00:00, 47.71it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 84%|█████████████████████████████████████████████████████████████████████████████████████████████▏                 | 84/100 [00:01&lt;00:00, 53.66it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 88%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                | 88/100 [00:01&lt;00:00, 50.30it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 90%|███████████████████████████████████████████████████████████████████████████████████████████████████▉           | 90/100 [00:01&lt;00:00, 53.37it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 94%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████        | 94/100 [00:01&lt;00:00, 52.49it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 96%|██████████████████████████████████████████████████████████████████████████████████████████████████████████▌    | 96/100 [00:01&lt;00:00, 50.83it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:01&lt;00:00, 50.51it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:02&lt;00:00, 49.64it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:01&lt;00:00, 50.66it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -765,6 +775,140 @@ menggunakan = guna</p>
 </section>
 <section id="proses-tf-idf-dan-pembuatan-vsm">
 <h3>Proses TF-IDF dan pembuatan VSM<a class="headerlink" href="#proses-tf-idf-dan-pembuatan-vsm" title="Link to this heading">#</a></h3>
+<section id="split-data">
+<h4>Split data<a class="headerlink" href="#split-data" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_train</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="mi">80</span><span class="p">]</span>
+<span class="n">data_test</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">80</span><span class="p">:]</span>
+<span class="n">data_train</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>judul</th>
+      <th>isi</th>
+      <th>tanggal</th>
+      <th>kategori</th>
+      <th>cleaned_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RK-Suswono Rapat Finalisasi Komposisi Timses 1...</td>
+      <td>Pasangan Bakal Calon Gubernur-Wakil Gubernur J...</td>
+      <td>Sabtu, 14 Sep 2024 19:45 WIB</td>
+      <td>Nasional</td>
+      <td>pasang calon gubernurwakil gubernur jaka a rid...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Media Asing Soroti Polemik Susu Ikan di Progra...</td>
+      <td>Sejumlah media asing menyoroti rencana pemerin...</td>
+      <td>Jumat, 13 Sep 2024 16:18 WIB</td>
+      <td>Internasional</td>
+      <td>media asing sorot rencana perintah presiden ri...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Zimbabwe Bakal Bantai 200 Gajah di Tengah Kris...</td>
+      <td>Zimbabweakan memusnahkan 200 ekor gajah karena...</td>
+      <td>Sabtu, 14 Sep 2024 03:15 WIB</td>
+      <td>Internasional</td>
+      <td>zimbabweakan musnah ekor gajah hadap kering se...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Pejabat Tinggi Keamanan Rusia Datangi Kim Jong...</td>
+      <td>Korea Utara danRusia kembali menyampaikan komi...</td>
+      <td>Sabtu, 14 Sep 2024 20:35 WIB</td>
+      <td>Internasional</td>
+      <td>korea utara danrusia komitmen kerja keamananpa...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>VIDEO: Momen Pertemuan Prabowo dan Presiden Vi...</td>
+      <td>Menteri Pertahanan Prabowo Subianto bertemu de...</td>
+      <td>Sabtu, 14 Sep 2024 12:00 WIB</td>
+      <td>Internasional</td>
+      <td>menteri pe ahanan prabowo subianto be emu pres...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>Pramono Bicara Solusi Macet Jakarta: WFH, Perp...</td>
+      <td>Bakal Calon Gubernur Jakarta Pramono Anungakan...</td>
+      <td>Sabtu, 14 Sep 2024 18:55 WIB</td>
+      <td>Nasional</td>
+      <td>calon gubernur jaka a pramono anungakan terap ...</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>RK Tak Masalah Kegiatan Disebut Mirip Desak An...</td>
+      <td>Bakal calon Gubernur Jakarta Ridwan Kamil(RK) ...</td>
+      <td>Sabtu, 14 Sep 2024 19:15 WIB</td>
+      <td>Nasional</td>
+      <td>calon gubernur jaka a ridwan kamilrk ambil pus...</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>Pulang ke Roma, Paus Fransiskus Akhiri Tur Ter...</td>
+      <td>Pemimpin Gereja Katolik Dunia sekaligus Kepala...</td>
+      <td>Jumat, 13 Sep 2024 12:24 WIB</td>
+      <td>Internasional</td>
+      <td>pimpin gereja katolik dunia kepala negara vati...</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>Pramono Janjikan Lulusan SD Bisa Daftar Jadi P...</td>
+      <td>Bakal calon Gubernur Jakarta Pramono Anungberj...</td>
+      <td>Sabtu, 14 Sep 2024 14:50 WIB</td>
+      <td>Nasional</td>
+      <td>calon gubernur jaka a pramono anungberjanji wa...</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>Anggota DPR Sidak RS Kariadi, FK Undip Akui Ad...</td>
+      <td>Fakultas Kedokteran Universitas Diponegoro (FK...</td>
+      <td>Sabtu, 14 Sep 2024 10:55 WIB</td>
+      <td>Nasional</td>
+      <td>fakultas dokter universitas diponegoro fk undi...</td>
+    </tr>
+  </tbody>
+</table>
+<p>80 rows × 5 columns</p>
+</div></div></div>
+</div>
+<p>Split data menjadi 80 data untuk train dan 20 data untuk testing dari 100 data yang ada.</p>
+</section>
+<section id="tf-idf-vsm">
+<h4>TF-IDF &amp; VSM<a class="headerlink" href="#tf-idf-vsm" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tfidf_vsm</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">kategori</span><span class="p">):</span>
@@ -777,10 +921,200 @@ menggunakan = guna</p>
 
 	<span class="k">return</span> <span class="n">tfidf</span><span class="p">,</span> <span class="n">df_tfidf</span>
 
-<span class="n">tfidf</span><span class="p">,</span> <span class="n">df_tfidf</span> <span class="o">=</span> <span class="n">tfidf_vsm</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;cleaned_text&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">])</span>
+<span class="n">tfidf_model</span><span class="p">,</span> <span class="n">df_tfidf</span> <span class="o">=</span> <span class="n">tfidf_vsm</span><span class="p">(</span><span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;cleaned_text&#39;</span><span class="p">],</span> <span class="n">data_train</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">model_tf_idf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">kategori</span><span class="p">):</span>
+	<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+	<span class="n">feature_names</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+	
+	<span class="n">df_tfidf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">feature_names</span><span class="p">)</span>
+	<span class="n">df_tfidf</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Kategori Berita&#39;</span><span class="p">,</span> <span class="n">kategori</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+	<span class="k">return</span> <span class="n">df_tfidf</span>
+
+<span class="n">df_tfidf_test</span> <span class="o">=</span> <span class="n">model_tf_idf</span><span class="p">(</span><span class="n">data_test</span><span class="p">[</span><span class="s1">&#39;cleaned_text&#39;</span><span class="p">],</span> <span class="n">tfidf_model</span><span class="p">,</span> <span class="n">data_test</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tfidf_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Kategori Berita</th>
+      <th>aa</th>
+      <th>abah</th>
+      <th>abai</th>
+      <th>abasuki</th>
+      <th>abbas</th>
+      <th>abdelmadjid</th>
+      <th>abdullah</th>
+      <th>abdulrahman</th>
+      <th>abdussalam</th>
+      <th>...</th>
+      <th>zaman</th>
+      <th>zat</th>
+      <th>zelenskiy</th>
+      <th>zelensky</th>
+      <th>ziarah</th>
+      <th>zimbabwe</th>
+      <th>zimbabweakan</th>
+      <th>zimparks</th>
+      <th>zionis</th>
+      <th>zona</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Nasional</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Internasional</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Nasional</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Nasional</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Internasional</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 2982 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -811,12 +1145,12 @@ menggunakan = guna</p>
       <th>aa</th>
       <th>abah</th>
       <th>abai</th>
-      <th>abar</th>
       <th>abasuki</th>
       <th>abbas</th>
       <th>abdelmadjid</th>
       <th>abdullah</th>
       <th>abdulrahman</th>
+      <th>abdussalam</th>
       <th>...</th>
       <th>zaman</th>
       <th>zat</th>
@@ -840,7 +1174,7 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -849,46 +1183,46 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Nasional</td>
+      <td>Internasional</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.036527</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
-      <td>0.043998</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Nasional</td>
+      <td>Internasional</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -897,22 +1231,22 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.353726</td>
+      <td>0.050532</td>
+      <td>0.101064</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Nasional</td>
+      <td>Internasional</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -921,22 +1255,22 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Nasional</td>
+      <td>Internasional</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -945,9 +1279,9 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
@@ -976,7 +1310,7 @@ menggunakan = guna</p>
       <td>...</td>
     </tr>
     <tr>
-      <th>95</th>
+      <th>75</th>
       <td>Nasional</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -984,23 +1318,23 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>...</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
+      <td>...</td>
+      <td>0.094701</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>96</th>
+      <th>76</th>
       <td>Nasional</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1008,7 +1342,7 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1017,14 +1351,14 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>97</th>
+      <th>77</th>
       <td>Internasional</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1032,7 +1366,7 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1041,22 +1375,22 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>98</th>
-      <td>Internasional</td>
+      <th>78</th>
+      <td>Nasional</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1065,22 +1399,22 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
-      <th>99</th>
-      <td>Internasional</td>
+      <th>79</th>
+      <td>Nasional</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>...</td>
@@ -1089,25 +1423,35 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>100 rows × 3378 columns</p>
+<p>80 rows × 2982 columns</p>
 </div></div></div>
 </div>
 <p>Proses untuk membuat TF-IDF dan membentuk VSM dalam dataframe.</p>
 </section>
 </section>
-<section id="save-dataset">
-<h2>Save Dataset<a class="headerlink" href="#save-dataset" title="Link to this heading">#</a></h2>
+</section>
+<section id="save-dataset-model">
+<h2>Save Dataset &amp; Model<a class="headerlink" href="#save-dataset-model" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tfidf</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;data_vsm.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tfidf</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;data_train_vsm.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df_tfidf_test</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;data_test_vsm.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;tfidf_model.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">tfidf_model</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1192,10 +1536,14 @@ menggunakan = guna</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-stemming-indo">Fungsi stemming_indo()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-clean-stopword">Fungsi clean_stopword()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-preprosesing-text-setiap-dokumen">Proses preprosesing text setiap dokumen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-tf-idf-dan-pembuatan-vsm">Proses TF-IDF dan pembuatan VSM</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-tf-idf-dan-pembuatan-vsm">Proses TF-IDF dan pembuatan VSM</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data">Split data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-vsm">TF-IDF &amp; VSM</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-dataset">Save Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-dataset-model">Save Dataset &amp; Model</a></li>
 </ul>
   </nav></div>
 
