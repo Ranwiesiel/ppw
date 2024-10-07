@@ -1,0 +1,843 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Crawling CNN Indonesia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas4/main';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Crawling CNN Indonesia - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Crawling CNN Indonesia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to PPW (Pencarian & Penambangan Web)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I: Crawling CNN Indonesia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tugas1/crawling_news.html">Crawling Web Berita CNN Indonesia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II: TF-IDF &amp; VSM</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tugas2/TF-IDF%26VSM.html">TF-IDF &amp; Vector Space Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III: Implementasi Logistic Regression</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tugas3/logistic_regression.html">Implementasi VSM TF-IDF menggunakan Klasifikasi Logistic Regression</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Ranwiesiel/ppw" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Ranwiesiel/ppw/issues/new?title=Issue%20on%20page%20%2Ftugas4/main.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tugas4/main.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../tugas2/data_test_vsm.csv&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Kategori Berita&#39;</span><span class="p">])</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>aa</th>
+      <th>abah</th>
+      <th>abai</th>
+      <th>abasuki</th>
+      <th>abbas</th>
+      <th>abdelmadjid</th>
+      <th>abdullah</th>
+      <th>abdulrahman</th>
+      <th>abdussalam</th>
+      <th>aborsi</th>
+      <th>...</th>
+      <th>zaman</th>
+      <th>zat</th>
+      <th>zelenskiy</th>
+      <th>zelensky</th>
+      <th>ziarah</th>
+      <th>zimbabwe</th>
+      <th>zimbabweakan</th>
+      <th>zimparks</th>
+      <th>zionis</th>
+      <th>zona</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 2981 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cossim</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">similarity_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cossim</span><span class="p">,</span> 
+                                 <span class="n">index</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+                                 <span class="n">columns</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="c1"># Display the first few rows and columns</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">similarity_matrix</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          0         1         2         3         4
+0  1.000000  0.001691  0.008648  0.144633  0.000000
+1  0.001691  1.000000  0.014045  0.020829  0.017539
+2  0.008648  0.014045  1.000000  0.041281  0.058819
+3  0.144633  0.020829  0.041281  1.000000  0.000000
+4  0.000000  0.017539  0.058819  0.000000  1.000000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cossim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1.00000000e+00, 1.69097479e-03, 8.64795858e-03, 1.44633176e-01,
+        0.00000000e+00, 4.32892582e-02, 2.97705286e-03, 5.08647938e-02,
+        6.06701254e-02, 4.00710676e-03, 4.18024547e-02, 3.65355327e-02,
+        2.76694765e-03, 4.76625500e-03, 3.96357138e-04, 5.52592909e-03,
+        2.57308164e-01, 3.04328078e-02, 2.44608014e-02, 4.95490174e-02],
+       [1.69097479e-03, 1.00000000e+00, 1.40449418e-02, 2.08287549e-02,
+        1.75387931e-02, 2.62056634e-02, 7.22714204e-03, 2.45245124e-03,
+        1.44735939e-02, 1.37461468e-02, 1.10361211e-02, 5.19912845e-03,
+        0.00000000e+00, 1.80996575e-02, 1.00734357e-02, 7.21176341e-03,
+        1.14068356e-02, 4.89231297e-02, 2.23167444e-02, 3.85672145e-03],
+       [8.64795858e-03, 1.40449418e-02, 1.00000000e+00, 4.12810795e-02,
+        5.88194517e-02, 8.52355825e-02, 6.60978112e-02, 8.26761772e-04,
+        3.46715858e-02, 6.52217462e-02, 1.03398279e-01, 2.54754944e-02,
+        5.11455457e-03, 1.50595329e-02, 6.31895373e-02, 3.52866758e-02,
+        8.08877236e-03, 1.06170936e-01, 3.49753512e-02, 8.54551985e-03],
+       [1.44633176e-01, 2.08287549e-02, 4.12810795e-02, 1.00000000e+00,
+        0.00000000e+00, 4.53167623e-02, 3.30711675e-02, 6.54923499e-02,
+        8.46565356e-02, 4.56931838e-02, 3.12336086e-02, 7.80856634e-02,
+        2.00890652e-02, 2.53784079e-02, 4.83624465e-02, 2.68092485e-02,
+        3.83382400e-02, 4.43312163e-02, 9.43502039e-02, 4.58108697e-02],
+       [0.00000000e+00, 1.75387931e-02, 5.88194517e-02, 0.00000000e+00,
+        1.00000000e+00, 2.10016710e-02, 0.00000000e+00, 3.13242508e-03,
+        5.12406928e-02, 1.52571778e-02, 1.29926637e-02, 6.72007253e-03,
+        0.00000000e+00, 9.33005777e-03, 1.79613000e-03, 2.81242333e-02,
+        7.14720683e-03, 9.41173293e-03, 1.75914109e-02, 3.85207984e-01],
+       [4.32892582e-02, 2.62056634e-02, 8.52355825e-02, 4.53167623e-02,
+        2.10016710e-02, 1.00000000e+00, 1.14544056e-01, 2.02739891e-02,
+        1.39398174e-02, 2.59046343e-01, 4.26053452e-02, 3.83725588e-02,
+        3.51403446e-03, 3.95139540e-02, 7.71314416e-02, 1.37234405e-01,
+        5.20038281e-02, 9.49493308e-02, 1.21701890e-01, 0.00000000e+00],
+       [2.97705286e-03, 7.22714204e-03, 6.60978112e-02, 3.30711675e-02,
+        0.00000000e+00, 1.14544056e-01, 1.00000000e+00, 8.14326872e-03,
+        5.85969755e-03, 1.49809805e-01, 1.04396921e-01, 2.09257351e-02,
+        0.00000000e+00, 0.00000000e+00, 8.47021303e-02, 1.79829767e-02,
+        4.59892051e-03, 1.25598840e-02, 1.86543821e-02, 0.00000000e+00],
+       [5.08647938e-02, 2.45245124e-03, 8.26761772e-04, 6.54923499e-02,
+        3.13242508e-03, 2.02739891e-02, 8.14326872e-03, 1.00000000e+00,
+        2.71275325e-01, 6.63721931e-03, 9.29985117e-03, 1.99312723e-02,
+        0.00000000e+00, 1.02970100e-02, 3.05226113e-03, 9.18817201e-03,
+        1.08272506e-01, 1.28481945e-03, 3.07186716e-02, 2.92151501e-02],
+       [6.06701254e-02, 1.44735939e-02, 3.46715858e-02, 8.46565356e-02,
+        5.12406928e-02, 1.39398174e-02, 5.85969755e-03, 2.71275325e-01,
+        1.00000000e+00, 2.51003275e-02, 1.33204253e-02, 1.60409843e-02,
+        6.10821682e-03, 1.73566308e-02, 1.58488829e-02, 2.01632081e-02,
+        1.00271914e-01, 7.61900391e-03, 3.05585111e-02, 0.00000000e+00],
+       [4.00710676e-03, 1.37461468e-02, 6.52217462e-02, 4.56931838e-02,
+        1.52571778e-02, 2.59046343e-01, 1.49809805e-01, 6.63721931e-03,
+        2.51003275e-02, 1.00000000e+00, 7.27518776e-02, 5.69519723e-02,
+        2.80301893e-02, 1.42291079e-02, 7.32130464e-02, 1.04243663e-01,
+        4.41892684e-02, 5.57109907e-02, 1.24365951e-01, 8.07429584e-03],
+       [4.18024547e-02, 1.10361211e-02, 1.03398279e-01, 3.12336086e-02,
+        1.29926637e-02, 4.26053452e-02, 1.04396921e-01, 9.29985117e-03,
+        1.33204253e-02, 7.27518776e-02, 1.00000000e+00, 9.78270225e-02,
+        2.21659187e-02, 1.36467612e-02, 5.03605623e-02, 8.27238726e-02,
+        6.12386615e-02, 8.80043448e-02, 4.53743765e-02, 1.85188597e-02],
+       [3.65355327e-02, 5.19912845e-03, 2.54754944e-02, 7.80856634e-02,
+        6.72007253e-03, 3.83725588e-02, 2.09257351e-02, 1.99312723e-02,
+        1.60409843e-02, 5.69519723e-02, 9.78270225e-02, 1.00000000e+00,
+        2.91914252e-02, 1.05456662e-02, 1.88373386e-02, 3.18182320e-02,
+        3.58809500e-02, 7.37061253e-02, 3.49217879e-02, 6.99117648e-03],
+       [2.76694765e-03, 0.00000000e+00, 5.11455457e-03, 2.00890652e-02,
+        0.00000000e+00, 3.51403446e-03, 0.00000000e+00, 0.00000000e+00,
+        6.10821682e-03, 2.80301893e-02, 2.21659187e-02, 2.91914252e-02,
+        1.00000000e+00, 0.00000000e+00, 3.36854564e-02, 8.10987354e-03,
+        1.42696126e-02, 2.56948237e-02, 4.74537110e-03, 0.00000000e+00],
+       [4.76625500e-03, 1.80996575e-02, 1.50595329e-02, 2.53784079e-02,
+        9.33005777e-03, 3.95139540e-02, 0.00000000e+00, 1.02970100e-02,
+        1.73566308e-02, 1.42291079e-02, 1.36467612e-02, 1.05456662e-02,
+        0.00000000e+00, 1.00000000e+00, 2.23406140e-02, 9.61467147e-02,
+        3.68143074e-02, 1.21003982e-02, 1.66656526e-02, 2.28080248e-01],
+       [3.96357138e-04, 1.00734357e-02, 6.31895373e-02, 4.83624465e-02,
+        1.79613000e-03, 7.71314416e-02, 8.47021303e-02, 3.05226113e-03,
+        1.58488829e-02, 7.32130464e-02, 5.03605623e-02, 1.88373386e-02,
+        3.36854564e-02, 2.23406140e-02, 1.00000000e+00, 3.70574270e-02,
+        1.15011478e-02, 4.61573147e-02, 1.89007059e-02, 0.00000000e+00],
+       [5.52592909e-03, 7.21176341e-03, 3.52866758e-02, 2.68092485e-02,
+        2.81242333e-02, 1.37234405e-01, 1.79829767e-02, 9.18817201e-03,
+        2.01632081e-02, 1.04243663e-01, 8.27238726e-02, 3.18182320e-02,
+        8.10987354e-03, 9.61467147e-02, 3.70574270e-02, 1.00000000e+00,
+        1.98919028e-02, 2.95317262e-02, 3.05563774e-02, 5.45583759e-02],
+       [2.57308164e-01, 1.14068356e-02, 8.08877236e-03, 3.83382400e-02,
+        7.14720683e-03, 5.20038281e-02, 4.59892051e-03, 1.08272506e-01,
+        1.00271914e-01, 4.41892684e-02, 6.12386615e-02, 3.58809500e-02,
+        1.42696126e-02, 3.68143074e-02, 1.15011478e-02, 1.98919028e-02,
+        1.00000000e+00, 1.92307126e-02, 5.43945040e-02, 0.00000000e+00],
+       [3.04328078e-02, 4.89231297e-02, 1.06170936e-01, 4.43312163e-02,
+        9.41173293e-03, 9.49493308e-02, 1.25598840e-02, 1.28481945e-03,
+        7.61900391e-03, 5.57109907e-02, 8.80043448e-02, 7.37061253e-02,
+        2.56948237e-02, 1.21003982e-02, 4.61573147e-02, 2.95317262e-02,
+        1.92307126e-02, 1.00000000e+00, 3.88681821e-02, 0.00000000e+00],
+       [2.44608014e-02, 2.23167444e-02, 3.49753512e-02, 9.43502039e-02,
+        1.75914109e-02, 1.21701890e-01, 1.86543821e-02, 3.07186716e-02,
+        3.05585111e-02, 1.24365951e-01, 4.53743765e-02, 3.49217879e-02,
+        4.74537110e-03, 1.66656526e-02, 1.89007059e-02, 3.05563774e-02,
+        5.43945040e-02, 3.88681821e-02, 1.00000000e+00, 5.18428036e-03],
+       [4.95490174e-02, 3.85672145e-03, 8.54551985e-03, 4.58108697e-02,
+        3.85207984e-01, 0.00000000e+00, 0.00000000e+00, 2.92151501e-02,
+        0.00000000e+00, 8.07429584e-03, 1.85188597e-02, 6.99117648e-03,
+        0.00000000e+00, 2.28080248e-01, 0.00000000e+00, 5.45583759e-02,
+        0.00000000e+00, 0.00000000e+00, 5.18428036e-03, 1.00000000e+00]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="c1"># Calculate dot product</span>
+<span class="n">dot_product</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">))</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dot_product</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[20, 6, 16]
+42
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tugas4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ronggo Widjoyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
