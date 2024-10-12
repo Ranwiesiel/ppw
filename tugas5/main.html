@@ -578,8 +578,7 @@ document.write(`
 	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;@[^\s]+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus username</span>
 	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\s]+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus tambahan spasi</span>
 	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;#([^\s]+)&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus hashtags</span>
-	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;rt&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus retweet</span>
-	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[^a-zA-Z :\.]&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus tanda baca</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[^a-zA-Z : .]&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus tanda baca</span>
 	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus angka</span>
 	<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 	<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="c1">#Menghapus ASCII dan unicode</span>
@@ -614,7 +613,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100/100 [00:00&lt;00:00, 330.80it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100/100 [00:00&lt;00:00, 263.21it/s]
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -681,7 +680,7 @@ document.write(`
       <td>Senin, 07 Okt 2024 09:25 WIB</td>
       <td>Pasukan Pertahanan Israel (IDF) bersiaga ketat...</td>
       <td>internasional</td>
-      <td>pasukan pe ahanan israel idf bersiaga ketat pe...</td>
+      <td>pasukan pertahanan israel idf bersiaga ketat p...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -713,7 +712,7 @@ document.write(`
       <td>Minggu, 06 Okt 2024 20:31 WIB</td>
       <td>Calon gubernur Jakarta Pramono Anung berjanji ...</td>
       <td>nasional</td>
-      <td>calon gubernur jaka a pramono anung berjanji j...</td>
+      <td>calon gubernur jakarta pramono anung berjanji ...</td>
     </tr>
     <tr>
       <th>98</th>
@@ -721,7 +720,7 @@ document.write(`
       <td>Minggu, 06 Okt 2024 20:29 WIB</td>
       <td>Calon Gubernur Jakarta Ridwan Kamil mengungkap...</td>
       <td>nasional</td>
-      <td>calon gubernur jaka a ridwan kamil mengungkap ...</td>
+      <td>calon gubernur jakarta ridwan kamil mengungkap...</td>
     </tr>
     <tr>
       <th>99</th>
@@ -729,7 +728,7 @@ document.write(`
       <td>Minggu, 06 Okt 2024 20:15 WIB</td>
       <td>Calon Gubernur DKI Jakarta Pramono Anung menga...</td>
       <td>nasional</td>
-      <td>calon gubernur dki jaka a pramono anung angka ...</td>
+      <td>calon gubernur dki jakarta pramono anung angka...</td>
     </tr>
   </tbody>
 </table>
@@ -756,13 +755,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;pasukan pe ahanan israel idf bersiaga ketat perbatasan menjelang agresi jalur gaza palestina minggu &#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;pasukan pertahanan israel idf bersiaga ketat perbatasan menjelang agresi jalur gaza palestina minggu &#39;,
  &#39;idf bersiaga mengantisipasi serangan kelompok milisi hamas palestina senin peringatan konflik oktober &#39;,
  &#39;the times of israel melaporkan idf memperkuat pasukan perbatasan mengantisipasi serangan roket jarak ditembakkan gaza &#39;,
  &#39;sumber militer percaya hamas serangan roket operasinya ditumpas israel &#39;,
- &#39;komando selatan pe ahanan serangan skenario bulanbulan bersamaan acara peringatan dilaksanakan aman pernyataan idf &#39;,
+ &#39;komando selatan pertahanan serangan skenario bulanbulan bersamaan acara peringatan dilaksanakan aman pernyataan idf &#39;,
  &#39;militer hamas menembakkan roket gaza perbatasan israel &#39;,
- &#39;militer memperkuat pe ahanan perbatasan gaza koridor netzarim lokasi pendudukan idf &#39;,
+ &#39;militer memperkuat pertahanan perbatasan gaza koridor netzarim lokasi pendudukan idf &#39;,
  &#39;kompi dilaporkan dikerahkan menjaga kotakota perbatasan zionis &#39;,
  &#39;kewaspadaan &#39;,
  &#39;tingkat kesiapan tindakan ofensif kepala komando selatan yaron finkelman &#39;,
@@ -791,111 +790,110 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;pasukan&#39;,
- &#39;meninggal&#39;,
- &#39;warga&#39;,
- &#39;peringatan&#39;,
- &#39;gaza&#39;,
- &#39;juru&#39;,
- &#39;roket&#39;,
- &#39;sipil&#39;,
- &#39;mengantisipasi&#39;,
- &#39;upacara&#39;,
- &#39;oktober&#39;,
- &#39;bicara&#39;,
- &#39;melaporkan&#39;,
- &#39;dilaporkan&#39;,
- &#39;orang&#39;,
- &#39;keluarga&#39;,
- &#39;mewantiwanti&#39;,
- &#39;melukai&#39;,
- &#39;pemerintah&#39;,
- &#39;ditembakkan&#39;,
- &#39;bersiaga&#39;,
- &#39;acara&#39;,
- &#39;komando&#39;,
- &#39;penyanderaan&#39;,
- &#39;netzarim&#39;,
- &#39;pe&#39;,
- &#39;menembakkan&#39;,
- &#39;zionis&#39;,
- &#39;dikabarkan&#39;,
- &#39;kelompok&#39;,
- &#39;sumber&#39;,
- &#39;of&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;times&#39;,
+ &#39;menjaga&#39;,
  &#39;tel&#39;,
- &#39;menggelar&#39;,
- &#39;yaron&#39;,
- &#39;hagari&#39;,
- &#39;kewaspadaan&#39;,
- &#39;tingkat&#39;,
- &#39;yarkon&#39;,
- &#39;catatan&#39;,
- &#39;finkelman&#39;,
- &#39;tindakan&#39;,
- &#39;dikerahkan&#39;,
- &#39;senjata&#39;,
- &#39;aviv&#39;,
- &#39;menyepakati&#39;,
- &#39;serangan&#39;,
+ &#39;perbatasan&#39;,
+ &#39;berkumpul&#39;,
+ &#39;gaza&#39;,
  &#39;palestina&#39;,
- &#39;tewas&#39;,
  &#39;menjelang&#39;,
- &#39;aman&#39;,
- &#39;agresi&#39;,
- &#39;disandera&#39;,
- &#39;koridor&#39;,
+ &#39;bicara&#39;,
+ &#39;zionis&#39;,
+ &#39;menggelar&#39;,
+ &#39;tindakan&#39;,
+ &#39;menembakkan&#39;,
+ &#39;skenario&#39;,
+ &#39;peringatan&#39;,
+ &#39;dikabarkan&#39;,
+ &#39;digelar&#39;,
+ &#39;jarak&#39;,
+ &#39;orang&#39;,
+ &#39;penyanderaan&#39;,
+ &#39;bulanbulan&#39;,
+ &#39;menewaskan&#39;,
+ &#39;mewantiwanti&#39;,
+ &#39;berhatihati&#39;,
+ &#39;milisi&#39;,
+ &#39;bersamaan&#39;,
+ &#39;pasukan&#39;,
+ &#39;yarkon&#39;,
+ &#39;percaya&#39;,
+ &#39;melaporkan&#39;,
+ &#39;malam&#39;,
+ &#39;operasinya&#39;,
+ &#39;lokasi&#39;,
+ &#39;ditumpas&#39;,
+ &#39;daniel&#39;,
+ &#39;diluncurkan&#39;,
+ &#39;keluarga&#39;,
+ &#39;pertahanan&#39;,
+ &#39;of&#39;,
  &#39;jalur&#39;,
  &#39;ditawan&#39;,
- &#39;taman&#39;,
- &#39;kotakota&#39;,
- &#39;hamas&#39;,
- &#39;operasinya&#39;,
- &#39;idf&#39;,
- &#39;bulanbulan&#39;,
- &#39;menjaga&#39;,
- &#39;kompi&#39;,
- &#39;terbatas&#39;,
- &#39;times&#39;,
- &#39;kunjung&#39;,
- &#39;senin&#39;,
- &#39;ofensif&#39;,
- &#39;malam&#39;,
- &#39;sabtu&#39;,
- &#39;israel&#39;,
- &#39;kesiapan&#39;,
- &#39;berkumpul&#39;,
- &#39;kepala&#39;,
- &#39;daniel&#39;,
- &#39;lokasi&#39;,
- &#39;skenario&#39;,
- &#39;minggu&#39;,
- &#39;ahanan&#39;,
- &#39;konflik&#39;,
- &#39;gencatan&#39;,
- &#39;meningkatkan&#39;,
- &#39;percaya&#39;,
- &#39;memasuki&#39;,
- &#39;digelar&#39;,
  &#39;selatan&#39;,
+ &#39;meningkatkan&#39;,
+ &#39;gencatan&#39;,
+ &#39;minggu&#39;,
+ &#39;juru&#39;,
+ &#39;israel&#39;,
+ &#39;koridor&#39;,
+ &#39;ofensif&#39;,
+ &#39;kewaspadaan&#39;,
+ &#39;tewas&#39;,
+ &#39;kelompok&#39;,
  &#39;diyakini&#39;,
- &#39;perbatasan&#39;,
- &#39;diluncurkan&#39;,
- &#39;milisi&#39;,
- &#39;ditumpas&#39;,
- &#39;pendudukan&#39;,
+ &#39;aviv&#39;,
+ &#39;komando&#39;,
+ &#39;upacara&#39;,
  &#39;pernyataan&#39;,
- &#39;menewaskan&#39;,
- &#39;bersamaan&#39;,
  &#39;ketat&#39;,
- &#39;jarak&#39;,
- &#39;the&#39;,
- &#39;berhatihati&#39;,
- &#39;sandera&#39;,
- &#39;pasca&#39;,
+ &#39;hagari&#39;,
  &#39;dilaksanakan&#39;,
+ &#39;pemerintah&#39;,
+ &#39;terbatas&#39;,
+ &#39;senin&#39;,
+ &#39;kepala&#39;,
  &#39;memperkuat&#39;,
- &#39;militer&#39;]
+ &#39;kompi&#39;,
+ &#39;serangan&#39;,
+ &#39;mengantisipasi&#39;,
+ &#39;tingkat&#39;,
+ &#39;dilaporkan&#39;,
+ &#39;kesiapan&#39;,
+ &#39;pendudukan&#39;,
+ &#39;acara&#39;,
+ &#39;warga&#39;,
+ &#39;finkelman&#39;,
+ &#39;disandera&#39;,
+ &#39;meninggal&#39;,
+ &#39;kotakota&#39;,
+ &#39;sipil&#39;,
+ &#39;menyepakati&#39;,
+ &#39;melukai&#39;,
+ &#39;hamas&#39;,
+ &#39;memasuki&#39;,
+ &#39;netzarim&#39;,
+ &#39;bersiaga&#39;,
+ &#39;militer&#39;,
+ &#39;ditembakkan&#39;,
+ &#39;sumber&#39;,
+ &#39;konflik&#39;,
+ &#39;the&#39;,
+ &#39;aman&#39;,
+ &#39;sandera&#39;,
+ &#39;roket&#39;,
+ &#39;kunjung&#39;,
+ &#39;dikerahkan&#39;,
+ &#39;oktober&#39;,
+ &#39;catatan&#39;,
+ &#39;pasca&#39;,
+ &#39;sabtu&#39;,
+ &#39;agresi&#39;,
+ &#39;taman&#39;,
+ &#39;idf&#39;,
+ &#39;senjata&#39;,
+ &#39;yaron&#39;]
 </pre></div>
 </div>
 </div>
@@ -910,15 +908,17 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vektor_kata</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-	<span class="n">vektor_kata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">kata</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">kata</span><span class="p">)</span>
+	<span class="n">vektor_kata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="n">kata</span><span class="p">)</span>
 	
-	<span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+	<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">sent</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+		<span class="c1"># Tokenisasi kalimat menjadi kata-kata</span>
 		<span class="n">kata_kalimat</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span>
 		
-		<span class="c1"># menghitung tetangga setiap kata</span>
-		<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kata_kalimat</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
-			<span class="n">vektor_kata</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">kata_kalimat</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">kata_kalimat</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
-			<span class="n">vektor_kata</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">kata_kalimat</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">kata_kalimat</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+		<span class="c1"># Hitung frekuensi setiap kata dalam kalimat</span>
+		<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">kata_kalimat</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">kata</span><span class="p">:</span>
+				<span class="n">vektor_kata</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
 	<span class="k">return</span> <span class="n">vektor_kata</span>
 </pre></div>
 </div>
@@ -926,8 +926,8 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">vektor_kata</span><span class="p">(</span><span class="n">kalimat</span><span class="p">)</span>
-<span class="n">test</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_vektor_kata</span> <span class="o">=</span> <span class="n">vektor_kata</span><span class="p">(</span><span class="n">kalimat</span><span class="p">)</span>
+<span class="n">df_vektor_kata</span>
 </pre></div>
 </div>
 </div>
@@ -950,87 +950,39 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>pasukan</th>
-      <th>meninggal</th>
-      <th>warga</th>
-      <th>peringatan</th>
+      <th>times</th>
+      <th>menjaga</th>
+      <th>tel</th>
+      <th>perbatasan</th>
+      <th>berkumpul</th>
       <th>gaza</th>
-      <th>juru</th>
-      <th>roket</th>
-      <th>sipil</th>
-      <th>mengantisipasi</th>
-      <th>upacara</th>
+      <th>palestina</th>
+      <th>menjelang</th>
+      <th>bicara</th>
+      <th>zionis</th>
       <th>...</th>
-      <th>bersamaan</th>
-      <th>ketat</th>
-      <th>jarak</th>
-      <th>the</th>
-      <th>berhatihati</th>
-      <th>sandera</th>
+      <th>dikerahkan</th>
+      <th>oktober</th>
+      <th>catatan</th>
       <th>pasca</th>
-      <th>dilaksanakan</th>
-      <th>memperkuat</th>
-      <th>militer</th>
+      <th>sabtu</th>
+      <th>agresi</th>
+      <th>taman</th>
+      <th>idf</th>
+      <th>senjata</th>
+      <th>yaron</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>pasukan</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <th>0</th>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>meninggal</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>warga</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
@@ -1040,17 +992,14 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
+      <td>1</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
     </tr>
     <tr>
-      <th>peringatan</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <th>1</th>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1058,6 +1007,33 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
@@ -1071,55 +1047,7 @@ document.write(`
       <td>0</td>
     </tr>
     <tr>
-      <th>gaza</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>sandera</th>
+      <th>3</th>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1143,7 +1071,103 @@ document.write(`
       <td>0</td>
     </tr>
     <tr>
-      <th>pasca</th>
+      <th>4</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1167,32 +1191,8 @@ document.write(`
       <td>0</td>
     </tr>
     <tr>
-      <th>dilaksanakan</th>
+      <th>9</th>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>memperkuat</th>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1215,7 +1215,151 @@ document.write(`
       <td>1</td>
     </tr>
     <tr>
-      <th>militer</th>
+      <th>10</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>16</th>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1236,11 +1380,179 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
     </tr>
   </tbody>
 </table>
-<p>105 rows × 105 columns</p>
+<p>24 rows × 104 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -1250,16 +1562,14 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[simmilarity(A, B) = \frac{A \cdot B}{|A||B|}\]</div>
 <p>Keterangan:</p>
-<p><span class="math notranslate nohighlight">\(A.B\)</span> = Vector dot product dari A dan B dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n x_{k}y_{k}\)</span></p>
-<p><span class="math notranslate nohighlight">\(|A|\)</span> = Panjang vektor A dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n x_{k}^2\)</span> = <span class="math notranslate nohighlight">\(\sqrt{\mathrm{a}_{1}^{2} + \mathrm{a}_{2}^{2} + \mathrm{a}_{3}^{2}} +...+ \mathrm{n}_{n}^{2}\)</span></p>
-<p><span class="math notranslate nohighlight">\(|B|\)</span> = Panjang vektor B dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n y_{k}^2\)</span> = <span class="math notranslate nohighlight">\(\sqrt{\mathrm{b}_{1}^{2} + \mathrm{b}_{2}^{2} + \mathrm{b}_{3}^{2}} + ...+ \mathrm{n}_{n}^{2}\)</span></p>
+<p><span class="math notranslate nohighlight">\(A.B\)</span> = Vector dot product dari A dan B dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n x_{i}y_{i}\)</span></p>
+<p><span class="math notranslate nohighlight">\(|A|\)</span> = Panjang vektor A dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n x_{i}^2\)</span> = <span class="math notranslate nohighlight">\(\sqrt{\mathrm{a}_{1}^{2} + \mathrm{a}_{2}^{2} + \mathrm{a}_{3}^{2}} +...+ \mathrm{n}_{n}^{2}\)</span></p>
+<p><span class="math notranslate nohighlight">\(|B|\)</span> = Panjang vektor B dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n y_{i}^2\)</span> = <span class="math notranslate nohighlight">\(\sqrt{\mathrm{b}_{1}^{2} + \mathrm{b}_{2}^{2} + \mathrm{b}_{3}^{2}} + ...+ \mathrm{n}_{n}^{2}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cossim</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cossim</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">df_vektor_kata</span><span class="p">)</span>
 
-<span class="n">similarity_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cossim</span><span class="p">,</span> 
-								 <span class="n">index</span><span class="o">=</span><span class="n">kata</span><span class="p">,</span> 
-								 <span class="n">columns</span><span class="o">=</span><span class="n">kata</span><span class="p">)</span>
+<span class="n">similarity_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cossim</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kalimat</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kalimat</span><span class="p">)))</span>
 
 <span class="n">similarity_matrix</span>
 </pre></div>
@@ -1284,297 +1594,609 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>pasukan</th>
-      <th>meninggal</th>
-      <th>warga</th>
-      <th>peringatan</th>
-      <th>gaza</th>
-      <th>juru</th>
-      <th>roket</th>
-      <th>sipil</th>
-      <th>mengantisipasi</th>
-      <th>upacara</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
       <th>...</th>
-      <th>bersamaan</th>
-      <th>ketat</th>
-      <th>jarak</th>
-      <th>the</th>
-      <th>berhatihati</th>
-      <th>sandera</th>
-      <th>pasca</th>
-      <th>dilaksanakan</th>
-      <th>memperkuat</th>
-      <th>militer</th>
+      <th>14</th>
+      <th>15</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+      <th>20</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>pasukan</th>
+      <th>0</th>
       <td>1.000000</td>
+      <td>0.240192</td>
+      <td>0.358057</td>
+      <td>0.092450</td>
+      <td>0.153846</td>
+      <td>0.314485</td>
+      <td>0.350823</td>
+      <td>0.104828</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
-      <td>0.230940</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.169031</td>
-      <td>0.000000</td>
+      <td>0.0000</td>
       <td>...</td>
+      <td>0.160128</td>
       <td>0.000000</td>
-      <td>0.316228</td>
+      <td>0.113228</td>
+      <td>0.277350</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.223607</td>
-      <td>0.223607</td>
-    </tr>
-    <tr>
-      <th>meninggal</th>
-      <td>0.000000</td>
-      <td>1.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
       <td>0.000000</td>
     </tr>
     <tr>
-      <th>warga</th>
-      <td>0.000000</td>
-      <td>0.0</td>
+      <th>1</th>
+      <td>0.240192</td>
       <td>1.000000</td>
-      <td>0.00000</td>
-      <td>0.149071</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.223607</td>
+      <td>0.192450</td>
+      <td>0.240192</td>
+      <td>0.109109</td>
+      <td>0.091287</td>
       <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
       <td>...</td>
+      <td>0.166667</td>
       <td>0.000000</td>
+      <td>0.117851</td>
+      <td>0.192450</td>
       <td>0.000000</td>
+      <td>0.192450</td>
+      <td>0.102062</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.57735</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.144338</td>
     </tr>
     <tr>
-      <th>peringatan</th>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>1.00000</td>
+      <th>2</th>
+      <td>0.358057</td>
+      <td>0.223607</td>
+      <td>1.000000</td>
+      <td>0.258199</td>
+      <td>0.143223</td>
+      <td>0.390360</td>
+      <td>0.326599</td>
       <td>0.097590</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.0000</td>
       <td>...</td>
-      <td>0.267261</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.105409</td>
+      <td>0.172133</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
       <td>0.000000</td>
     </tr>
     <tr>
-      <th>gaza</th>
-      <td>0.230940</td>
-      <td>0.0</td>
-      <td>0.149071</td>
-      <td>0.09759</td>
+      <th>3</th>
+      <td>0.092450</td>
+      <td>0.192450</td>
+      <td>0.258199</td>
       <td>1.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.195180</td>
+      <td>0.092450</td>
+      <td>0.503953</td>
+      <td>0.105409</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
       <td>...</td>
       <td>0.000000</td>
-      <td>0.365148</td>
-      <td>0.365148</td>
-      <td>0.0</td>
-      <td>0.00000</td>
       <td>0.000000</td>
-      <td>0.182574</td>
-      <td>0.0</td>
+      <td>0.272166</td>
+      <td>0.222222</td>
       <td>0.000000</td>
+      <td>0.111111</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.000000</td>
     </tr>
     <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>sandera</th>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.00000</td>
+      <th>4</th>
+      <td>0.153846</td>
+      <td>0.240192</td>
+      <td>0.143223</td>
+      <td>0.092450</td>
       <td>1.000000</td>
       <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.353553</td>
-    </tr>
-    <tr>
-      <th>pasca</th>
+      <td>0.175412</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
-      <td>0.182574</td>
-      <td>0.0</td>
-      <td>0.5</td>
-      <td>0.0</td>
-      <td>0.534522</td>
-      <td>0.000000</td>
+      <td>0.1849</td>
       <td>...</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.092450</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.138675</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.314485</td>
+      <td>0.109109</td>
+      <td>0.390360</td>
+      <td>0.503953</td>
       <td>0.000000</td>
       <td>1.000000</td>
+      <td>0.358569</td>
+      <td>0.142857</td>
       <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
       <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.308607</td>
+      <td>0.377964</td>
+      <td>0.000000</td>
+      <td>0.125988</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.000000</td>
     </tr>
     <tr>
-      <th>dilaksanakan</th>
-      <td>0.000000</td>
+      <th>6</th>
+      <td>0.350823</td>
+      <td>0.091287</td>
+      <td>0.326599</td>
+      <td>0.105409</td>
+      <td>0.175412</td>
+      <td>0.358569</td>
+      <td>1.000000</td>
+      <td>0.119523</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.408248</td>
+      <td>0.0000</td>
       <td>...</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
+      <td>0.105409</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.104828</td>
+      <td>0.000000</td>
+      <td>0.097590</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.142857</td>
+      <td>0.119523</td>
+      <td>1.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>1.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>memperkuat</th>
-      <td>0.223607</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.188982</td>
-      <td>0.000000</td>
+      <td>0.0000</td>
       <td>...</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.184900</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>1.0000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.083624</td>
+      <td>0.087039</td>
+      <td>0.077850</td>
+      <td>0.000000</td>
+      <td>0.083624</td>
+      <td>0.000000</td>
+      <td>0.095346</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
+      <td>0.174078</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.301511</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.160128</td>
+      <td>0.166667</td>
+      <td>0.298142</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0.286446</td>
+      <td>0.447214</td>
+      <td>0.266667</td>
+      <td>0.344265</td>
+      <td>0.071611</td>
+      <td>0.390360</td>
+      <td>0.081650</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.316228</td>
+      <td>0.430331</td>
+      <td>0.000000</td>
+      <td>0.086066</td>
+      <td>0.091287</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.196116</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.160128</td>
+      <td>0.166667</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
       <td>1.000000</td>
       <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
     </tr>
     <tr>
-      <th>militer</th>
-      <td>0.223607</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <th>15</th>
       <td>0.000000</td>
       <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.333333</td>
+      <td>0.577350</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0.113228</td>
+      <td>0.117851</td>
+      <td>0.105409</td>
+      <td>0.272166</td>
+      <td>0.000000</td>
+      <td>0.308607</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.272166</td>
+      <td>0.000000</td>
+      <td>0.136083</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0.277350</td>
+      <td>0.192450</td>
+      <td>0.172133</td>
+      <td>0.222222</td>
+      <td>0.000000</td>
+      <td>0.377964</td>
+      <td>0.105409</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.333333</td>
+      <td>0.272166</td>
+      <td>1.000000</td>
+      <td>0.192450</td>
+      <td>0.111111</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.166667</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.577350</td>
+      <td>0.000000</td>
+      <td>0.192450</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.288675</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0.000000</td>
+      <td>0.192450</td>
+      <td>0.000000</td>
+      <td>0.111111</td>
+      <td>0.092450</td>
+      <td>0.125988</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.136083</td>
+      <td>0.111111</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.166667</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>0.000000</td>
+      <td>0.102062</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
       <td>...</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.353553</td>
+      <td>0.176777</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.000000</td>
+      <td>0.144338</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.138675</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.500000</td>
+      <td>0.000000</td>
+      <td>0.166667</td>
+      <td>0.288675</td>
+      <td>0.166667</td>
+      <td>0.176777</td>
+      <td>0.000000</td>
+      <td>0.0</td>
       <td>1.000000</td>
     </tr>
   </tbody>
 </table>
-<p>105 rows × 105 columns</p>
+<p>24 rows × 24 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -1604,7 +2226,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fcb3f53c4a5994df166bf896a724e9f6311738998ca2333a1328326ac9273eb2.png" src="../_images/fcb3f53c4a5994df166bf896a724e9f6311738998ca2333a1328326ac9273eb2.png" />
+<img alt="../_images/75cfc774c8b5a53d0d6bf3c319909360061fe72481d6b34ce4ed3a228fc5184d.png" src="../_images/75cfc774c8b5a53d0d6bf3c319909360061fe72481d6b34ce4ed3a228fc5184d.png" />
 </div>
 </div>
 </section>
@@ -1634,111 +2256,30 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Page Rank :
-Node 71: 0.0390
-Node 4: 0.0319
-Node 58: 0.0301
-Node 88: 0.0246
-Node 47: 0.0242
-Node 67: 0.0240
-Node 79: 0.0212
-Node 46: 0.0203
-Node 8: 0.0190
-Node 60: 0.0189
-Node 103: 0.0189
-Node 54: 0.0187
-Node 12: 0.0179
-Node 0: 0.0173
-Node 104: 0.0151
-Node 6: 0.0146
-Node 83: 0.0142
-Node 14: 0.0141
-Node 26: 0.0141
-Node 52: 0.0136
-Node 3: 0.0135
-Node 25: 0.0131
-Node 66: 0.0130
-Node 31: 0.0130
-Node 55: 0.0126
-Node 10: 0.0120
-Node 91: 0.0119
-Node 57: 0.0112
-Node 80: 0.0111
-Node 90: 0.0111
-Node 100: 0.0111
-Node 20: 0.0110
-Node 9: 0.0110
-Node 18: 0.0110
-Node 51: 0.0110
-Node 49: 0.0109
-Node 2: 0.0105
-Node 11: 0.0103
-Node 101: 0.0103
-Node 53: 0.0102
-Node 96: 0.0100
-Node 86: 0.0097
-Node 92: 0.0097
-Node 75: 0.0096
-Node 33: 0.0095
-Node 21: 0.0095
-Node 93: 0.0094
-Node 102: 0.0091
-Node 27: 0.0089
-Node 19: 0.0087
-Node 77: 0.0087
-Node 41: 0.0087
-Node 23: 0.0080
-Node 22: 0.0078
-Node 44: 0.0077
-Node 68: 0.0076
-Node 73: 0.0075
-Node 29: 0.0071
-Node 74: 0.0068
-Node 84: 0.0067
-Node 17: 0.0067
-Node 78: 0.0067
-Node 85: 0.0062
-Node 59: 0.0060
-Node 5: 0.0058
-Node 42: 0.0058
-Node 45: 0.0057
-Node 62: 0.0056
-Node 89: 0.0053
-Node 82: 0.0053
-Node 56: 0.0051
-Node 37: 0.0051
-Node 97: 0.0051
-Node 16: 0.0049
-Node 34: 0.0048
-Node 38: 0.0047
-Node 72: 0.0047
-Node 64: 0.0046
-Node 32: 0.0046
-Node 87: 0.0045
-Node 30: 0.0042
-Node 94: 0.0041
-Node 70: 0.0039
-Node 63: 0.0039
-Node 43: 0.0039
-Node 13: 0.0038
-Node 35: 0.0038
-Node 50: 0.0038
-Node 95: 0.0038
-Node 7: 0.0037
-Node 28: 0.0036
-Node 48: 0.0036
-Node 76: 0.0035
-Node 61: 0.0035
-Node 24: 0.0034
-Node 40: 0.0031
-Node 99: 0.0027
-Node 69: 0.0025
-Node 98: 0.0024
-Node 1: 0.0024
-Node 15: 0.0024
-Node 81: 0.0024
-Node 39: 0.0023
-Node 65: 0.0023
-Node 36: 0.0014
+Node 1: 0.0908
+Node 0: 0.0851
+Node 17: 0.0807
+Node 2: 0.0669
+Node 5: 0.0660
+Node 12: 0.0549
+Node 23: 0.0544
+Node 16: 0.0531
+Node 3: 0.0530
+Node 6: 0.0492
+Node 4: 0.0485
+Node 19: 0.0419
+Node 10: 0.0342
+Node 14: 0.0332
+Node 15: 0.0266
+Node 18: 0.0266
+Node 11: 0.0244
+Node 7: 0.0243
+Node 21: 0.0213
+Node 20: 0.0193
+Node 13: 0.0186
+Node 9: 0.0136
+Node 8: 0.0067
+Node 22: 0.0067
 </pre></div>
 </div>
 </div>
@@ -1751,21 +2292,21 @@ Node 36: 0.0014
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tiga Node Tertinggi Page Rank :&quot;</span><span class="p">)</span>
 <span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">pagerank</span> <span class="ow">in</span> <span class="n">sorted_pagerank</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
-  <span class="n">top_sentence</span> <span class="o">=</span> <span class="n">kata</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
-  <span class="n">sentence</span> <span class="o">+=</span> <span class="n">top_sentence</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span>
-  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: Page Rank = </span><span class="si">{</span><span class="n">pagerank</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kalimat: </span><span class="si">{</span><span class="n">top_sentence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+	<span class="n">top_sentence</span> <span class="o">=</span> <span class="n">kata</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+	<span class="n">sentence</span> <span class="o">+=</span> <span class="n">top_sentence</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span>
+	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: Page Rank = </span><span class="si">{</span><span class="n">pagerank</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kalimat: </span><span class="si">{</span><span class="n">top_sentence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiga Node Tertinggi Page Rank :
-Node 71: Page Rank = 0.0390
-Kalimat: israel
-Node 4: Page Rank = 0.0319
-Kalimat: gaza
-Node 58: Page Rank = 0.0301
-Kalimat: hamas
+Node 1: Page Rank = 0.0908
+Kalimat: menjaga
+Node 0: Page Rank = 0.0851
+Kalimat: times
+Node 17: Page Rank = 0.0807
+Kalimat: jarak
 </pre></div>
 </div>
 </div>
@@ -1777,7 +2318,7 @@ Kalimat: hamas
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Kata Kunci : israel, gaza, hamas, 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Kata Kunci : menjaga, times, jarak, 
 </pre></div>
 </div>
 </div>
