@@ -62,6 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'tugas4/main';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Kata Kunci Berita" href="../tugas5/main.html" />
     <link rel="prev" title="Implementasi VSM TF-IDF menggunakan Klasifikasi Logistic Regression" href="../tugas3/logistic_regression.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -195,6 +196,10 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV: Ringkasan Berita</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Ringkasan Berita</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V: Kata Kunci Berita</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tugas5/main.html">Kata Kunci Berita</a></li>
 </ul>
 
     </div>
@@ -393,30 +398,26 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-pembersihan-teks">Proses Pembersihan Teks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-text">Preprocessing Text</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memisahkan-berita">Memisahkan Berita</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-text">Preprocessing Text</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-preprocessing">Hasil Preprocessing</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-tanpa-preprocessing">TF-IDF tanpa Preprocessing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-menggunakan-preprocessing">TF-IDF menggunakan Preprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memisahkan-kalimat-berita">Memisahkan Kalimat Berita</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cossim-tanpa-preprocessing">Cossim tanpa Preprocessing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cossim-menggunakan-preprocessing">Cossim menggunakan Preprocessing</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph">Graph</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-centralitas">Matrix Centralitas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#closeness-centrality">Closeness Centrality</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#closeness-centrality-tanpa-preprocessing">Closeness Centrality tanpa Preprocessing</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ringkasan Berita</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#closeness-centrality-menggunakan-preprocessing">Closeness Centrality menggunakan Preprocessing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Closeness Centrality</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ringkasan Berita</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#page-rank">Page Rank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#page-rank">Page Rank</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ringkasan">Hasil Ringkasan</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -439,16 +440,19 @@ document.write(`
 <h3>Import Library<a class="headerlink" href="#import-library" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Library untuk text preprocessing</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
 <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
 <span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
 <span class="kn">import</span> <span class="nn">re</span>
 
+<span class="c1"># Library untuk data manipulation</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
+<span class="c1"># Library untuk text similarity</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span> 
 </pre></div>
@@ -574,11 +578,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100/100 [00:00&lt;00:00, 398.54it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100/100 [00:00&lt;00:00, 178.69it/s]
 </pre></div>
 </div>
 </div>
 </div>
+<p>Membersihkan text dari tanda baca yang ada, kemudian menyesuaikan text agar bisa diolah lebih lanjut.</p>
+<section id="hasil-preprocessing">
+<h4>Hasil Preprocessing<a class="headerlink" href="#hasil-preprocessing" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">prep_result</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
@@ -592,8 +599,9 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="memisahkan-berita">
-<h3>Memisahkan Berita<a class="headerlink" href="#memisahkan-berita" title="Link to this heading">#</a></h3>
+</section>
+<section id="memisahkan-kalimat-berita">
+<h3>Memisahkan Kalimat Berita<a class="headerlink" href="#memisahkan-kalimat-berita" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kalimat_preprocessing</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">prep_result</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
@@ -602,6 +610,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Memisahkan kalimat pada berita yang diakhiri dengan titik, untuk setiap kalimat</p>
 </section>
 </section>
 <section id="tf-idf">
@@ -622,551 +631,7 @@ document.write(`
 <p>Keterangan:</p>
 <p><span class="math notranslate nohighlight">\(D\)</span> = total dokumen<br>
 <span class="math notranslate nohighlight">\(df(t)\)</span> = jumlah dokumen yang mengandung <em>term</em> (t)</p>
-<section id="tf-idf-tanpa-preprocessing">
-<h3>TF-IDF tanpa Preprocessing<a class="headerlink" href="#tf-idf-tanpa-preprocessing" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
-<span class="n">tfidf</span> <span class="o">=</span> <span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">kalimat</span><span class="p">)</span>
-
-<span class="n">terms</span> <span class="o">=</span> <span class="n">tfidf_vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
-<span class="n">tfidf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">tfidf</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">terms</span><span class="p">)</span>
-
-<span class="n">tfidf</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>00</th>
-      <th>000</th>
-      <th>10</th>
-      <th>101</th>
-      <th>166</th>
-      <th>19</th>
-      <th>2023</th>
-      <th>31</th>
-      <th>41</th>
-      <th>870</th>
-      <th>...</th>
-      <th>tingkat</th>
-      <th>untuk</th>
-      <th>upacara</th>
-      <th>waktu</th>
-      <th>wanti</th>
-      <th>warga</th>
-      <th>yang</th>
-      <th>yarkon</th>
-      <th>yaron</th>
-      <th>zionis</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.200398</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.242436</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.190205</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.207635</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.190205</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.175964</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.186489</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.172526</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.142361</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.131702</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.279838</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.290581</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.195326</td>
-      <td>0.000000</td>
-      <td>0.290581</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.197598</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.197598</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.271951</td>
-      <td>0.239049</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.180101</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.196605</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.312971</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.312971</td>
-      <td>0.312971</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.275106</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.291284</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.231039</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.407011</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.337050</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>0.250052</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.250052</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.219800</td>
-      <td>0.219800</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.250052</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>0.000000</td>
-      <td>0.388305</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.341326</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-  </tbody>
-</table>
-<p>20 rows × 182 columns</p>
-</div></div></div>
-</div>
-</section>
-<section id="tf-idf-menggunakan-preprocessing">
-<h3>TF-IDF menggunakan Preprocessing<a class="headerlink" href="#tf-idf-menggunakan-preprocessing" title="Link to this heading">#</a></h3>
+<p>TF-IDF setiap kalimat, untuk menghitung term yang ada pada setiap kalimatnya.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tfidf_vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
@@ -1804,545 +1269,22 @@ document.write(`
 </div></div></div>
 </div>
 </section>
-</section>
 <section id="cosine-similarity">
 <h2>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Link to this heading">#</a></h2>
+<p>Cosine similarity digunakan untuk mengukur seberapa mirip dua vektor dalam ruang berdimensi banyak. Hasil dari cosine similarity ini akan menentukan apakah vektor tersebut menuju ke arah yang sama. Semakin kecil sudut antara dua vektor, maka semakin mirip satu sama lain sedangkan begitu juga sebaliknya, semakin besar nilai cosine similarity maka vektor tersebut dianggap jauh kemiripannya. Dalam ringkasan dokumen ini penting untuk menghitung nilai cosine similarity untuk mengetahui hubungan kesamaan antara kalimat satu dengan kalimat lainnya. Vektor yang digunakan untuk menghitung nilai cosine simmilarity ini adalah hasil dari TF-IDF pada langkah sebelumnya.</p>
 <div class="math notranslate nohighlight">
 \[simmilarity(A, B) = \frac{A \cdot B}{|A||B|}\]</div>
 <p>Keterangan:</p>
 <p><span class="math notranslate nohighlight">\(A.B\)</span> = Vector dot product dari A dan B dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n x_{k}y_{k}\)</span></p>
 <p><span class="math notranslate nohighlight">\(|A|\)</span> = Panjang vektor A dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n x_{k}^2\)</span> = <span class="math notranslate nohighlight">\(\sqrt{\mathrm{a}_{1}^{2} + \mathrm{a}_{2}^{2} + \mathrm{a}_{3}^{2}} +...+ \mathrm{n}_{n}^{2}\)</span></p>
-<p><span class="math notranslate nohighlight">\(|B|\)</span> = Panjang vektor A dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n y_{k}^2\)</span> = <span class="math notranslate nohighlight">\(\sqrt{\mathrm{b}_{1}^{2} + \mathrm{b}_{2}^{2} + \mathrm{b}_{3}^{2}} + ...+ \mathrm{n}_{n}^{2}\)</span></p>
-<section id="cossim-tanpa-preprocessing">
-<h3>Cossim tanpa Preprocessing<a class="headerlink" href="#cossim-tanpa-preprocessing" title="Link to this heading">#</a></h3>
+<p><span class="math notranslate nohighlight">\(|B|\)</span> = Panjang vektor B dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n y_{k}^2\)</span> = <span class="math notranslate nohighlight">\(\sqrt{\mathrm{b}_{1}^{2} + \mathrm{b}_{2}^{2} + \mathrm{b}_{3}^{2}} + ...+ \mathrm{n}_{n}^{2}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cossim</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">tfidf</span><span class="p">,</span> <span class="n">tfidf</span><span class="p">)</span>
-
-<span class="n">similarity_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cossim</span><span class="p">,</span> 
-								 <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kalimat</span><span class="p">)),</span> 
-								 <span class="n">columns</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kalimat</span><span class="p">)))</span>
-
-<span class="n">similarity_matrix</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-      <th>10</th>
-      <th>11</th>
-      <th>12</th>
-      <th>13</th>
-      <th>14</th>
-      <th>15</th>
-      <th>16</th>
-      <th>17</th>
-      <th>18</th>
-      <th>19</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1.000000</td>
-      <td>0.243870</td>
-      <td>0.205048</td>
-      <td>0.026336</td>
-      <td>0.055186</td>
-      <td>0.106702</td>
-      <td>0.203856</td>
-      <td>0.034873</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.069009</td>
-      <td>0.062396</td>
-      <td>0.272107</td>
-      <td>0.108611</td>
-      <td>0.033339</td>
-      <td>0.176438</td>
-      <td>0.077188</td>
-      <td>0.073011</td>
-      <td>0.153997</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.243870</td>
-      <td>1.000000</td>
-      <td>0.191150</td>
-      <td>0.086355</td>
-      <td>0.120617</td>
-      <td>0.029315</td>
-      <td>0.029720</td>
-      <td>0.000000</td>
-      <td>0.055291</td>
-      <td>0.074529</td>
-      <td>0.140668</td>
-      <td>0.108920</td>
-      <td>0.527791</td>
-      <td>0.083669</td>
-      <td>0.031644</td>
-      <td>0.170132</td>
-      <td>0.041779</td>
-      <td>0.185819</td>
-      <td>0.075739</td>
-      <td>0.053665</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0.205048</td>
-      <td>0.191150</td>
-      <td>1.000000</td>
-      <td>0.129514</td>
-      <td>0.091712</td>
-      <td>0.216485</td>
-      <td>0.174825</td>
-      <td>0.032453</td>
-      <td>0.000000</td>
-      <td>0.033699</td>
-      <td>0.064220</td>
-      <td>0.116131</td>
-      <td>0.144256</td>
-      <td>0.031498</td>
-      <td>0.031025</td>
-      <td>0.080723</td>
-      <td>0.076878</td>
-      <td>0.058150</td>
-      <td>0.022065</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0.026336</td>
-      <td>0.086355</td>
-      <td>0.129514</td>
-      <td>1.000000</td>
-      <td>0.024587</td>
-      <td>0.245924</td>
-      <td>0.050590</td>
-      <td>0.060052</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.129104</td>
-      <td>0.034084</td>
-      <td>0.067145</td>
-      <td>0.106523</td>
-      <td>0.044325</td>
-      <td>0.067746</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0.055186</td>
-      <td>0.120617</td>
-      <td>0.091712</td>
-      <td>0.024587</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.057934</td>
-      <td>0.000000</td>
-      <td>0.170448</td>
-      <td>0.201687</td>
-      <td>0.049024</td>
-      <td>0.000000</td>
-      <td>0.021944</td>
-      <td>0.038578</td>
-      <td>0.043339</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.070323</td>
-      <td>0.030823</td>
-      <td>0.135894</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>0.106702</td>
-      <td>0.029315</td>
-      <td>0.216485</td>
-      <td>0.245924</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>0.138922</td>
-      <td>0.111612</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.177312</td>
-      <td>0.000000</td>
-      <td>0.078746</td>
-      <td>0.175749</td>
-      <td>0.000000</td>
-      <td>0.091172</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>0.203856</td>
-      <td>0.029720</td>
-      <td>0.174825</td>
-      <td>0.050590</td>
-      <td>0.057934</td>
-      <td>0.138922</td>
-      <td>1.000000</td>
-      <td>0.036609</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.030875</td>
-      <td>0.000000</td>
-      <td>0.052815</td>
-      <td>0.000000</td>
-      <td>0.078657</td>
-      <td>0.127230</td>
-      <td>0.040516</td>
-      <td>0.000000</td>
-      <td>0.080832</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0.034873</td>
-      <td>0.000000</td>
-      <td>0.032453</td>
-      <td>0.060052</td>
-      <td>0.000000</td>
-      <td>0.111612</td>
-      <td>0.036609</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.077753</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>0.000000</td>
-      <td>0.055291</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.170448</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>0.089825</td>
-      <td>0.000000</td>
-      <td>0.187112</td>
-      <td>0.052353</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.097735</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>0.000000</td>
-      <td>0.074529</td>
-      <td>0.033699</td>
-      <td>0.000000</td>
-      <td>0.201687</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.089825</td>
-      <td>1.000000</td>
-      <td>0.041720</td>
-      <td>0.080738</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.065835</td>
-      <td>0.038360</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>0.069009</td>
-      <td>0.140668</td>
-      <td>0.064220</td>
-      <td>0.000000</td>
-      <td>0.049024</td>
-      <td>0.000000</td>
-      <td>0.030875</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.041720</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.035588</td>
-      <td>0.065764</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.088444</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>0.062396</td>
-      <td>0.108920</td>
-      <td>0.116131</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.077753</td>
-      <td>0.187112</td>
-      <td>0.080738</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>0.103133</td>
-      <td>0.070804</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>0.272107</td>
-      <td>0.527791</td>
-      <td>0.144256</td>
-      <td>0.129104</td>
-      <td>0.021944</td>
-      <td>0.177312</td>
-      <td>0.052815</td>
-      <td>0.000000</td>
-      <td>0.052353</td>
-      <td>0.000000</td>
-      <td>0.035588</td>
-      <td>0.103133</td>
-      <td>1.000000</td>
-      <td>0.128030</td>
-      <td>0.089888</td>
-      <td>0.263874</td>
-      <td>0.074245</td>
-      <td>0.086981</td>
-      <td>0.060303</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>0.108611</td>
-      <td>0.083669</td>
-      <td>0.031498</td>
-      <td>0.034084</td>
-      <td>0.038578</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.065764</td>
-      <td>0.070804</td>
-      <td>0.128030</td>
-      <td>1.000000</td>
-      <td>0.069228</td>
-      <td>0.048129</td>
-      <td>0.117199</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.064159</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>0.033339</td>
-      <td>0.031644</td>
-      <td>0.031025</td>
-      <td>0.067145</td>
-      <td>0.043339</td>
-      <td>0.078746</td>
-      <td>0.078657</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.089888</td>
-      <td>0.069228</td>
-      <td>1.000000</td>
-      <td>0.070421</td>
-      <td>0.000000</td>
-      <td>0.030306</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>0.176438</td>
-      <td>0.170132</td>
-      <td>0.080723</td>
-      <td>0.106523</td>
-      <td>0.000000</td>
-      <td>0.175749</td>
-      <td>0.127230</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.263874</td>
-      <td>0.048129</td>
-      <td>0.070421</td>
-      <td>1.000000</td>
-      <td>0.103350</td>
-      <td>0.071051</td>
-      <td>0.025042</td>
-      <td>0.059713</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>0.077188</td>
-      <td>0.041779</td>
-      <td>0.076878</td>
-      <td>0.044325</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.040516</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.074245</td>
-      <td>0.117199</td>
-      <td>0.000000</td>
-      <td>0.103350</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.034991</td>
-      <td>0.205554</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>0.073011</td>
-      <td>0.185819</td>
-      <td>0.058150</td>
-      <td>0.067746</td>
-      <td>0.070323</td>
-      <td>0.091172</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.065835</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.086981</td>
-      <td>0.000000</td>
-      <td>0.030306</td>
-      <td>0.071051</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.126617</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>0.153997</td>
-      <td>0.075739</td>
-      <td>0.022065</td>
-      <td>0.000000</td>
-      <td>0.030823</td>
-      <td>0.000000</td>
-      <td>0.080832</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.038360</td>
-      <td>0.088444</td>
-      <td>0.000000</td>
-      <td>0.060303</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.025042</td>
-      <td>0.034991</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>0.136109</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>0.000000</td>
-      <td>0.053665</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.135894</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.097735</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.064159</td>
-      <td>0.000000</td>
-      <td>0.059713</td>
-      <td>0.205554</td>
-      <td>0.126617</td>
-      <td>0.136109</td>
-      <td>1.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-</section>
-<section id="cossim-menggunakan-preprocessing">
-<h3>Cossim menggunakan Preprocessing<a class="headerlink" href="#cossim-menggunakan-preprocessing" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cossim_prep</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">tfidf</span><span class="p">,</span> <span class="n">tfidf</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cossim_prep</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">tfidf_preprocessing</span><span class="p">,</span> <span class="n">tfidf_preprocessing</span><span class="p">)</span>
 
 <span class="n">similarity_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cossim_prep</span><span class="p">,</span> 
-								 <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kalimat</span><span class="p">)),</span> 
-								 <span class="n">columns</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kalimat</span><span class="p">)))</span>
+								 <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kalimat_preprocessing</span><span class="p">)),</span> 
+								 <span class="n">columns</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kalimat_preprocessing</span><span class="p">)))</span>
 
 <span class="n">similarity_matrix</span>
 </pre></div>
@@ -2377,484 +1319,601 @@ document.write(`
       <th>7</th>
       <th>8</th>
       <th>9</th>
-      <th>10</th>
-      <th>11</th>
-      <th>12</th>
-      <th>13</th>
+      <th>...</th>
       <th>14</th>
       <th>15</th>
       <th>16</th>
       <th>17</th>
       <th>18</th>
       <th>19</th>
+      <th>20</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
       <td>1.000000</td>
-      <td>0.243870</td>
-      <td>0.205048</td>
-      <td>0.026336</td>
-      <td>0.055186</td>
-      <td>0.106702</td>
-      <td>0.203856</td>
-      <td>0.034873</td>
+      <td>0.215494</td>
+      <td>0.228614</td>
+      <td>0.046935</td>
+      <td>0.165032</td>
+      <td>0.206542</td>
+      <td>0.297843</td>
+      <td>0.060533</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
+      <td>0.134609</td>
+      <td>0.000000</td>
+      <td>0.054988</td>
+      <td>0.205730</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.069009</td>
-      <td>0.062396</td>
-      <td>0.272107</td>
-      <td>0.108611</td>
-      <td>0.033339</td>
-      <td>0.176438</td>
-      <td>0.077188</td>
-      <td>0.073011</td>
-      <td>0.153997</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.243870</td>
+      <td>0.215494</td>
       <td>1.000000</td>
-      <td>0.191150</td>
-      <td>0.086355</td>
-      <td>0.120617</td>
-      <td>0.029315</td>
-      <td>0.029720</td>
+      <td>0.167402</td>
+      <td>0.118737</td>
+      <td>0.153751</td>
+      <td>0.066888</td>
+      <td>0.052746</td>
       <td>0.000000</td>
-      <td>0.055291</td>
-      <td>0.074529</td>
-      <td>0.140668</td>
-      <td>0.108920</td>
-      <td>0.527791</td>
-      <td>0.083669</td>
-      <td>0.031644</td>
-      <td>0.170132</td>
-      <td>0.041779</td>
-      <td>0.185819</td>
-      <td>0.075739</td>
-      <td>0.053665</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
+      <td>0.148901</td>
+      <td>0.000000</td>
+      <td>0.060826</td>
+      <td>0.147209</td>
+      <td>0.000000</td>
+      <td>0.117044</td>
+      <td>0.085138</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.116067</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.205048</td>
-      <td>0.191150</td>
+      <td>0.228614</td>
+      <td>0.167402</td>
       <td>1.000000</td>
-      <td>0.129514</td>
-      <td>0.091712</td>
-      <td>0.216485</td>
-      <td>0.174825</td>
-      <td>0.032453</td>
+      <td>0.176981</td>
+      <td>0.080290</td>
+      <td>0.291716</td>
+      <td>0.223633</td>
+      <td>0.056500</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
       <td>0.000000</td>
-      <td>0.033699</td>
-      <td>0.064220</td>
-      <td>0.116131</td>
-      <td>0.144256</td>
-      <td>0.031498</td>
-      <td>0.031025</td>
-      <td>0.080723</td>
-      <td>0.076878</td>
-      <td>0.058150</td>
-      <td>0.022065</td>
+      <td>0.000000</td>
+      <td>0.051324</td>
+      <td>0.096049</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.026336</td>
-      <td>0.086355</td>
-      <td>0.129514</td>
+      <td>0.046935</td>
+      <td>0.118737</td>
+      <td>0.176981</td>
       <td>1.000000</td>
-      <td>0.024587</td>
-      <td>0.245924</td>
-      <td>0.050590</td>
-      <td>0.060052</td>
+      <td>0.055303</td>
+      <td>0.401754</td>
+      <td>0.089362</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
       <td>0.000000</td>
       <td>0.000000</td>
+      <td>0.132711</td>
+      <td>0.116669</td>
+      <td>0.000000</td>
+      <td>0.051327</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.129104</td>
-      <td>0.034084</td>
-      <td>0.067145</td>
-      <td>0.106523</td>
-      <td>0.044325</td>
-      <td>0.067746</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.055186</td>
-      <td>0.120617</td>
-      <td>0.091712</td>
-      <td>0.024587</td>
+      <td>0.165032</td>
+      <td>0.153751</td>
+      <td>0.080290</td>
+      <td>0.055303</td>
       <td>1.000000</td>
       <td>0.000000</td>
-      <td>0.057934</td>
+      <td>0.179251</td>
       <td>0.000000</td>
-      <td>0.170448</td>
-      <td>0.201687</td>
-      <td>0.049024</td>
-      <td>0.000000</td>
-      <td>0.021944</td>
-      <td>0.038578</td>
-      <td>0.043339</td>
+      <td>0.0</td>
+      <td>0.15925</td>
+      <td>...</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.070323</td>
-      <td>0.030823</td>
-      <td>0.135894</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.057931</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.096063</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0.106702</td>
-      <td>0.029315</td>
-      <td>0.216485</td>
-      <td>0.245924</td>
+      <td>0.206542</td>
+      <td>0.066888</td>
+      <td>0.291716</td>
+      <td>0.401754</td>
       <td>0.000000</td>
       <td>1.000000</td>
-      <td>0.138922</td>
-      <td>0.111612</td>
+      <td>0.273789</td>
+      <td>0.094109</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
       <td>0.000000</td>
       <td>0.000000</td>
+      <td>0.170976</td>
+      <td>0.235138</td>
+      <td>0.000000</td>
+      <td>0.066127</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.177312</td>
-      <td>0.000000</td>
-      <td>0.078746</td>
-      <td>0.175749</td>
-      <td>0.000000</td>
-      <td>0.091172</td>
-      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>0.203856</td>
-      <td>0.029720</td>
-      <td>0.174825</td>
-      <td>0.050590</td>
-      <td>0.057934</td>
-      <td>0.138922</td>
+      <td>0.297843</td>
+      <td>0.052746</td>
+      <td>0.223633</td>
+      <td>0.089362</td>
+      <td>0.179251</td>
+      <td>0.273789</td>
       <td>1.000000</td>
-      <td>0.036609</td>
+      <td>0.065748</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.030875</td>
       <td>0.000000</td>
-      <td>0.052815</td>
+      <td>0.059265</td>
       <td>0.000000</td>
-      <td>0.078657</td>
-      <td>0.127230</td>
-      <td>0.040516</td>
       <td>0.000000</td>
-      <td>0.080832</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>0.034873</td>
+      <td>0.060533</td>
       <td>0.000000</td>
-      <td>0.032453</td>
-      <td>0.060052</td>
+      <td>0.056500</td>
       <td>0.000000</td>
-      <td>0.111612</td>
-      <td>0.036609</td>
+      <td>0.000000</td>
+      <td>0.094109</td>
+      <td>0.065748</td>
       <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.077753</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>8</th>
       <td>0.000000</td>
-      <td>0.055291</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.170448</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>0.089825</td>
-      <td>0.000000</td>
-      <td>0.187112</td>
-      <td>0.052353</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.097735</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.00000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>9</th>
       <td>0.000000</td>
-      <td>0.074529</td>
-      <td>0.033699</td>
-      <td>0.000000</td>
-      <td>0.201687</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.089825</td>
-      <td>1.000000</td>
-      <td>0.041720</td>
-      <td>0.080738</td>
+      <td>0.159250</td>
       <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>1.00000</td>
+      <td>...</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.065835</td>
-      <td>0.038360</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>0.069009</td>
-      <td>0.140668</td>
-      <td>0.064220</td>
+      <td>0.042753</td>
+      <td>0.047292</td>
+      <td>0.039905</td>
       <td>0.000000</td>
-      <td>0.049024</td>
+      <td>0.039142</td>
       <td>0.000000</td>
-      <td>0.030875</td>
+      <td>0.046437</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.041720</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.035588</td>
-      <td>0.065764</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
+      <td>0.159071</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.088444</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.280112</td>
+      <td>0.0</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>0.062396</td>
-      <td>0.108920</td>
-      <td>0.116131</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.077753</td>
-      <td>0.187112</td>
-      <td>0.080738</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>0.103133</td>
-      <td>0.070804</td>
+      <td>0.138597</td>
+      <td>0.153312</td>
+      <td>0.258727</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>0.272107</td>
-      <td>0.527791</td>
-      <td>0.144256</td>
-      <td>0.129104</td>
-      <td>0.021944</td>
-      <td>0.177312</td>
-      <td>0.052815</td>
+      <td>0.192256</td>
+      <td>0.437696</td>
+      <td>0.162320</td>
+      <td>0.203740</td>
+      <td>0.046405</td>
+      <td>0.252794</td>
+      <td>0.048283</td>
       <td>0.000000</td>
-      <td>0.052353</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
       <td>0.000000</td>
-      <td>0.035588</td>
-      <td>0.103133</td>
-      <td>1.000000</td>
-      <td>0.128030</td>
-      <td>0.089888</td>
-      <td>0.263874</td>
-      <td>0.074245</td>
-      <td>0.086981</td>
-      <td>0.060303</td>
+      <td>0.000000</td>
+      <td>0.167038</td>
+      <td>0.287901</td>
+      <td>0.000000</td>
+      <td>0.043069</td>
+      <td>0.077935</td>
+      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>0.108611</td>
-      <td>0.083669</td>
-      <td>0.031498</td>
-      <td>0.034084</td>
-      <td>0.038578</td>
+      <td>0.163537</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.065764</td>
-      <td>0.070804</td>
-      <td>0.128030</td>
-      <td>1.000000</td>
-      <td>0.069228</td>
-      <td>0.048129</td>
-      <td>0.117199</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.064159</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>0.033339</td>
-      <td>0.031644</td>
-      <td>0.031025</td>
-      <td>0.067145</td>
-      <td>0.043339</td>
-      <td>0.078746</td>
-      <td>0.078657</td>
+      <td>0.134609</td>
+      <td>0.148901</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.089888</td>
-      <td>0.069228</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
       <td>1.000000</td>
-      <td>0.070421</td>
       <td>0.000000</td>
-      <td>0.030306</td>
       <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>0.176438</td>
-      <td>0.170132</td>
-      <td>0.080723</td>
-      <td>0.106523</td>
-      <td>0.000000</td>
-      <td>0.175749</td>
-      <td>0.127230</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.263874</td>
-      <td>0.048129</td>
-      <td>0.070421</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
+      <td>0.000000</td>
       <td>1.000000</td>
-      <td>0.103350</td>
-      <td>0.071051</td>
-      <td>0.025042</td>
-      <td>0.059713</td>
+      <td>0.000000</td>
+      <td>0.298966</td>
+      <td>0.463680</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.436210</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>0.077188</td>
-      <td>0.041779</td>
-      <td>0.076878</td>
-      <td>0.044325</td>
+      <td>0.054988</td>
+      <td>0.060826</td>
+      <td>0.051324</td>
+      <td>0.132711</td>
+      <td>0.000000</td>
+      <td>0.170976</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.040516</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.074245</td>
-      <td>0.117199</td>
-      <td>0.000000</td>
-      <td>0.103350</td>
       <td>1.000000</td>
+      <td>0.136687</td>
       <td>0.000000</td>
-      <td>0.034991</td>
-      <td>0.205554</td>
+      <td>0.060134</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>0.073011</td>
-      <td>0.185819</td>
-      <td>0.058150</td>
-      <td>0.067746</td>
-      <td>0.070323</td>
-      <td>0.091172</td>
+      <td>0.205730</td>
+      <td>0.147209</td>
+      <td>0.096049</td>
+      <td>0.116669</td>
       <td>0.000000</td>
+      <td>0.235138</td>
+      <td>0.059265</td>
       <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
       <td>0.000000</td>
-      <td>0.065835</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.086981</td>
-      <td>0.000000</td>
-      <td>0.030306</td>
-      <td>0.071051</td>
-      <td>0.000000</td>
+      <td>0.298966</td>
+      <td>0.136687</td>
       <td>1.000000</td>
+      <td>0.138624</td>
+      <td>0.052865</td>
       <td>0.000000</td>
-      <td>0.126617</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.130412</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>0.153997</td>
-      <td>0.075739</td>
-      <td>0.022065</td>
-      <td>0.000000</td>
-      <td>0.030823</td>
-      <td>0.000000</td>
-      <td>0.080832</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.038360</td>
-      <td>0.088444</td>
-      <td>0.000000</td>
-      <td>0.060303</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.025042</td>
-      <td>0.034991</td>
       <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.463680</td>
+      <td>0.000000</td>
+      <td>0.138624</td>
       <td>1.000000</td>
-      <td>0.136109</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.202262</td>
     </tr>
     <tr>
       <th>19</th>
       <td>0.000000</td>
-      <td>0.053665</td>
+      <td>0.117044</td>
+      <td>0.000000</td>
+      <td>0.051327</td>
+      <td>0.057931</td>
+      <td>0.066127</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.135894</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.060134</td>
+      <td>0.052865</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.114747</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>0.000000</td>
+      <td>0.085138</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.097735</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.064159</td>
       <td>0.000000</td>
-      <td>0.059713</td>
-      <td>0.205554</td>
-      <td>0.126617</td>
-      <td>0.136109</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.169366</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.000000</td>
+      <td>0.116067</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.096063</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.436210</td>
+      <td>0.000000</td>
+      <td>0.130412</td>
+      <td>0.202262</td>
+      <td>0.114747</td>
+      <td>0.169366</td>
+      <td>0.000000</td>
+      <td>0.0</td>
       <td>1.000000</td>
     </tr>
   </tbody>
 </table>
+<p>24 rows × 24 columns</p>
 </div></div></div>
 </div>
-</section>
 </section>
 <section id="graph">
 <h2>Graph<a class="headerlink" href="#graph" title="Link to this heading">#</a></h2>
@@ -2870,31 +1929,6 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cossim</span><span class="p">)):</span>
-    <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cossim</span><span class="p">)):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cossim</span><span class="p">)):</span>
-        <span class="n">similarity</span> <span class="o">=</span> <span class="n">cossim</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">similarity</span> <span class="o">&gt;</span> <span class="mf">0.1</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
-            <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
-
-<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/a5e7a9e677d8059d74a4f7cc30bc9336c3e217353c0696b8f302aa29bbc13b45.png" src="../_images/a5e7a9e677d8059d74a4f7cc30bc9336c3e217353c0696b8f302aa29bbc13b45.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G_preprocessing</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cossim_prep</span><span class="p">)):</span>
     <span class="n">G_preprocessing</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
@@ -2905,100 +1939,33 @@ document.write(`
         <span class="k">if</span> <span class="n">similarity_preprocessing</span> <span class="o">&gt;</span> <span class="mf">0.1</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
             <span class="n">G_preprocessing</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
 
-<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G_preprocessing</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G_preprocessing</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G_preprocessing</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G_preprocessing</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/49d92378efa5119184cf4dd88b627574de928155d199354d187ee215931627d8.png" src="../_images/49d92378efa5119184cf4dd88b627574de928155d199354d187ee215931627d8.png" />
+<img alt="../_images/29494d3aed53dc5f2939765c073b293e16727bb0c19d6b8f8623c510cb04cac2.png" src="../_images/29494d3aed53dc5f2939765c073b293e16727bb0c19d6b8f8623c510cb04cac2.png" />
 </div>
 </div>
 </section>
 <section id="matrix-centralitas">
 <h2>Matrix Centralitas<a class="headerlink" href="#matrix-centralitas" title="Link to this heading">#</a></h2>
+<p>Matriks Sentralitas adalah matriks yang digunakan untuk merepresentasikan ukuran sentralitas dari setiap node dalam jaringan. Sentralitas adalah konsep dalam analisis jaringan yang mencoba mengukur sejauh mana suatu node berada di pusat jaringan atau sejauh mana suatu node penting dalam graph.</p>
 <section id="closeness-centrality">
 <h3>Closeness Centrality<a class="headerlink" href="#closeness-centrality" title="Link to this heading">#</a></h3>
+<p>Closeness similarity adalah ukuran sejauh mana nilai kedekatan antara pasangan node dalam suatu jaringan serupa. Dengan ini kita dapat mengukur kesamaan struktural antara node-node dalam graf berdasarkan nilai kedekatan mereka.</p>
 <div class="math notranslate nohighlight">
 \[CC(i) = \frac{N-1}{\sum_{j}d(i, j)}\]</div>
 <p>Keterangan:</p>
 <p><span class="math notranslate nohighlight">\(N\)</span> = nomor dari masing-masing node<br>
 <span class="math notranslate nohighlight">\(d(i, j)\)</span> = <span class="math notranslate nohighlight">\(d\)</span> adalah panjang jalur terpendek antara node <span class="math notranslate nohighlight">\(i\)</span> dan <span class="math notranslate nohighlight">\(j\)</span> dalam jaringan</p>
-<section id="closeness-centrality-tanpa-preprocessing">
-<h4>Closeness Centrality tanpa Preprocessing<a class="headerlink" href="#closeness-centrality-tanpa-preprocessing" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">closeness</span><span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">closeness_centrality</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-
-<span class="n">sorted_closeness</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">closeness</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Closeness Centrality:&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">closeness</span> <span class="ow">in</span> <span class="n">sorted_closeness</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">closeness</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Closeness Centrality:
-Node 1: 0.5880
-Node 0: 0.5684
-Node 12: 0.5684
-Node 15: 0.5501
-Node 2: 0.5329
-Node 5: 0.4737
-Node 11: 0.4609
-Node 4: 0.4488
-Node 6: 0.4372
-Node 16: 0.4372
-Node 3: 0.4263
-Node 13: 0.4263
-Node 18: 0.4263
-Node 19: 0.4159
-Node 17: 0.4060
-Node 8: 0.3707
-Node 10: 0.3707
-Node 7: 0.3217
-Node 9: 0.3100
-Node 14: 0.0000
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section id="id1">
-<h4>Ringkasan Berita<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ringkasan_closeness</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tiga Node Tertinggi Closeness Centrality:&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">closeness</span> <span class="ow">in</span> <span class="n">sorted_closeness</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
-    <span class="n">top_sentence</span> <span class="o">=</span> <span class="n">kalimat</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
-    <span class="n">ringkasan_closeness</span> <span class="o">+=</span> <span class="n">top_sentence</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: Closeness Centrality = </span><span class="si">{</span><span class="n">closeness</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kalimat: </span><span class="si">{</span><span class="n">top_sentence</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiga Node Tertinggi Closeness Centrality:
-Node 1: Closeness Centrality = 0.5880
-Kalimat: IDF bersiaga untuk mengantisipasi serangan kelompok milisi Hamas Palestina pada Senin (7/10), hari peringatan satu tahun konflik yang telah dimulai sejak 7 Oktober 2023 lalu.
-
-Node 0: Closeness Centrality = 0.5684
-Kalimat: Pasukan Pertahanan Israel (IDF) bersiaga ketat di perbatasan menjelang satu tahun agresi di Jalur Gaza, Palestina, Minggu (6/10) waktu setempat.
-
-Node 12: Closeness Centrality = 0.5684
-Kalimat: Agresi Israel di Gaza per hari ini, Senin (7/10), telah memasuki satu tahun sejak diluncurkan 7 Oktober 2023 lalu pasca serangan kelompok milisi Hamas ke Israel.
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="closeness-centrality-menggunakan-preprocessing">
-<h4>Closeness Centrality menggunakan Preprocessing<a class="headerlink" href="#closeness-centrality-menggunakan-preprocessing" title="Link to this heading">#</a></h4>
+<h4>Closeness Centrality<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">closeness_preprocessing</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">closeness_centrality</span><span class="p">(</span><span class="n">G_preprocessing</span><span class="p">)</span>
@@ -3012,26 +1979,30 @@ Kalimat: Agresi Israel di Gaza per hari ini, Senin (7/10), telah memasuki satu t
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Closeness Centrality:
-Node 1: 0.5880
-Node 0: 0.5684
-Node 12: 0.5684
-Node 15: 0.5501
-Node 2: 0.5329
-Node 5: 0.4737
-Node 11: 0.4609
-Node 4: 0.4488
-Node 6: 0.4372
-Node 16: 0.4372
-Node 3: 0.4263
-Node 13: 0.4263
-Node 18: 0.4263
-Node 19: 0.4159
-Node 17: 0.4060
-Node 8: 0.3707
-Node 10: 0.3707
-Node 7: 0.3217
-Node 9: 0.3100
-Node 14: 0.0000
+Node 1: 0.5610
+Node 0: 0.5435
+Node 17: 0.4969
+Node 12: 0.4700
+Node 3: 0.4459
+Node 5: 0.4459
+Node 2: 0.4348
+Node 23: 0.4348
+Node 14: 0.4141
+Node 4: 0.4044
+Node 6: 0.3865
+Node 11: 0.3865
+Node 19: 0.3781
+Node 13: 0.3623
+Node 16: 0.3623
+Node 15: 0.3478
+Node 18: 0.3478
+Node 10: 0.2948
+Node 20: 0.2948
+Node 9: 0.2805
+Node 21: 0.2230
+Node 7: 0.0000
+Node 8: 0.0000
+Node 22: 0.0000
 </pre></div>
 </div>
 </div>
@@ -3053,14 +2024,14 @@ Node 14: 0.0000
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiga Node Tertinggi Closeness Centrality Menggunakan Preprocessing:
-Node 1: Closeness Centrality = 0.5880
+Node 1: Closeness Centrality = 0.5610
 Kalimat: IDF bersiaga untuk mengantisipasi serangan kelompok milisi Hamas Palestina pada Senin (7/10), hari peringatan satu tahun konflik yang telah dimulai sejak 7 Oktober 2023 lalu.
 
-Node 0: Closeness Centrality = 0.5684
+Node 0: Closeness Centrality = 0.5435
 Kalimat: Pasukan Pertahanan Israel (IDF) bersiaga ketat di perbatasan menjelang satu tahun agresi di Jalur Gaza, Palestina, Minggu (6/10) waktu setempat.
 
-Node 12: Closeness Centrality = 0.5684
-Kalimat: Agresi Israel di Gaza per hari ini, Senin (7/10), telah memasuki satu tahun sejak diluncurkan 7 Oktober 2023 lalu pasca serangan kelompok milisi Hamas ke Israel.
+Node 17: Closeness Centrality = 0.4969
+Kalimat: Keluarga para sandera Hamas, baik yang masih ditawan maupun yang tewas, dikabarkan bakal menggelar peringatan satu tahun penyanderaan tersebut.
 </pre></div>
 </div>
 </div>
@@ -3069,69 +2040,14 @@ Kalimat: Agresi Israel di Gaza per hari ini, Senin (7/10), telah memasuki satu t
 </section>
 <section id="page-rank">
 <h3>Page Rank<a class="headerlink" href="#page-rank" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pagerank</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-
-<span class="n">sorted_pagerank</span><span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pagerank</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Page Rank :&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">pagerank</span> <span class="ow">in</span> <span class="n">sorted_pagerank</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">pagerank</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Page Rank :
-Node 1: 0.0973
-Node 0: 0.0886
-Node 12: 0.0869
-Node 5: 0.0793
-Node 15: 0.0771
-Node 2: 0.0764
-Node 4: 0.0617
-Node 19: 0.0578
-Node 11: 0.0501
-Node 6: 0.0455
-Node 3: 0.0453
-Node 16: 0.0402
-Node 13: 0.0379
-Node 8: 0.0316
-Node 17: 0.0305
-Node 18: 0.0295
-Node 9: 0.0209
-Node 10: 0.0182
-Node 7: 0.0175
-Node 14: 0.0078
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ringkasan_pagerank</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tiga Node Tertinggi Page Rank :&quot;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">pagerank</span> <span class="ow">in</span> <span class="n">sorted_pagerank</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
-    <span class="n">top_sentence</span> <span class="o">=</span> <span class="n">kalimat</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
-    <span class="n">ringkasan_pagerank</span> <span class="o">+=</span> <span class="n">top_sentence</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: Page Rank = </span><span class="si">{</span><span class="n">pagerank</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kalimat: </span><span class="si">{</span><span class="n">top_sentence</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiga Node Tertinggi Page Rank :
-Node 1: Page Rank = 0.0973
-Kalimat: IDF bersiaga untuk mengantisipasi serangan kelompok milisi Hamas Palestina pada Senin (7/10), hari peringatan satu tahun konflik yang telah dimulai sejak 7 Oktober 2023 lalu.
-
-Node 0: Page Rank = 0.0886
-Kalimat: Pasukan Pertahanan Israel (IDF) bersiaga ketat di perbatasan menjelang satu tahun agresi di Jalur Gaza, Palestina, Minggu (6/10) waktu setempat.
-
-Node 12: Page Rank = 0.0869
-Kalimat: Agresi Israel di Gaza per hari ini, Senin (7/10), telah memasuki satu tahun sejak diluncurkan 7 Oktober 2023 lalu pasca serangan kelompok milisi Hamas ke Israel.
-</pre></div>
-</div>
-</div>
-</div>
+<p>Dalam konteks ini, dokumen dianggap sebagai “halaman” yang terhubung oleh hubungan yang merefleksikan keterkaitan atau relevansinya. Dengan menerapkan konsep PageRank, dokumen yang dianggap lebih “penting” atau relevan dapat diberikan skor lebih tinggi. Penggunaan faktor damping, serupa dengan dalam algoritma PageRank, dapat membantu mengontrol sejauh mana pengaruh satu dokumen terhadap yang lain. Dengan memberikan skor pada dokumen berdasarkan hubungan mereka dalam jaringan informasi, kita dapat menghasilkan ringkasan yang mencerminkan tingkat relevansi dan pentingnya masing-masing dokumen dalam konteks keseluruhan.</p>
+<div class="math notranslate nohighlight">
+\[PR_i = \frac{1-d}{n} + d \sum_{P_j\in\{1 \dots,n\}} \frac{PR_i}{L_j}\]</div>
+<p>Keterangan:</p>
+<p><span class="math notranslate nohighlight">\(PR(i)\)</span> = adalah PageRank dari halaman web ke i.<br>
+<span class="math notranslate nohighlight">\(d\)</span> = adalah faktor redaman, biasanya diatur sebesar 0,85, yang digunakan untuk menghitung probabilitas bahwa peramban acak akan “melompat” ke halaman acak dan tidak mengikuti sebuah link.<br>
+<span class="math notranslate nohighlight">\(PR(i)\)</span> = adalah PageRank halaman ke i, yaitu halaman yang memiliki sambungan yang mengarah ke halaman i.<br>
+<span class="math notranslate nohighlight">\(L(c)\)</span> = adalah jumlah hubungan keluar pada halaman j.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pagerank_preprocessing</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G_preprocessing</span><span class="p">)</span>
@@ -3169,6 +2085,8 @@ Node 14: 0.0078
 </div>
 </div>
 </div>
+<section id="hasil-ringkasan">
+<h4>Hasil Ringkasan<a class="headerlink" href="#hasil-ringkasan" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ringkasan_pagerank_preprocessing</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
@@ -3195,6 +2113,7 @@ Kalimat: Agresi Israel di Gaza per hari ini, Senin (7/10), telah memasuki satu t
 </div>
 </div>
 </div>
+</section>
 </section>
 </section>
 </section>
@@ -3238,6 +2157,15 @@ Kalimat: Agresi Israel di Gaza per hari ini, Senin (7/10), telah memasuki satu t
         <p class="prev-next-title">Implementasi VSM TF-IDF menggunakan Klasifikasi Logistic Regression</p>
       </div>
     </a>
+    <a class="right-next"
+       href="../tugas5/main.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Kata Kunci Berita</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -3257,30 +2185,26 @@ Kalimat: Agresi Israel di Gaza per hari ini, Senin (7/10), telah memasuki satu t
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-pembersihan-teks">Proses Pembersihan Teks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-text">Preprocessing Text</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memisahkan-berita">Memisahkan Berita</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-text">Preprocessing Text</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-preprocessing">Hasil Preprocessing</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-tanpa-preprocessing">TF-IDF tanpa Preprocessing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-menggunakan-preprocessing">TF-IDF menggunakan Preprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memisahkan-kalimat-berita">Memisahkan Kalimat Berita</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cossim-tanpa-preprocessing">Cossim tanpa Preprocessing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cossim-menggunakan-preprocessing">Cossim menggunakan Preprocessing</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf">TF-IDF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph">Graph</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-centralitas">Matrix Centralitas</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#closeness-centrality">Closeness Centrality</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#closeness-centrality-tanpa-preprocessing">Closeness Centrality tanpa Preprocessing</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Ringkasan Berita</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#closeness-centrality-menggunakan-preprocessing">Closeness Centrality menggunakan Preprocessing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Closeness Centrality</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ringkasan Berita</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#page-rank">Page Rank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#page-rank">Page Rank</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ringkasan">Hasil Ringkasan</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

@@ -1,0 +1,1916 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Kata Kunci Berita &#8212; Crawling CNN Indonesia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas5/main';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Ringkasan Berita" href="../tugas4/main.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Crawling CNN Indonesia - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Crawling CNN Indonesia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to PPW (Pencarian & Penambangan Web)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I: Crawling CNN Indonesia</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tugas1/crawling_news.html">Crawling Web Berita CNN Indonesia</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II: TF-IDF &amp; VSM</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tugas2/TF-IDF%26VSM.html">TF-IDF &amp; Vector Space Model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III: Implementasi Logistic Regression</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tugas3/logistic_regression.html">Implementasi VSM TF-IDF menggunakan Klasifikasi Logistic Regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV: Ringkasan Berita</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../tugas4/main.html">Ringkasan Berita</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V: Kata Kunci Berita</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Kata Kunci Berita</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Ranwiesiel/ppw" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Ranwiesiel/ppw/issues/new?title=Issue%20on%20page%20%2Ftugas5/main.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tugas5/main.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Kata Kunci Berita</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-pembersihan-teks">Proses Pembersihan Teks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-text">Preprocessing Text</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memisahkan-kalimat-menjadi-per-kata">Memisahkan Kalimat menjadi per Kata</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-matriks">Membuat Matriks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-kemunculan-kata">Menghitung kemunculan kata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph">Graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-centralitas">Matrix Centralitas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pagerank">PageRank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-kata-kunci">Hasil Kata Kunci</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="kata-kunci-berita">
+<h1>Kata Kunci Berita<a class="headerlink" href="#kata-kunci-berita" title="Link to this heading">#</a></h1>
+<p>Mencari dokumen melalui kata kunci dapat mempermudah kita dalam mencari suatu dokumen yang relevan. Kata Kunci merupakan kata yang penting dan sering muncul dalam sebuah teks maupun dokumen. Biasanya kata kunci mengandung kata yang unik, dan bermakna spesifik.</p>
+<section id="proses-pembersihan-teks">
+<h2>Proses Pembersihan Teks<a class="headerlink" href="#proses-pembersihan-teks" title="Link to this heading">#</a></h2>
+<section id="import-library">
+<h3>Import Library<a class="headerlink" href="#import-library" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Library untuk text preprocessing</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c1"># Library untuk data manipulation</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="c1"># Library untuk text similarity</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics.pairwise</span> <span class="kn">import</span> <span class="n">cosine_similarity</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-data">
+<h3>Load Data<a class="headerlink" href="#load-data" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../tugas1/data_100.csv&#39;</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>judul</th>
+      <th>tanggal</th>
+      <th>isi</th>
+      <th>kategori</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>FOTO: Melihat Kehancuran Gaza usai Satu Tahun ...</td>
+      <td>Senin, 07 Okt 2024 10:30 WIB</td>
+      <td>Satu tahun agresi Israel ke Gaza yang dimulai ...</td>
+      <td>internasional</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VIDEO: Setahun Agresi Israel ke Gaza, Korban T...</td>
+      <td>Senin, 07 Okt 2024 10:03 WIB</td>
+      <td>Agresi Israel ke Jalur Gaza telah memasuki sat...</td>
+      <td>internasional</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jenderal Brigade Al-Quds Iran Hilang usai Isra...</td>
+      <td>Senin, 07 Okt 2024 09:59 WIB</td>
+      <td>Kepala pasukan Brigade Al-Quds Iran, Esmail Qa...</td>
+      <td>internasional</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VIDEO: Kelompok Militan Pakistan Serang Karach...</td>
+      <td>Senin, 07 Okt 2024 09:28 WIB</td>
+      <td>Sebuah ledakan terjadi di dekat bandara intern...</td>
+      <td>internasional</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Setahun Agresi Gaza, Israel Was-was Antisipasi...</td>
+      <td>Senin, 07 Okt 2024 09:25 WIB</td>
+      <td>Pasukan Pertahanan Israel (IDF) bersiaga ketat...</td>
+      <td>internasional</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>VIDEO: Momen Perang Yel-yel Warnai Debat Perda...</td>
+      <td>Minggu, 06 Okt 2024 20:42 WIB</td>
+      <td>Perang yel-yel dari tiga pendukung calon guber...</td>
+      <td>nasional</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Dharma Sindir Gagasan RK-Pramono soal Kemaceta...</td>
+      <td>Minggu, 06 Okt 2024 20:34 WIB</td>
+      <td>Calon gubernur jalur independen, Dharma Pongre...</td>
+      <td>nasional</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>Pramono Janji Buat Jaringan Transjakarta hingg...</td>
+      <td>Minggu, 06 Okt 2024 20:31 WIB</td>
+      <td>Calon gubernur Jakarta Pramono Anung berjanji ...</td>
+      <td>nasional</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>Jurus RK Atasi Macet: Bikin Angkutan Sungai Hi...</td>
+      <td>Minggu, 06 Okt 2024 20:29 WIB</td>
+      <td>Calon Gubernur Jakarta Ridwan Kamil mengungkap...</td>
+      <td>nasional</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>Pramono: 354 Ribu Orang Menganggur di Jakarta,...</td>
+      <td>Minggu, 06 Okt 2024 20:15 WIB</td>
+      <td>Calon Gubernur DKI Jakarta Pramono Anung menga...</td>
+      <td>nasional</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 4 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="preprocessing-text">
+<h3>Preprocessing Text<a class="headerlink" href="#preprocessing-text" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">clean_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;((www\.[^\s]+)|(https?://[^\s]+))&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus https* and www*</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;@[^\s]+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus username</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[\s]+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus tambahan spasi</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;#([^\s]+)&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus hashtags</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;rt&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus retweet</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[^a-zA-Z :\.]&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus tanda baca</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span> <span class="c1"># Menghapus angka</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="c1">#Menghapus ASCII dan unicode</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\x00-\x7f]&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="c1">#Menghapus baris baru</span>
+	<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+	<span class="k">return</span> <span class="n">text</span>
+
+<span class="k">def</span> <span class="nf">clean_stopword</span><span class="p">(</span><span class="n">tokens</span><span class="p">):</span>
+	<span class="n">listStopword</span> <span class="o">=</span>  <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;indonesian&#39;</span><span class="p">))</span>
+	<span class="n">filtered_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">listStopword</span><span class="p">]</span>
+	<span class="k">return</span> <span class="n">filtered_words</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Membersihkan text dari tanda baca yang ada, kemudian menyesuaikan text agar bisa diolah lebih lanjut.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_text</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+	<span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+	<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">text</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tqdm</span><span class="p">(</span><span class="n">content</span><span class="p">)):</span>
+		<span class="n">cleaned_text</span> <span class="o">=</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+		<span class="n">tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">cleaned_text</span><span class="p">)</span>
+		<span class="n">cleaned_stopword</span> <span class="o">=</span> <span class="n">clean_stopword</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+		<span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cleaned_stopword</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">result</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s1">&#39;cleaned_news&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">preprocess_text</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;isi&#39;</span><span class="p">])</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100/100 [00:00&lt;00:00, 330.80it/s]
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>judul</th>
+      <th>tanggal</th>
+      <th>isi</th>
+      <th>kategori</th>
+      <th>cleaned_news</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>FOTO: Melihat Kehancuran Gaza usai Satu Tahun ...</td>
+      <td>Senin, 07 Okt 2024 10:30 WIB</td>
+      <td>Satu tahun agresi Israel ke Gaza yang dimulai ...</td>
+      <td>internasional</td>
+      <td>agresi israel gaza oktober warga palestina ter...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>VIDEO: Setahun Agresi Israel ke Gaza, Korban T...</td>
+      <td>Senin, 07 Okt 2024 10:03 WIB</td>
+      <td>Agresi Israel ke Jalur Gaza telah memasuki sat...</td>
+      <td>internasional</td>
+      <td>agresi israel jalur gaza memasuki senin . rent...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Jenderal Brigade Al-Quds Iran Hilang usai Isra...</td>
+      <td>Senin, 07 Okt 2024 09:59 WIB</td>
+      <td>Kepala pasukan Brigade Al-Quds Iran, Esmail Qa...</td>
+      <td>internasional</td>
+      <td>kepala pasukan brigade alquds iran esmail qaan...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>VIDEO: Kelompok Militan Pakistan Serang Karach...</td>
+      <td>Senin, 07 Okt 2024 09:28 WIB</td>
+      <td>Sebuah ledakan terjadi di dekat bandara intern...</td>
+      <td>internasional</td>
+      <td>ledakan bandara internasional karachi pakistan...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Setahun Agresi Gaza, Israel Was-was Antisipasi...</td>
+      <td>Senin, 07 Okt 2024 09:25 WIB</td>
+      <td>Pasukan Pertahanan Israel (IDF) bersiaga ketat...</td>
+      <td>internasional</td>
+      <td>pasukan pe ahanan israel idf bersiaga ketat pe...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>VIDEO: Momen Perang Yel-yel Warnai Debat Perda...</td>
+      <td>Minggu, 06 Okt 2024 20:42 WIB</td>
+      <td>Perang yel-yel dari tiga pendukung calon guber...</td>
+      <td>nasional</td>
+      <td>perang yelyel pendukung calon gubernur dki jak...</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>Dharma Sindir Gagasan RK-Pramono soal Kemaceta...</td>
+      <td>Minggu, 06 Okt 2024 20:34 WIB</td>
+      <td>Calon gubernur jalur independen, Dharma Pongre...</td>
+      <td>nasional</td>
+      <td>calon gubernur jalur independen dharma pongrek...</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>Pramono Janji Buat Jaringan Transjakarta hingg...</td>
+      <td>Minggu, 06 Okt 2024 20:31 WIB</td>
+      <td>Calon gubernur Jakarta Pramono Anung berjanji ...</td>
+      <td>nasional</td>
+      <td>calon gubernur jaka a pramono anung berjanji j...</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>Jurus RK Atasi Macet: Bikin Angkutan Sungai Hi...</td>
+      <td>Minggu, 06 Okt 2024 20:29 WIB</td>
+      <td>Calon Gubernur Jakarta Ridwan Kamil mengungkap...</td>
+      <td>nasional</td>
+      <td>calon gubernur jaka a ridwan kamil mengungkap ...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>Pramono: 354 Ribu Orang Menganggur di Jakarta,...</td>
+      <td>Minggu, 06 Okt 2024 20:15 WIB</td>
+      <td>Calon Gubernur DKI Jakarta Pramono Anung menga...</td>
+      <td>nasional</td>
+      <td>calon gubernur dki jaka a pramono anung angka ...</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 5 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="memisahkan-kalimat-menjadi-per-kata">
+<h3>Memisahkan Kalimat menjadi per Kata<a class="headerlink" href="#memisahkan-kalimat-menjadi-per-kata" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kalimat</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;cleaned_news&#39;</span><span class="p">][</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">kalimat</span> <span class="o">=</span> <span class="p">[</span><span class="n">sentence</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">kalimat</span><span class="p">]</span>
+<span class="n">kata</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;cleaned_news&#39;</span><span class="p">][</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">kata</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kata</span> <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="s1">&#39;.&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kalimat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;pasukan pe ahanan israel idf bersiaga ketat perbatasan menjelang agresi jalur gaza palestina minggu &#39;,
+ &#39;idf bersiaga mengantisipasi serangan kelompok milisi hamas palestina senin peringatan konflik oktober &#39;,
+ &#39;the times of israel melaporkan idf memperkuat pasukan perbatasan mengantisipasi serangan roket jarak ditembakkan gaza &#39;,
+ &#39;sumber militer percaya hamas serangan roket operasinya ditumpas israel &#39;,
+ &#39;komando selatan pe ahanan serangan skenario bulanbulan bersamaan acara peringatan dilaksanakan aman pernyataan idf &#39;,
+ &#39;militer hamas menembakkan roket gaza perbatasan israel &#39;,
+ &#39;militer memperkuat pe ahanan perbatasan gaza koridor netzarim lokasi pendudukan idf &#39;,
+ &#39;kompi dilaporkan dikerahkan menjaga kotakota perbatasan zionis &#39;,
+ &#39;kewaspadaan &#39;,
+ &#39;tingkat kesiapan tindakan ofensif kepala komando selatan yaron finkelman &#39;,
+ &#39;sabtu malam juru bicara idf daniel hagari mewantiwanti warga sipil berhatihati &#39;,
+ &#39;meningkatkan pasukan mengantisipasi &#39;,
+ &#39;agresi israel gaza senin memasuki diluncurkan oktober pasca serangan kelompok milisi hamas israel &#39;,
+ &#39;agresi menewaskan &#39;,
+ &#39;warga palestina melukai &#39;,
+ &#39;orang &#39;,
+ &#39;israel hamas kunjung menyepakati gencatan senjata &#39;,
+ &#39;catatan pemerintah israel orang disandera hamas jalur gaza oktober &#39;,
+ &#39;orang diyakini meninggal &#39;,
+ &#39;keluarga sandera hamas ditawan tewas dikabarkan menggelar peringatan penyanderaan &#39;,
+ &#39;upacara digelar terbatas taman yarkon tel aviv senin &#39;,
+ &#39;malam &#39;,
+ &#39;&#39;,
+ &#39;orang berkumpul upacara peringatan &#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;pasukan&#39;,
+ &#39;meninggal&#39;,
+ &#39;warga&#39;,
+ &#39;peringatan&#39;,
+ &#39;gaza&#39;,
+ &#39;juru&#39;,
+ &#39;roket&#39;,
+ &#39;sipil&#39;,
+ &#39;mengantisipasi&#39;,
+ &#39;upacara&#39;,
+ &#39;oktober&#39;,
+ &#39;bicara&#39;,
+ &#39;melaporkan&#39;,
+ &#39;dilaporkan&#39;,
+ &#39;orang&#39;,
+ &#39;keluarga&#39;,
+ &#39;mewantiwanti&#39;,
+ &#39;melukai&#39;,
+ &#39;pemerintah&#39;,
+ &#39;ditembakkan&#39;,
+ &#39;bersiaga&#39;,
+ &#39;acara&#39;,
+ &#39;komando&#39;,
+ &#39;penyanderaan&#39;,
+ &#39;netzarim&#39;,
+ &#39;pe&#39;,
+ &#39;menembakkan&#39;,
+ &#39;zionis&#39;,
+ &#39;dikabarkan&#39;,
+ &#39;kelompok&#39;,
+ &#39;sumber&#39;,
+ &#39;of&#39;,
+ &#39;tel&#39;,
+ &#39;menggelar&#39;,
+ &#39;yaron&#39;,
+ &#39;hagari&#39;,
+ &#39;kewaspadaan&#39;,
+ &#39;tingkat&#39;,
+ &#39;yarkon&#39;,
+ &#39;catatan&#39;,
+ &#39;finkelman&#39;,
+ &#39;tindakan&#39;,
+ &#39;dikerahkan&#39;,
+ &#39;senjata&#39;,
+ &#39;aviv&#39;,
+ &#39;menyepakati&#39;,
+ &#39;serangan&#39;,
+ &#39;palestina&#39;,
+ &#39;tewas&#39;,
+ &#39;menjelang&#39;,
+ &#39;aman&#39;,
+ &#39;agresi&#39;,
+ &#39;disandera&#39;,
+ &#39;koridor&#39;,
+ &#39;jalur&#39;,
+ &#39;ditawan&#39;,
+ &#39;taman&#39;,
+ &#39;kotakota&#39;,
+ &#39;hamas&#39;,
+ &#39;operasinya&#39;,
+ &#39;idf&#39;,
+ &#39;bulanbulan&#39;,
+ &#39;menjaga&#39;,
+ &#39;kompi&#39;,
+ &#39;terbatas&#39;,
+ &#39;times&#39;,
+ &#39;kunjung&#39;,
+ &#39;senin&#39;,
+ &#39;ofensif&#39;,
+ &#39;malam&#39;,
+ &#39;sabtu&#39;,
+ &#39;israel&#39;,
+ &#39;kesiapan&#39;,
+ &#39;berkumpul&#39;,
+ &#39;kepala&#39;,
+ &#39;daniel&#39;,
+ &#39;lokasi&#39;,
+ &#39;skenario&#39;,
+ &#39;minggu&#39;,
+ &#39;ahanan&#39;,
+ &#39;konflik&#39;,
+ &#39;gencatan&#39;,
+ &#39;meningkatkan&#39;,
+ &#39;percaya&#39;,
+ &#39;memasuki&#39;,
+ &#39;digelar&#39;,
+ &#39;selatan&#39;,
+ &#39;diyakini&#39;,
+ &#39;perbatasan&#39;,
+ &#39;diluncurkan&#39;,
+ &#39;milisi&#39;,
+ &#39;ditumpas&#39;,
+ &#39;pendudukan&#39;,
+ &#39;pernyataan&#39;,
+ &#39;menewaskan&#39;,
+ &#39;bersamaan&#39;,
+ &#39;ketat&#39;,
+ &#39;jarak&#39;,
+ &#39;the&#39;,
+ &#39;berhatihati&#39;,
+ &#39;sandera&#39;,
+ &#39;pasca&#39;,
+ &#39;dilaksanakan&#39;,
+ &#39;memperkuat&#39;,
+ &#39;militer&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="membuat-matriks">
+<h2>Membuat Matriks<a class="headerlink" href="#membuat-matriks" title="Link to this heading">#</a></h2>
+<section id="menghitung-kemunculan-kata">
+<h3>Menghitung kemunculan kata<a class="headerlink" href="#menghitung-kemunculan-kata" title="Link to this heading">#</a></h3>
+<p>frekuensi kemunculan dua kata atau istilah yang berdekatan secara berurutan dalam kumpulan teks. Dalam linguistik, kemunculan kata/co-occurrence dapat menjadi indikator kedekatan semantik.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vektor_kata</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+	<span class="n">vektor_kata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">kata</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">kata</span><span class="p">)</span>
+	
+	<span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+		<span class="n">kata_kalimat</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span>
+		
+		<span class="c1"># menghitung tetangga setiap kata</span>
+		<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kata_kalimat</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+			<span class="n">vektor_kata</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">kata_kalimat</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">kata_kalimat</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+			<span class="n">vektor_kata</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">kata_kalimat</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">kata_kalimat</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+	<span class="k">return</span> <span class="n">vektor_kata</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">vektor_kata</span><span class="p">(</span><span class="n">kalimat</span><span class="p">)</span>
+<span class="n">test</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pasukan</th>
+      <th>meninggal</th>
+      <th>warga</th>
+      <th>peringatan</th>
+      <th>gaza</th>
+      <th>juru</th>
+      <th>roket</th>
+      <th>sipil</th>
+      <th>mengantisipasi</th>
+      <th>upacara</th>
+      <th>...</th>
+      <th>bersamaan</th>
+      <th>ketat</th>
+      <th>jarak</th>
+      <th>the</th>
+      <th>berhatihati</th>
+      <th>sandera</th>
+      <th>pasca</th>
+      <th>dilaksanakan</th>
+      <th>memperkuat</th>
+      <th>militer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>pasukan</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>meninggal</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>warga</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>peringatan</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>gaza</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>sandera</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>pasca</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>dilaksanakan</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>memperkuat</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>militer</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>105 rows × 105 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="cosine-similarity">
+<h3>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Link to this heading">#</a></h3>
+<p>Cosine similarity digunakan untuk mengukur seberapa mirip dua vektor dalam ruang berdimensi banyak. Hasil dari cosine similarity ini akan menentukan apakah vektor tersebut menuju ke arah yang sama. Semakin kecil sudut antara dua vektor, maka semakin mirip satu sama lain sedangkan begitu juga sebaliknya, semakin besar nilai cosine similarity maka vektor tersebut dianggap jauh kemiripannya. Dalam ringkasan dokumen ini penting untuk menghitung nilai cosine similarity untuk mengetahui hubungan kesamaan antara kalimat satu dengan kalimat lainnya. Vektor yang digunakan untuk menghitung nilai cosine simmilarity ini adalah hasil dari TF-IDF pada langkah sebelumnya.</p>
+<div class="math notranslate nohighlight">
+\[simmilarity(A, B) = \frac{A \cdot B}{|A||B|}\]</div>
+<p>Keterangan:</p>
+<p><span class="math notranslate nohighlight">\(A.B\)</span> = Vector dot product dari A dan B dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n x_{k}y_{k}\)</span></p>
+<p><span class="math notranslate nohighlight">\(|A|\)</span> = Panjang vektor A dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n x_{k}^2\)</span> = <span class="math notranslate nohighlight">\(\sqrt{\mathrm{a}_{1}^{2} + \mathrm{a}_{2}^{2} + \mathrm{a}_{3}^{2}} +...+ \mathrm{n}_{n}^{2}\)</span></p>
+<p><span class="math notranslate nohighlight">\(|B|\)</span> = Panjang vektor B dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n y_{k}^2\)</span> = <span class="math notranslate nohighlight">\(\sqrt{\mathrm{b}_{1}^{2} + \mathrm{b}_{2}^{2} + \mathrm{b}_{3}^{2}} + ...+ \mathrm{n}_{n}^{2}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cossim</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span>
+
+<span class="n">similarity_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cossim</span><span class="p">,</span> 
+								 <span class="n">index</span><span class="o">=</span><span class="n">kata</span><span class="p">,</span> 
+								 <span class="n">columns</span><span class="o">=</span><span class="n">kata</span><span class="p">)</span>
+
+<span class="n">similarity_matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pasukan</th>
+      <th>meninggal</th>
+      <th>warga</th>
+      <th>peringatan</th>
+      <th>gaza</th>
+      <th>juru</th>
+      <th>roket</th>
+      <th>sipil</th>
+      <th>mengantisipasi</th>
+      <th>upacara</th>
+      <th>...</th>
+      <th>bersamaan</th>
+      <th>ketat</th>
+      <th>jarak</th>
+      <th>the</th>
+      <th>berhatihati</th>
+      <th>sandera</th>
+      <th>pasca</th>
+      <th>dilaksanakan</th>
+      <th>memperkuat</th>
+      <th>militer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>pasukan</th>
+      <td>1.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.230940</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.169031</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.316228</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.223607</td>
+      <td>0.223607</td>
+    </tr>
+    <tr>
+      <th>meninggal</th>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>warga</th>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>1.000000</td>
+      <td>0.00000</td>
+      <td>0.149071</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.57735</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>peringatan</th>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>1.00000</td>
+      <td>0.097590</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.267261</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>gaza</th>
+      <td>0.230940</td>
+      <td>0.0</td>
+      <td>0.149071</td>
+      <td>0.09759</td>
+      <td>1.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.195180</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.365148</td>
+      <td>0.365148</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.182574</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>sandera</th>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.353553</td>
+    </tr>
+    <tr>
+      <th>pasca</th>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.182574</td>
+      <td>0.0</td>
+      <td>0.5</td>
+      <td>0.0</td>
+      <td>0.534522</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>dilaksanakan</th>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.408248</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>memperkuat</th>
+      <td>0.223607</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.188982</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>militer</th>
+      <td>0.223607</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.00000</td>
+      <td>0.353553</td>
+      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>105 rows × 105 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="graph">
+<h2>Graph<a class="headerlink" href="#graph" title="Link to this heading">#</a></h2>
+<p>Hasil dari nilai <em>Cosine Simmilarity</em> ini akan dapat digunakan untuk membentuk graph dengan menggunakan modul nx.graph. Graph ini akan menggambarkan ilustrasi dari kedekatan setiap kalimatnya dalam berita tersebut. Dalam proses penggambaran graph tersebut diperlukan ambang batas <em>(threshold)</em> yang digunakan untuk memberikan batasan agar keseluruhan kalimatnya tidak dihubungkan menggunakan garis <em>(edge)</em>. Nilai ambang batas <em>(threshold)</em> yang digunakan adalah <strong>0.1</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cossim</span><span class="p">)):</span>
+	<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cossim</span><span class="p">)):</span>
+	<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cossim</span><span class="p">)):</span>
+		<span class="n">similarity</span> <span class="o">=</span> <span class="n">cossim</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+		<span class="k">if</span> <span class="n">similarity</span> <span class="o">&gt;</span> <span class="mf">0.1</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
+			<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fcb3f53c4a5994df166bf896a724e9f6311738998ca2333a1328326ac9273eb2.png" src="../_images/fcb3f53c4a5994df166bf896a724e9f6311738998ca2333a1328326ac9273eb2.png" />
+</div>
+</div>
+</section>
+<section id="matrix-centralitas">
+<h2>Matrix Centralitas<a class="headerlink" href="#matrix-centralitas" title="Link to this heading">#</a></h2>
+<p>Matriks Sentralitas adalah matriks yang digunakan untuk merepresentasikan ukuran sentralitas dari setiap node dalam jaringan. Sentralitas adalah konsep dalam analisis jaringan yang mencoba mengukur sejauh mana suatu node berada di pusat jaringan atau sejauh mana suatu node penting dalam graph.</p>
+<section id="pagerank">
+<h3>PageRank<a class="headerlink" href="#pagerank" title="Link to this heading">#</a></h3>
+<p>Dalam konteks ini, dokumen dianggap sebagai “halaman” yang terhubung oleh hubungan yang merefleksikan keterkaitan atau relevansinya. Dengan menerapkan konsep PageRank, dokumen yang dianggap lebih “penting” atau relevan dapat diberikan skor lebih tinggi. Penggunaan faktor damping, serupa dengan dalam algoritma PageRank, dapat membantu mengontrol sejauh mana pengaruh satu dokumen terhadap yang lain. Dengan memberikan skor pada dokumen berdasarkan hubungan mereka dalam jaringan informasi, kita dapat menghasilkan ringkasan yang mencerminkan tingkat relevansi dan pentingnya masing-masing dokumen dalam konteks keseluruhan.</p>
+<div class="math notranslate nohighlight">
+\[PR_i = \frac{1-d}{n} + d \sum_{P_j\in\{1 \dots,n\}} \frac{PR_i}{L_j}\]</div>
+<p>Keterangan:</p>
+<p><span class="math notranslate nohighlight">\(PR(i)\)</span> = adalah PageRank dari halaman web ke i.<br>
+<span class="math notranslate nohighlight">\(d\)</span> = adalah faktor redaman, biasanya diatur sebesar 0,85, yang digunakan untuk menghitung probabilitas bahwa peramban acak akan “melompat” ke halaman acak dan tidak mengikuti sebuah link.<br>
+<span class="math notranslate nohighlight">\(PR(i)\)</span> = adalah PageRank halaman ke i, yaitu halaman yang memiliki sambungan yang mengarah ke halaman i.<br>
+<span class="math notranslate nohighlight">\(L(c)\)</span> = adalah jumlah hubungan keluar pada halaman j.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pagerank</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="n">sorted_pagerank</span><span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pagerank</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Page Rank :&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">pagerank</span> <span class="ow">in</span> <span class="n">sorted_pagerank</span><span class="p">:</span>
+	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">pagerank</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Page Rank :
+Node 71: 0.0390
+Node 4: 0.0319
+Node 58: 0.0301
+Node 88: 0.0246
+Node 47: 0.0242
+Node 67: 0.0240
+Node 79: 0.0212
+Node 46: 0.0203
+Node 8: 0.0190
+Node 60: 0.0189
+Node 103: 0.0189
+Node 54: 0.0187
+Node 12: 0.0179
+Node 0: 0.0173
+Node 104: 0.0151
+Node 6: 0.0146
+Node 83: 0.0142
+Node 14: 0.0141
+Node 26: 0.0141
+Node 52: 0.0136
+Node 3: 0.0135
+Node 25: 0.0131
+Node 66: 0.0130
+Node 31: 0.0130
+Node 55: 0.0126
+Node 10: 0.0120
+Node 91: 0.0119
+Node 57: 0.0112
+Node 80: 0.0111
+Node 90: 0.0111
+Node 100: 0.0111
+Node 20: 0.0110
+Node 9: 0.0110
+Node 18: 0.0110
+Node 51: 0.0110
+Node 49: 0.0109
+Node 2: 0.0105
+Node 11: 0.0103
+Node 101: 0.0103
+Node 53: 0.0102
+Node 96: 0.0100
+Node 86: 0.0097
+Node 92: 0.0097
+Node 75: 0.0096
+Node 33: 0.0095
+Node 21: 0.0095
+Node 93: 0.0094
+Node 102: 0.0091
+Node 27: 0.0089
+Node 19: 0.0087
+Node 77: 0.0087
+Node 41: 0.0087
+Node 23: 0.0080
+Node 22: 0.0078
+Node 44: 0.0077
+Node 68: 0.0076
+Node 73: 0.0075
+Node 29: 0.0071
+Node 74: 0.0068
+Node 84: 0.0067
+Node 17: 0.0067
+Node 78: 0.0067
+Node 85: 0.0062
+Node 59: 0.0060
+Node 5: 0.0058
+Node 42: 0.0058
+Node 45: 0.0057
+Node 62: 0.0056
+Node 89: 0.0053
+Node 82: 0.0053
+Node 56: 0.0051
+Node 37: 0.0051
+Node 97: 0.0051
+Node 16: 0.0049
+Node 34: 0.0048
+Node 38: 0.0047
+Node 72: 0.0047
+Node 64: 0.0046
+Node 32: 0.0046
+Node 87: 0.0045
+Node 30: 0.0042
+Node 94: 0.0041
+Node 70: 0.0039
+Node 63: 0.0039
+Node 43: 0.0039
+Node 13: 0.0038
+Node 35: 0.0038
+Node 50: 0.0038
+Node 95: 0.0038
+Node 7: 0.0037
+Node 28: 0.0036
+Node 48: 0.0036
+Node 76: 0.0035
+Node 61: 0.0035
+Node 24: 0.0034
+Node 40: 0.0031
+Node 99: 0.0027
+Node 69: 0.0025
+Node 98: 0.0024
+Node 1: 0.0024
+Node 15: 0.0024
+Node 81: 0.0024
+Node 39: 0.0023
+Node 65: 0.0023
+Node 36: 0.0014
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hasil-kata-kunci">
+<h3>Hasil Kata Kunci<a class="headerlink" href="#hasil-kata-kunci" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tiga Node Tertinggi Page Rank :&quot;</span><span class="p">)</span>
+<span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">pagerank</span> <span class="ow">in</span> <span class="n">sorted_pagerank</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
+  <span class="n">top_sentence</span> <span class="o">=</span> <span class="n">kata</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+  <span class="n">sentence</span> <span class="o">+=</span> <span class="n">top_sentence</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: Page Rank = </span><span class="si">{</span><span class="n">pagerank</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kalimat: </span><span class="si">{</span><span class="n">top_sentence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiga Node Tertinggi Page Rank :
+Node 71: Page Rank = 0.0390
+Kalimat: israel
+Node 4: Page Rank = 0.0319
+Kalimat: gaza
+Node 58: Page Rank = 0.0301
+Kalimat: hamas
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Kata Kunci :&#39;</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Kata Kunci : israel, gaza, hamas, 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tugas5"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../tugas4/main.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ringkasan Berita</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-pembersihan-teks">Proses Pembersihan Teks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-text">Preprocessing Text</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#memisahkan-kalimat-menjadi-per-kata">Memisahkan Kalimat menjadi per Kata</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-matriks">Membuat Matriks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-kemunculan-kata">Menghitung kemunculan kata</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph">Graph</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-centralitas">Matrix Centralitas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pagerank">PageRank</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-kata-kunci">Hasil Kata Kunci</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ronggo Widjoyo
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
