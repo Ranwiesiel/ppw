@@ -57,8 +57,6 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tugas5/main';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -402,14 +400,14 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-matriks">Membuat Matriks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-kemunculan-kata">Menghitung kemunculan kata</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#occurrence-matrix">Occurrence matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-kata-kunci">Hasil Kata Kunci</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#co-occurrence-matrix">Co-occurrence Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graph">Graph</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Hasil Kata Kunci</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph">Graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-centralitas">Matrix Centralitas</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pagerank">PageRank</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-kata-kunci">Hasil Kata Kunci</a></li>
 </ul>
 </li>
 </ul>
@@ -613,7 +611,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100/100 [00:00&lt;00:00, 263.21it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100/100 [00:00&lt;00:00, 377.48it/s]
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -790,110 +788,110 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;times&#39;,
- &#39;menjaga&#39;,
- &#39;tel&#39;,
- &#39;perbatasan&#39;,
- &#39;berkumpul&#39;,
- &#39;gaza&#39;,
- &#39;palestina&#39;,
- &#39;menjelang&#39;,
- &#39;bicara&#39;,
- &#39;zionis&#39;,
- &#39;menggelar&#39;,
- &#39;tindakan&#39;,
- &#39;menembakkan&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;pasukan&#39;,
  &#39;skenario&#39;,
- &#39;peringatan&#39;,
- &#39;dikabarkan&#39;,
- &#39;digelar&#39;,
- &#39;jarak&#39;,
- &#39;orang&#39;,
- &#39;penyanderaan&#39;,
- &#39;bulanbulan&#39;,
- &#39;menewaskan&#39;,
- &#39;mewantiwanti&#39;,
- &#39;berhatihati&#39;,
- &#39;milisi&#39;,
- &#39;bersamaan&#39;,
- &#39;pasukan&#39;,
- &#39;yarkon&#39;,
- &#39;percaya&#39;,
- &#39;melaporkan&#39;,
- &#39;malam&#39;,
- &#39;operasinya&#39;,
- &#39;lokasi&#39;,
- &#39;ditumpas&#39;,
- &#39;daniel&#39;,
- &#39;diluncurkan&#39;,
- &#39;keluarga&#39;,
- &#39;pertahanan&#39;,
- &#39;of&#39;,
- &#39;jalur&#39;,
- &#39;ditawan&#39;,
- &#39;selatan&#39;,
- &#39;meningkatkan&#39;,
- &#39;gencatan&#39;,
- &#39;minggu&#39;,
- &#39;juru&#39;,
- &#39;israel&#39;,
- &#39;koridor&#39;,
- &#39;ofensif&#39;,
- &#39;kewaspadaan&#39;,
- &#39;tewas&#39;,
- &#39;kelompok&#39;,
- &#39;diyakini&#39;,
- &#39;aviv&#39;,
- &#39;komando&#39;,
- &#39;upacara&#39;,
- &#39;pernyataan&#39;,
- &#39;ketat&#39;,
- &#39;hagari&#39;,
- &#39;dilaksanakan&#39;,
- &#39;pemerintah&#39;,
- &#39;terbatas&#39;,
- &#39;senin&#39;,
- &#39;kepala&#39;,
  &#39;memperkuat&#39;,
- &#39;kompi&#39;,
- &#39;serangan&#39;,
- &#39;mengantisipasi&#39;,
- &#39;tingkat&#39;,
- &#39;dilaporkan&#39;,
- &#39;kesiapan&#39;,
- &#39;pendudukan&#39;,
- &#39;acara&#39;,
- &#39;warga&#39;,
- &#39;finkelman&#39;,
- &#39;disandera&#39;,
- &#39;meninggal&#39;,
  &#39;kotakota&#39;,
- &#39;sipil&#39;,
- &#39;menyepakati&#39;,
- &#39;melukai&#39;,
+ &#39;selatan&#39;,
+ &#39;israel&#39;,
  &#39;hamas&#39;,
- &#39;memasuki&#39;,
- &#39;netzarim&#39;,
- &#39;bersiaga&#39;,
- &#39;militer&#39;,
- &#39;ditembakkan&#39;,
- &#39;sumber&#39;,
- &#39;konflik&#39;,
- &#39;the&#39;,
- &#39;aman&#39;,
- &#39;sandera&#39;,
- &#39;roket&#39;,
- &#39;kunjung&#39;,
- &#39;dikerahkan&#39;,
  &#39;oktober&#39;,
- &#39;catatan&#39;,
- &#39;pasca&#39;,
- &#39;sabtu&#39;,
- &#39;agresi&#39;,
+ &#39;dilaporkan&#39;,
+ &#39;kompi&#39;,
+ &#39;hagari&#39;,
+ &#39;bersamaan&#39;,
+ &#39;meninggal&#39;,
+ &#39;disandera&#39;,
+ &#39;senin&#39;,
+ &#39;melaporkan&#39;,
+ &#39;pemerintah&#39;,
+ &#39;tel&#39;,
+ &#39;aman&#39;,
+ &#39;minggu&#39;,
+ &#39;upacara&#39;,
+ &#39;menggelar&#39;,
+ &#39;ditumpas&#39;,
+ &#39;dilaksanakan&#39;,
+ &#39;melukai&#39;,
+ &#39;tewas&#39;,
  &#39;taman&#39;,
- &#39;idf&#39;,
+ &#39;menyepakati&#39;,
+ &#39;agresi&#39;,
+ &#39;kesiapan&#39;,
+ &#39;menewaskan&#39;,
+ &#39;menembakkan&#39;,
+ &#39;mewantiwanti&#39;,
+ &#39;kunjung&#39;,
+ &#39;percaya&#39;,
+ &#39;sumber&#39;,
+ &#39;catatan&#39;,
+ &#39;bicara&#39;,
+ &#39;digelar&#39;,
+ &#39;aviv&#39;,
+ &#39;sandera&#39;,
+ &#39;menjaga&#39;,
+ &#39;jalur&#39;,
+ &#39;militer&#39;,
+ &#39;times&#39;,
+ &#39;meningkatkan&#39;,
+ &#39;roket&#39;,
+ &#39;netzarim&#39;,
+ &#39;sipil&#39;,
+ &#39;dikabarkan&#39;,
  &#39;senjata&#39;,
- &#39;yaron&#39;]
+ &#39;keluarga&#39;,
+ &#39;gaza&#39;,
+ &#39;bersiaga&#39;,
+ &#39;bulanbulan&#39;,
+ &#39;pendudukan&#39;,
+ &#39;serangan&#39;,
+ &#39;terbatas&#39;,
+ &#39;tindakan&#39;,
+ &#39;penyanderaan&#39;,
+ &#39;kepala&#39;,
+ &#39;yarkon&#39;,
+ &#39;perbatasan&#39;,
+ &#39;milisi&#39;,
+ &#39;berkumpul&#39;,
+ &#39;konflik&#39;,
+ &#39;sabtu&#39;,
+ &#39;yaron&#39;,
+ &#39;orang&#39;,
+ &#39;daniel&#39;,
+ &#39;gencatan&#39;,
+ &#39;pasca&#39;,
+ &#39;kelompok&#39;,
+ &#39;idf&#39;,
+ &#39;malam&#39;,
+ &#39;menjelang&#39;,
+ &#39;mengantisipasi&#39;,
+ &#39;acara&#39;,
+ &#39;komando&#39;,
+ &#39;ofensif&#39;,
+ &#39;ditembakkan&#39;,
+ &#39;diluncurkan&#39;,
+ &#39;warga&#39;,
+ &#39;palestina&#39;,
+ &#39;operasinya&#39;,
+ &#39;juru&#39;,
+ &#39;ditawan&#39;,
+ &#39;finkelman&#39;,
+ &#39;of&#39;,
+ &#39;ketat&#39;,
+ &#39;kewaspadaan&#39;,
+ &#39;lokasi&#39;,
+ &#39;pernyataan&#39;,
+ &#39;zionis&#39;,
+ &#39;peringatan&#39;,
+ &#39;dikerahkan&#39;,
+ &#39;the&#39;,
+ &#39;tingkat&#39;,
+ &#39;memasuki&#39;,
+ &#39;jarak&#39;,
+ &#39;pertahanan&#39;,
+ &#39;koridor&#39;,
+ &#39;berhatihati&#39;,
+ &#39;diyakini&#39;]
 </pre></div>
 </div>
 </div>
@@ -902,9 +900,9 @@ document.write(`
 </section>
 <section id="membuat-matriks">
 <h2>Membuat Matriks<a class="headerlink" href="#membuat-matriks" title="Link to this heading">#</a></h2>
-<section id="menghitung-kemunculan-kata">
-<h3>Menghitung kemunculan kata<a class="headerlink" href="#menghitung-kemunculan-kata" title="Link to this heading">#</a></h3>
-<p>frekuensi kemunculan dua kata atau istilah yang berdekatan secara berurutan dalam kumpulan teks. Dalam linguistik, kemunculan kata/co-occurrence dapat menjadi indikator kedekatan semantik.</p>
+<section id="occurrence-matrix">
+<h3>Occurrence matrix<a class="headerlink" href="#occurrence-matrix" title="Link to this heading">#</a></h3>
+<p>Menghitung frekuensi kemunculan kata dalam kumpulan teks.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vektor_kata</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
@@ -950,40 +948,40 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>times</th>
-      <th>menjaga</th>
-      <th>tel</th>
-      <th>perbatasan</th>
-      <th>berkumpul</th>
-      <th>gaza</th>
-      <th>palestina</th>
-      <th>menjelang</th>
-      <th>bicara</th>
-      <th>zionis</th>
-      <th>...</th>
-      <th>dikerahkan</th>
+      <th>pasukan</th>
+      <th>skenario</th>
+      <th>memperkuat</th>
+      <th>kotakota</th>
+      <th>selatan</th>
+      <th>israel</th>
+      <th>hamas</th>
       <th>oktober</th>
-      <th>catatan</th>
-      <th>pasca</th>
-      <th>sabtu</th>
-      <th>agresi</th>
-      <th>taman</th>
-      <th>idf</th>
-      <th>senjata</th>
-      <th>yaron</th>
+      <th>dilaporkan</th>
+      <th>kompi</th>
+      <th>...</th>
+      <th>peringatan</th>
+      <th>dikerahkan</th>
+      <th>the</th>
+      <th>tingkat</th>
+      <th>memasuki</th>
+      <th>jarak</th>
+      <th>pertahanan</th>
+      <th>koridor</th>
+      <th>berhatihati</th>
+      <th>diyakini</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
+      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
@@ -992,9 +990,9 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -1007,18 +1005,18 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>1</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -1026,8 +1024,8 @@ document.write(`
       <th>2</th>
       <td>1</td>
       <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
@@ -1037,12 +1035,12 @@ document.write(`
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -1053,8 +1051,8 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1073,24 +1071,24 @@ document.write(`
     <tr>
       <th>4</th>
       <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
     </tr>
@@ -1099,10 +1097,10 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>1</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1122,10 +1120,10 @@ document.write(`
       <th>6</th>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
       <td>1</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1137,7 +1135,7 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
@@ -1145,18 +1143,18 @@ document.write(`
     <tr>
       <th>7</th>
       <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
       <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
       <td>...</td>
-      <td>1</td>
       <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1196,7 +1194,7 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1206,13 +1204,13 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>10</th>
@@ -1224,23 +1222,23 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>1</td>
-      <td>0</td>
       <td>0</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1269,18 +1267,18 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
+      <td>2</td>
       <td>1</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
-      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1304,7 +1302,7 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1318,7 +1316,7 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1365,8 +1363,8 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1379,7 +1377,7 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
     </tr>
     <tr>
@@ -1390,14 +1388,14 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>1</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
-      <td>1</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1428,7 +1426,7 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>19</th>
@@ -1438,12 +1436,12 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1458,7 +1456,7 @@ document.write(`
       <th>20</th>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1473,7 +1471,7 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1532,14 +1530,14 @@ document.write(`
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1556,22 +1554,40 @@ document.write(`
 </div></div></div>
 </div>
 </section>
-<section id="cosine-similarity">
-<h3>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Link to this heading">#</a></h3>
-<p>Cosine similarity digunakan untuk mengukur seberapa mirip dua vektor dalam ruang berdimensi banyak. Hasil dari cosine similarity ini akan menentukan apakah vektor tersebut menuju ke arah yang sama. Semakin kecil sudut antara dua vektor, maka semakin mirip satu sama lain sedangkan begitu juga sebaliknya, semakin besar nilai cosine similarity maka vektor tersebut dianggap jauh kemiripannya. Dalam ringkasan dokumen ini penting untuk menghitung nilai cosine similarity untuk mengetahui hubungan kesamaan antara kalimat satu dengan kalimat lainnya. Vektor yang digunakan untuk menghitung nilai cosine simmilarity ini adalah hasil dari TF-IDF pada langkah sebelumnya.</p>
-<div class="math notranslate nohighlight">
-\[simmilarity(A, B) = \frac{A \cdot B}{|A||B|}\]</div>
-<p>Keterangan:</p>
-<p><span class="math notranslate nohighlight">\(A.B\)</span> = Vector dot product dari A dan B dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n x_{i}y_{i}\)</span></p>
-<p><span class="math notranslate nohighlight">\(|A|\)</span> = Panjang vektor A dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n x_{i}^2\)</span> = <span class="math notranslate nohighlight">\(\sqrt{\mathrm{a}_{1}^{2} + \mathrm{a}_{2}^{2} + \mathrm{a}_{3}^{2}} +...+ \mathrm{n}_{n}^{2}\)</span></p>
-<p><span class="math notranslate nohighlight">\(|B|\)</span> = Panjang vektor B dihitung dengan <span class="math notranslate nohighlight">\(\sum_{i=1}^n y_{i}^2\)</span> = <span class="math notranslate nohighlight">\(\sqrt{\mathrm{b}_{1}^{2} + \mathrm{b}_{2}^{2} + \mathrm{b}_{3}^{2}} + ...+ \mathrm{n}_{n}^{2}\)</span></p>
+<section id="hasil-kata-kunci">
+<h3>Hasil Kata Kunci<a class="headerlink" href="#hasil-kata-kunci" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cossim</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">df_vektor_kata</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sorted_kata</span> <span class="o">=</span> <span class="n">df_vektor_kata</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sorted_kata</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>israel, hamas, gaza
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="co-occurrence-matrix">
+<h3>Co-occurrence Matrix<a class="headerlink" href="#co-occurrence-matrix" title="Link to this heading">#</a></h3>
+<p>Co-occurrence adalah konsep dalam analisis teks yang mengukur seberapa sering dua kata atau lebih muncul bersama-sama dalam suatu konteks tertentu, seperti dalam kalimat, paragraf, atau dokumen.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_cooccurrence_matrix</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+	<span class="n">vektor_kata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">kata</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">kata</span><span class="p">)</span>
 
-<span class="n">similarity_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cossim</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kalimat</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kalimat</span><span class="p">)))</span>
+	<span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+		<span class="n">kata_kalimat</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span>
+		<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">kata_kalimat</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+			<span class="n">vektor_kata</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">kata_kalimat</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">kata_kalimat</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+			<span class="n">vektor_kata</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">kata_kalimat</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">kata_kalimat</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+	
+	<span class="k">return</span> <span class="n">vektor_kata</span>
 
-<span class="n">similarity_matrix</span>
+<span class="n">cooccurrence_matrix</span> <span class="o">=</span> <span class="n">create_cooccurrence_matrix</span><span class="p">(</span><span class="n">kalimat</span><span class="p">)</span>
+<span class="n">cooccurrence_matrix</span>
 </pre></div>
 </div>
 </div>
@@ -1594,629 +1610,324 @@ document.write(`
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
+      <th>pasukan</th>
+      <th>skenario</th>
+      <th>memperkuat</th>
+      <th>kotakota</th>
+      <th>selatan</th>
+      <th>israel</th>
+      <th>hamas</th>
+      <th>oktober</th>
+      <th>dilaporkan</th>
+      <th>kompi</th>
       <th>...</th>
-      <th>14</th>
-      <th>15</th>
-      <th>16</th>
-      <th>17</th>
-      <th>18</th>
-      <th>19</th>
-      <th>20</th>
-      <th>21</th>
-      <th>22</th>
-      <th>23</th>
+      <th>peringatan</th>
+      <th>dikerahkan</th>
+      <th>the</th>
+      <th>tingkat</th>
+      <th>memasuki</th>
+      <th>jarak</th>
+      <th>pertahanan</th>
+      <th>koridor</th>
+      <th>berhatihati</th>
+      <th>diyakini</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>1.000000</td>
-      <td>0.240192</td>
-      <td>0.358057</td>
-      <td>0.092450</td>
-      <td>0.153846</td>
-      <td>0.314485</td>
-      <td>0.350823</td>
-      <td>0.104828</td>
-      <td>0.0</td>
-      <td>0.0000</td>
+      <th>pasukan</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
-      <td>0.160128</td>
-      <td>0.000000</td>
-      <td>0.113228</td>
-      <td>0.277350</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>0.240192</td>
-      <td>1.000000</td>
-      <td>0.223607</td>
-      <td>0.192450</td>
-      <td>0.240192</td>
-      <td>0.109109</td>
-      <td>0.091287</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
+      <th>skenario</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
-      <td>0.166667</td>
-      <td>0.000000</td>
-      <td>0.117851</td>
-      <td>0.192450</td>
-      <td>0.000000</td>
-      <td>0.192450</td>
-      <td>0.102062</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.144338</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>0.358057</td>
-      <td>0.223607</td>
-      <td>1.000000</td>
-      <td>0.258199</td>
-      <td>0.143223</td>
-      <td>0.390360</td>
-      <td>0.326599</td>
-      <td>0.097590</td>
-      <td>0.0</td>
-      <td>0.0000</td>
+      <th>memperkuat</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.105409</td>
-      <td>0.172133</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>0.092450</td>
-      <td>0.192450</td>
-      <td>0.258199</td>
-      <td>1.000000</td>
-      <td>0.092450</td>
-      <td>0.503953</td>
-      <td>0.105409</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
+      <th>kotakota</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.272166</td>
-      <td>0.222222</td>
-      <td>0.000000</td>
-      <td>0.111111</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>0.153846</td>
-      <td>0.240192</td>
-      <td>0.143223</td>
-      <td>0.092450</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.175412</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.1849</td>
+      <th>selatan</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.092450</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.138675</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>0.314485</td>
-      <td>0.109109</td>
-      <td>0.390360</td>
-      <td>0.503953</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>0.358569</td>
-      <td>0.142857</td>
-      <td>0.0</td>
-      <td>0.0000</td>
+      <th>...</th>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.308607</td>
-      <td>0.377964</td>
-      <td>0.000000</td>
-      <td>0.125988</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>6</th>
-      <td>0.350823</td>
-      <td>0.091287</td>
-      <td>0.326599</td>
-      <td>0.105409</td>
-      <td>0.175412</td>
-      <td>0.358569</td>
-      <td>1.000000</td>
-      <td>0.119523</td>
-      <td>0.0</td>
-      <td>0.0000</td>
+      <th>jarak</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.105409</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>0.104828</td>
-      <td>0.000000</td>
-      <td>0.097590</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.142857</td>
-      <td>0.119523</td>
-      <td>1.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
+      <th>pertahanan</th>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>1.0</td>
-      <td>0.0000</td>
+      <th>koridor</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.184900</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>1.0000</td>
+      <th>berhatihati</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>0.083624</td>
-      <td>0.087039</td>
-      <td>0.077850</td>
-      <td>0.000000</td>
-      <td>0.083624</td>
-      <td>0.000000</td>
-      <td>0.095346</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
+      <th>diyakini</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>...</td>
-      <td>0.174078</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.301511</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>0.160128</td>
-      <td>0.166667</td>
-      <td>0.298142</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>0.286446</td>
-      <td>0.447214</td>
-      <td>0.266667</td>
-      <td>0.344265</td>
-      <td>0.071611</td>
-      <td>0.390360</td>
-      <td>0.081650</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.316228</td>
-      <td>0.430331</td>
-      <td>0.000000</td>
-      <td>0.086066</td>
-      <td>0.091287</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>0.196116</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>0.160128</td>
-      <td>0.166667</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>...</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.333333</td>
-      <td>0.577350</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.500000</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>0.113228</td>
-      <td>0.117851</td>
-      <td>0.105409</td>
-      <td>0.272166</td>
-      <td>0.000000</td>
-      <td>0.308607</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>0.272166</td>
-      <td>0.000000</td>
-      <td>0.136083</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>0.277350</td>
-      <td>0.192450</td>
-      <td>0.172133</td>
-      <td>0.222222</td>
-      <td>0.000000</td>
-      <td>0.377964</td>
-      <td>0.105409</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.333333</td>
-      <td>0.272166</td>
-      <td>1.000000</td>
-      <td>0.192450</td>
-      <td>0.111111</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.166667</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.577350</td>
-      <td>0.000000</td>
-      <td>0.192450</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.288675</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>0.000000</td>
-      <td>0.192450</td>
-      <td>0.000000</td>
-      <td>0.111111</td>
-      <td>0.092450</td>
-      <td>0.125988</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.136083</td>
-      <td>0.111111</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.166667</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>0.000000</td>
-      <td>0.102062</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.176777</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>0.000000</td>
-      <td>0.144338</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.138675</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0000</td>
-      <td>...</td>
-      <td>0.000000</td>
-      <td>0.500000</td>
-      <td>0.000000</td>
-      <td>0.166667</td>
-      <td>0.288675</td>
-      <td>0.166667</td>
-      <td>0.176777</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>1.000000</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
-<p>24 rows × 24 columns</p>
+<p>104 rows × 104 columns</p>
 </div></div></div>
 </div>
-</section>
+<section id="cosine-similarity">
+<h4>Cosine Similarity<a class="headerlink" href="#cosine-similarity" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cossim</span> <span class="o">=</span> <span class="n">cosine_similarity</span><span class="p">(</span><span class="n">cooccurrence_matrix</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="graph">
-<h2>Graph<a class="headerlink" href="#graph" title="Link to this heading">#</a></h2>
-<p>Hasil dari nilai <em>Cosine Simmilarity</em> ini akan dapat digunakan untuk membentuk graph dengan menggunakan modul nx.graph. Graph ini akan menggambarkan ilustrasi dari kedekatan setiap kalimatnya dalam berita tersebut. Dalam proses penggambaran graph tersebut diperlukan ambang batas <em>(threshold)</em> yang digunakan untuk memberikan batasan agar keseluruhan kalimatnya tidak dihubungkan menggunakan garis <em>(edge)</em>. Nilai ambang batas <em>(threshold)</em> yang digunakan adalah <strong>0.1</strong></p>
+<h4>Graph<a class="headerlink" href="#graph" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cossim</span><span class="p">)):</span>
-	<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cossim</span><span class="p">)):</span>
-	<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cossim</span><span class="p">)):</span>
-		<span class="n">similarity</span> <span class="o">=</span> <span class="n">cossim</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-		<span class="k">if</span> <span class="n">similarity</span> <span class="o">&gt;</span> <span class="mf">0.1</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
-			<span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cossim</span><span class="p">)):</span>
+        <span class="n">similarity</span> <span class="o">=</span> <span class="n">cossim</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">similarity</span> <span class="o">&gt;</span> <span class="mf">0.1</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
 
-<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
@@ -2226,23 +1937,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/75cfc774c8b5a53d0d6bf3c319909360061fe72481d6b34ce4ed3a228fc5184d.png" src="../_images/75cfc774c8b5a53d0d6bf3c319909360061fe72481d6b34ce4ed3a228fc5184d.png" />
+<img alt="../_images/2a6d613347e57912b06e2cb622b9cb45156b7a20ba8d9f4ca9fa4c3962ef7ea0.png" src="../_images/2a6d613347e57912b06e2cb622b9cb45156b7a20ba8d9f4ca9fa4c3962ef7ea0.png" />
 </div>
 </div>
-</section>
-<section id="matrix-centralitas">
-<h2>Matrix Centralitas<a class="headerlink" href="#matrix-centralitas" title="Link to this heading">#</a></h2>
-<p>Matriks Sentralitas adalah matriks yang digunakan untuk merepresentasikan ukuran sentralitas dari setiap node dalam jaringan. Sentralitas adalah konsep dalam analisis jaringan yang mencoba mengukur sejauh mana suatu node berada di pusat jaringan atau sejauh mana suatu node penting dalam graph.</p>
-<section id="pagerank">
-<h3>PageRank<a class="headerlink" href="#pagerank" title="Link to this heading">#</a></h3>
-<p>Dalam konteks ini, dokumen dianggap sebagai “halaman” yang terhubung oleh hubungan yang merefleksikan keterkaitan atau relevansinya. Dengan menerapkan konsep PageRank, dokumen yang dianggap lebih “penting” atau relevan dapat diberikan skor lebih tinggi. Penggunaan faktor damping, serupa dengan dalam algoritma PageRank, dapat membantu mengontrol sejauh mana pengaruh satu dokumen terhadap yang lain. Dengan memberikan skor pada dokumen berdasarkan hubungan mereka dalam jaringan informasi, kita dapat menghasilkan ringkasan yang mencerminkan tingkat relevansi dan pentingnya masing-masing dokumen dalam konteks keseluruhan.</p>
-<div class="math notranslate nohighlight">
-\[PR_i = \frac{1-d}{n} + d \sum_{P_j\in\{1 \dots,n\}} \frac{PR_i}{L_j}\]</div>
-<p>Keterangan:</p>
-<p><span class="math notranslate nohighlight">\(PR(i)\)</span> = adalah PageRank dari halaman web ke i.<br>
-<span class="math notranslate nohighlight">\(d\)</span> = adalah faktor redaman, biasanya diatur sebesar 0,85, yang digunakan untuk menghitung probabilitas bahwa peramban acak akan “melompat” ke halaman acak dan tidak mengikuti sebuah link.<br>
-<span class="math notranslate nohighlight">\(PR(i)\)</span> = adalah PageRank halaman ke i, yaitu halaman yang memiliki sambungan yang mengarah ke halaman i.<br>
-<span class="math notranslate nohighlight">\(L(c)\)</span> = adalah jumlah hubungan keluar pada halaman j.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pagerank</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">pagerank</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
@@ -2250,79 +1947,148 @@ document.write(`
 <span class="n">sorted_pagerank</span><span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pagerank</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Page Rank :&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">pagerank</span> <span class="ow">in</span> <span class="n">sorted_pagerank</span><span class="p">:</span>
-	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">pagerank</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">pagerank</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Page Rank :
-Node 1: 0.0908
-Node 0: 0.0851
-Node 17: 0.0807
-Node 2: 0.0669
-Node 5: 0.0660
-Node 12: 0.0549
-Node 23: 0.0544
-Node 16: 0.0531
-Node 3: 0.0530
-Node 6: 0.0492
-Node 4: 0.0485
-Node 19: 0.0419
-Node 10: 0.0342
-Node 14: 0.0332
-Node 15: 0.0266
-Node 18: 0.0266
-Node 11: 0.0244
-Node 7: 0.0243
-Node 21: 0.0213
-Node 20: 0.0193
-Node 13: 0.0186
-Node 9: 0.0136
-Node 8: 0.0067
-Node 22: 0.0067
+Node 5: 0.0404
+Node 52: 0.0321
+Node 6: 0.0303
+Node 100: 0.0285
+Node 62: 0.0258
+Node 83: 0.0244
+Node 14: 0.0242
+Node 56: 0.0216
+Node 73: 0.0199
+Node 42: 0.0189
+Node 2: 0.0183
+Node 15: 0.0180
+Node 76: 0.0179
+Node 0: 0.0159
+Node 43: 0.0150
+Node 46: 0.0147
+Node 68: 0.0142
+Node 34: 0.0142
+Node 31: 0.0142
+Node 13: 0.0137
+Node 94: 0.0136
+Node 33: 0.0131
+Node 88: 0.0131
+Node 86: 0.0126
+Node 7: 0.0121
+Node 22: 0.0119
+Node 3: 0.0113
+Node 65: 0.0112
+Node 40: 0.0111
+Node 63: 0.0111
+Node 20: 0.0111
+Node 4: 0.0111
+Node 16: 0.0110
+Node 28: 0.0110
+Node 53: 0.0110
+Node 75: 0.0110
+Node 82: 0.0106
+Node 71: 0.0104
+Node 37: 0.0103
+Node 101: 0.0102
+Node 89: 0.0100
+Node 55: 0.0097
+Node 69: 0.0096
+Node 21: 0.0096
+Node 77: 0.0096
+Node 92: 0.0094
+Node 23: 0.0091
+Node 93: 0.0089
+Node 80: 0.0088
+Node 1: 0.0088
+Node 58: 0.0085
+Node 59: 0.0081
+Node 39: 0.0077
+Node 64: 0.0076
+Node 79: 0.0075
+Node 78: 0.0075
+Node 72: 0.0072
+Node 98: 0.0068
+Node 19: 0.0068
+Node 24: 0.0068
+Node 60: 0.0064
+Node 38: 0.0062
+Node 84: 0.0061
+Node 95: 0.0059
+Node 85: 0.0059
+Node 27: 0.0058
+Node 41: 0.0056
+Node 81: 0.0054
+Node 26: 0.0052
+Node 99: 0.0051
+Node 45: 0.0051
+Node 97: 0.0051
+Node 32: 0.0050
+Node 61: 0.0047
+Node 29: 0.0047
+Node 57: 0.0046
+Node 17: 0.0046
+Node 103: 0.0045
+Node 67: 0.0045
+Node 35: 0.0042
+Node 30: 0.0041
+Node 9: 0.0040
+Node 66: 0.0039
+Node 50: 0.0039
+Node 8: 0.0039
+Node 11: 0.0038
+Node 10: 0.0038
+Node 18: 0.0038
+Node 48: 0.0038
+Node 49: 0.0036
+Node 25: 0.0036
+Node 54: 0.0035
+Node 91: 0.0035
+Node 47: 0.0034
+Node 87: 0.0028
+Node 102: 0.0027
+Node 74: 0.0026
+Node 96: 0.0025
+Node 12: 0.0025
+Node 51: 0.0024
+Node 70: 0.0024
+Node 36: 0.0024
+Node 44: 0.0024
+Node 90: 0.0015
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="hasil-kata-kunci">
-<h3>Hasil Kata Kunci<a class="headerlink" href="#hasil-kata-kunci" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h4>Hasil Kata Kunci<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tiga Node Tertinggi Page Rank :&quot;</span><span class="p">)</span>
 <span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">pagerank</span> <span class="ow">in</span> <span class="n">sorted_pagerank</span><span class="p">[:</span><span class="mi">3</span><span class="p">]:</span>
-	<span class="n">top_sentence</span> <span class="o">=</span> <span class="n">kata</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
-	<span class="n">sentence</span> <span class="o">+=</span> <span class="n">top_sentence</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span>
-	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: Page Rank = </span><span class="si">{</span><span class="n">pagerank</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kalimat: </span><span class="si">{</span><span class="n">top_sentence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="n">top_sentence</span> <span class="o">=</span> <span class="n">kata</span><span class="p">[</span><span class="n">node</span><span class="p">]</span>
+  <span class="n">sentence</span> <span class="o">+=</span> <span class="n">top_sentence</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Node </span><span class="si">{</span><span class="n">node</span><span class="si">}</span><span class="s2">: Page Rank = </span><span class="si">{</span><span class="n">pagerank</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kalimat: </span><span class="si">{</span><span class="n">top_sentence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tiga Node Tertinggi Page Rank :
-Node 1: Page Rank = 0.0908
-Kalimat: menjaga
-Node 0: Page Rank = 0.0851
-Kalimat: times
-Node 17: Page Rank = 0.0807
-Kalimat: jarak
+Node 5: Page Rank = 0.0404
+Kalimat: israel
+Node 52: Page Rank = 0.0321
+Kalimat: gaza
+Node 6: Page Rank = 0.0303
+Kalimat: hamas
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Kata Kunci :&#39;</span><span class="p">,</span> <span class="n">sentence</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Kata Kunci : menjaga, times, jarak, 
-</pre></div>
-</div>
-</div>
-</div>
+</section>
 </section>
 </section>
 </section>
@@ -2390,14 +2156,14 @@ Kalimat: jarak
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-matriks">Membuat Matriks</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-kemunculan-kata">Menghitung kemunculan kata</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#occurrence-matrix">Occurrence matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-kata-kunci">Hasil Kata Kunci</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#co-occurrence-matrix">Co-occurrence Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cosine-similarity">Cosine Similarity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graph">Graph</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Hasil Kata Kunci</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graph">Graph</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-centralitas">Matrix Centralitas</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pagerank">PageRank</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-kata-kunci">Hasil Kata Kunci</a></li>
 </ul>
 </li>
 </ul>
