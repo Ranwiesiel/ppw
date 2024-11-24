@@ -193,11 +193,11 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV: Ringkasan Berita</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tugas4/main.html">Ringkasan Berita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tugas4/ringkasan_berita.html">Ringkasan Berita</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V: Kata Kunci Berita</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tugas5/main.html">Kata Kunci Berita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tugas5/keyword_extraction.html">Kata Kunci Berita</a></li>
 </ul>
 
     </div>
@@ -473,24 +473,14 @@ dimana<br>
 <span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
 <span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
 <span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
-<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
-<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt_tab&#39;</span><span class="p">)</span>
+<span class="c1"># nltk.download(&#39;stopwords&#39;)</span>
+<span class="c1"># nltk.download(&#39;punkt_tab&#39;)</span>
 
 <span class="c1"># Library untuk text vectorization/TF-IDF</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
 
 <span class="c1"># Library untuk save model</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to C:\Users\LAB
-[nltk_data]     SISTER\AppData\Roaming\nltk_data...
-[nltk_data]   Package stopwords is already up-to-date!
-[nltk_data] Downloading package punkt_tab to C:\Users\LAB
-[nltk_data]     SISTER\AppData\Roaming\nltk_data...
-[nltk_data]   Package punkt_tab is already up-to-date!
 </pre></div>
 </div>
 </div>
@@ -509,7 +499,7 @@ dimana<br>
 <h3>Import data berita CSV<a class="headerlink" href="#import-data-berita-csv" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../tugas1/data_100.csv&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../tugas1/data_100new.csv&quot;</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 <span class="n">data</span>
 </pre></div>
@@ -543,37 +533,37 @@ dimana<br>
   <tbody>
     <tr>
       <th>0</th>
-      <td>FOTO: Melihat Kehancuran Gaza usai Satu Tahun ...</td>
-      <td>Senin, 07 Okt 2024 10:30 WIB</td>
-      <td>Satu tahun agresi Israel ke Gaza yang dimulai ...</td>
+      <td>Putin Ungkap Tetap Bikin Ukraina Target Eksper...</td>
+      <td>Minggu, 24 Nov 2024 13:50 WIB</td>
+      <td>Presiden Rusia Vladimir Putin menyebut akan te...</td>
       <td>internasional</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>VIDEO: Setahun Agresi Israel ke Gaza, Korban T...</td>
-      <td>Senin, 07 Okt 2024 10:03 WIB</td>
-      <td>Agresi Israel ke Jalur Gaza telah memasuki sat...</td>
+      <td>VIDEO: Detik-detik Rudal Israel Hantam Masjid ...</td>
+      <td>Minggu, 24 Nov 2024 13:40 WIB</td>
+      <td>Rekaman menunjukkan detik-detik rudal Israel m...</td>
       <td>internasional</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Jenderal Brigade Al-Quds Iran Hilang usai Isra...</td>
-      <td>Senin, 07 Okt 2024 09:59 WIB</td>
-      <td>Kepala pasukan Brigade Al-Quds Iran, Esmail Qa...</td>
+      <td>RI-Australia Sepakat Tukar Tahanan Pelaku Jari...</td>
+      <td>Minggu, 24 Nov 2024 13:20 WIB</td>
+      <td>Australia menyebut Indonesia telah setuju untu...</td>
       <td>internasional</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>VIDEO: Kelompok Militan Pakistan Serang Karach...</td>
-      <td>Senin, 07 Okt 2024 09:28 WIB</td>
-      <td>Sebuah ledakan terjadi di dekat bandara intern...</td>
+      <td>Daftar Negara Anggota ICC yang Wajib Tangkap N...</td>
+      <td>Minggu, 24 Nov 2024 12:22 WIB</td>
+      <td>Mahkamah Kriminal Internasional (International...</td>
       <td>internasional</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Setahun Agresi Gaza, Israel Was-was Antisipasi...</td>
-      <td>Senin, 07 Okt 2024 09:25 WIB</td>
-      <td>Pasukan Pertahanan Israel (IDF) bersiaga ketat...</td>
+      <td>RUDAL: Beda Zionisme, Yahudi, dan Antisemit ya...</td>
+      <td>Minggu, 24 Nov 2024 10:45 WIB</td>
+      <td>Agresi brutal Israel ke Jalur Gaza Palestina m...</td>
       <td>internasional</td>
     </tr>
     <tr>
@@ -585,37 +575,37 @@ dimana<br>
     </tr>
     <tr>
       <th>95</th>
-      <td>VIDEO: Momen Perang Yel-yel Warnai Debat Perda...</td>
-      <td>Minggu, 06 Okt 2024 20:42 WIB</td>
-      <td>Perang yel-yel dari tiga pendukung calon guber...</td>
+      <td>Ahok Bersyukur Anak Abah-Ahoker Kompak Dukung ...</td>
+      <td>Sabtu, 23 Nov 2024 17:20 WIB</td>
+      <td>Mantan Gubernur DKI Jakarta Basuki Tjahaja Pur...</td>
       <td>nasional</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>Dharma Sindir Gagasan RK-Pramono soal Kemaceta...</td>
-      <td>Minggu, 06 Okt 2024 20:34 WIB</td>
-      <td>Calon gubernur jalur independen, Dharma Pongre...</td>
+      <td>Ahok Hadiri Kampanye, Pramono Janji Tuntaskan ...</td>
+      <td>Sabtu, 23 Nov 2024 17:14 WIB</td>
+      <td>Calon Gubernur DKI Jakarta nomor urut 3 Pramon...</td>
       <td>nasional</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>Pramono Janji Buat Jaringan Transjakarta hingg...</td>
-      <td>Minggu, 06 Okt 2024 20:31 WIB</td>
-      <td>Calon gubernur Jakarta Pramono Anung berjanji ...</td>
+      <td>Sebelum Kampanye Terakhir, Cagub Ahmad Luthfi ...</td>
+      <td>Sabtu, 23 Nov 2024 17:08 WIB</td>
+      <td>Calon gubernur (cagub) Ahmad Luthfi berkesempa...</td>
       <td>nasional</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>Jurus RK Atasi Macet: Bikin Angkutan Sungai Hi...</td>
-      <td>Minggu, 06 Okt 2024 20:29 WIB</td>
-      <td>Calon Gubernur Jakarta Ridwan Kamil mengungkap...</td>
+      <td>Kampanye Akbar RK-Suswono, Elite PKB dan NasDe...</td>
+      <td>Sabtu, 23 Nov 2024 16:54 WIB</td>
+      <td>Elite Partai NasDem dan PKB tak tampak hadir k...</td>
       <td>nasional</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>Pramono: 354 Ribu Orang Menganggur di Jakarta,...</td>
-      <td>Minggu, 06 Okt 2024 20:15 WIB</td>
-      <td>Calon Gubernur DKI Jakarta Pramono Anung menga...</td>
+      <td>Prabowo &amp; Albanese Disebut Sepakat Napi Bali N...</td>
+      <td>Sabtu, 23 Nov 2024 16:48 WIB</td>
+      <td>Presiden RI Prabowo Subianto dan Perdana Mente...</td>
       <td>nasional</td>
     </tr>
   </tbody>
@@ -715,7 +705,7 @@ menggunakan = guna</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100/100 [00:01&lt;00:00, 51.10it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 100/100 [00:02&lt;00:00, 39.41it/s]
 </pre></div>
 </div>
 </div>
@@ -763,43 +753,43 @@ menggunakan = guna</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>3 Negara Barat Tembak Rudal Iran ke Israel, Bi...</td>
-      <td>Minggu, 06 Okt 2024 11:08 WIB</td>
-      <td>Pemimpin Tertinggi Iran, Ayatollah Ali Khamene...</td>
-      <td>internasional</td>
-      <td>pimpin te inggi iran ayatollah ali khamenei se...</td>
+      <td>Perkembangan Terkini Pengusutan Kasus Firli Ba...</td>
+      <td>Minggu, 24 Nov 2024 06:16 WIB</td>
+      <td>Kasus yang menjerat eks Ketua KPK Komjen Pol (...</td>
+      <td>nasional</td>
+      <td>jerat eks ketua kpk komjen pol purn firli bahu...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>Dharma Pongrekun Sebut Pandemi Covid-19 Agenda...</td>
-      <td>Minggu, 06 Okt 2024 21:36 WIB</td>
-      <td>Calon Gubernur DKI Jakarta Dharma Pongrekun me...</td>
-      <td>nasional</td>
-      <td>calon gubernur dki jaka a dharma pongrekun pan...</td>
+      <td>Israel Gempur Beirut Pakai Rudal, 11 Orang Tew...</td>
+      <td>Sabtu, 23 Nov 2024 19:29 WIB</td>
+      <td>Serangan udara Israel di jantung ibukota Leban...</td>
+      <td>internasional</td>
+      <td>serang udara israel jantung ibukota lebanon be...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>KPK Lakukan OTT di Pemprov Kalsel</td>
-      <td>Minggu, 06 Okt 2024 21:20 WIB</td>
-      <td>Komisi Pemberantasan Korupsi (KPK) melakukan O...</td>
-      <td>nasional</td>
-      <td>komisi berantas korupsi kpk operasi tangkap ta...</td>
+      <td>FOTO: Gunung Berapi Islandia Meletus 7 Kali Us...</td>
+      <td>Sabtu, 23 Nov 2024 12:20 WIB</td>
+      <td>Gunung berapi di Semenanjung Reykjanes Lyings,...</td>
+      <td>internasional</td>
+      <td>gunung rap semenanjung reykjanes lyings island...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>AHY Ujian Terbuka Promosi Doktor di Unair Hari...</td>
-      <td>Senin, 07 Okt 2024 10:01 WIB</td>
-      <td>Menteri Agraria dan Tata Ruang/Kepala Badan Pe...</td>
-      <td>nasional</td>
-      <td>menteri agraria tata ruangkepala badan pe anah...</td>
+      <td>RI-Australia Sepakat Tukar Tahanan Pelaku Jari...</td>
+      <td>Minggu, 24 Nov 2024 13:20 WIB</td>
+      <td>Australia menyebut Indonesia telah setuju untu...</td>
+      <td>internasional</td>
+      <td>australia sebut indonesia tuju be ukar tahan p...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Netanyahu Akui Bunuh Bos Hizbullah sampai Risi...</td>
-      <td>Senin, 07 Okt 2024 07:11 WIB</td>
-      <td>Perdana Menteri Israel, Benjamin Netanyahu, me...</td>
+      <td>ICC Rilis Surat Penangkapan, Netanyahu Jadi Bu...</td>
+      <td>Jumat, 22 Nov 2024 16:20 WIB</td>
+      <td>Perdana Menteri Israel Benjamin Netanyahu menj...</td>
       <td>internasional</td>
-      <td>perdana menteri israel benjamin netanyahu aku ...</td>
+      <td>perdana menteri israel benjamin netanyahu buro...</td>
     </tr>
     <tr>
       <th>...</th>
@@ -811,43 +801,43 @@ menggunakan = guna</p>
     </tr>
     <tr>
       <th>75</th>
-      <td>Israel Klaim Bunuh 440 Militan Hizbullah, Hanc...</td>
-      <td>Minggu, 06 Okt 2024 05:15 WIB</td>
-      <td>Militer Israel mengklaim telah menewaskan seki...</td>
-      <td>internasional</td>
-      <td>militer israel klaim tewas juang hizbullah han...</td>
+      <td>FOTO: Wajah AKP Dadang di Kasus Polisi Tembak ...</td>
+      <td>Sabtu, 23 Nov 2024 18:40 WIB</td>
+      <td>Polda Sumbar menetapkan Kabag Ops Polres Solok...</td>
+      <td>nasional</td>
+      <td>polda sumbar tetap kabag ops polres solok sela...</td>
     </tr>
     <tr>
       <th>76</th>
-      <td>Sempat Cekcok, Macron Tegaskan ke Netanyahu Ko...</td>
-      <td>Senin, 07 Okt 2024 05:25 WIB</td>
-      <td>Presiden Prancis Emmanuel Macron menegaskan ke...</td>
-      <td>internasional</td>
-      <td>presiden prancis emmanuel macron komitmen tegu...</td>
+      <td>Tujuh Orang Ditangkap Terkait OTT di Bengkulu</td>
+      <td>Minggu, 24 Nov 2024 08:30 WIB</td>
+      <td>Komisi Pemberantasan Korupsi (KPK) sedikitnya ...</td>
+      <td>nasional</td>
+      <td>komisi berantas korupsi kpk aman tujuh orang o...</td>
     </tr>
     <tr>
       <th>77</th>
-      <td>Luncurkan 200 Rudal ke Israel, Siapa yang Paso...</td>
-      <td>Minggu, 06 Okt 2024 06:55 WIB</td>
-      <td>Iran menjadi sorotan usai meluncurkan sekitar ...</td>
+      <td>AS Sebut Tentara Korut Kumpul di Rusia untuk S...</td>
+      <td>Sabtu, 23 Nov 2024 09:54 WIB</td>
+      <td>Kepala Departemen Pertahanan Amerika Serikat a...</td>
       <td>internasional</td>
-      <td>iran sorot luncur rudal israel selasa malam an...</td>
+      <td>kepala depa emen pe ahanan amerika serikat pen...</td>
     </tr>
     <tr>
       <th>78</th>
-      <td>FOTO: Evakuasi WNA dari Lebanon saat Serangan ...</td>
-      <td>Minggu, 06 Okt 2024 19:27 WIB</td>
-      <td>Sejumlah negara langsung mengevakuasi warganya...</td>
+      <td>Beda Keuntungan Negara Partner dan Negara Angg...</td>
+      <td>Sabtu, 23 Nov 2024 10:10 WIB</td>
+      <td>Indonesia telah resmi menjadi negara partner a...</td>
       <td>internasional</td>
-      <td>negara langsung evakuasi warga lebanon serang ...</td>
+      <td>indonesia resmi negara pa ner mitra forum ekon...</td>
     </tr>
     <tr>
       <th>79</th>
-      <td>RIDO Gagas Program Sekolah Politik Perempuan J...</td>
-      <td>Minggu, 06 Okt 2024 21:10 WIB</td>
-      <td>Calon Gubernur Jakarta Nomor urut 1 Ridwan Kam...</td>
-      <td>nasional</td>
-      <td>calon gubernur jaka a nomor urut ridwan kamil ...</td>
+      <td>Rusia Pakai Rudal Nuklir ke Ukraina, Perang Di...</td>
+      <td>Jumat, 22 Nov 2024 19:50 WIB</td>
+      <td>Sejumlah pakar negara Barat memperingatkan anc...</td>
+      <td>internasional</td>
+      <td>pakar negara barat ingat ancam perang dingin i...</td>
     </tr>
   </tbody>
 </table>
@@ -893,177 +883,10 @@ menggunakan = guna</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_tfidf_test</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df_tfidf_test.head()</span>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Kategori Berita</th>
-      <th>abad</th>
-      <th>abai</th>
-      <th>abbas</th>
-      <th>abc</th>
-      <th>abdel</th>
-      <th>abidjan</th>
-      <th>abu</th>
-      <th>acara</th>
-      <th>acerbi</th>
-      <th>...</th>
-      <th>yoon</th>
-      <th>yordania</th>
-      <th>york</th>
-      <th>young</th>
-      <th>youtube</th>
-      <th>yubileum</th>
-      <th>yudea</th>
-      <th>yudhoyono</th>
-      <th>zionis</th>
-      <th>zona</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>nasional</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>internasional</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.06166</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.074221</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>internasional</td>
-      <td>0.000000</td>
-      <td>0.091235</td>
-      <td>0.00000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.083367</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.054910</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>internasional</td>
-      <td>0.065643</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>internasional</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.00000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 2400 columns</p>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1092,34 +915,34 @@ menggunakan = guna</p>
       <th></th>
       <th>Kategori Berita</th>
       <th>abad</th>
+      <th>abah</th>
       <th>abai</th>
-      <th>abbas</th>
-      <th>abc</th>
-      <th>abdel</th>
-      <th>abidjan</th>
-      <th>abu</th>
-      <th>acara</th>
-      <th>acerbi</th>
+      <th>abat</th>
+      <th>abdi</th>
+      <th>abdul</th>
+      <th>abdulla</th>
+      <th>abdullah</th>
+      <th>abdulloh</th>
       <th>...</th>
-      <th>yoon</th>
-      <th>yordania</th>
-      <th>york</th>
-      <th>young</th>
-      <th>youtube</th>
-      <th>yubileum</th>
-      <th>yudea</th>
-      <th>yudhoyono</th>
+      <th>zaki</th>
+      <th>zaman</th>
+      <th>zambia</th>
+      <th>zayed</th>
+      <th>zelenskiy</th>
+      <th>zelensky</th>
+      <th>zikir</th>
       <th>zionis</th>
-      <th>zona</th>
+      <th>zulhas</th>
+      <th>zulkifli</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>internasional</td>
+      <td>nasional</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.026348</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1128,22 +951,22 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>nasional</td>
+      <td>internasional</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1152,22 +975,22 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>nasional</td>
+      <td>internasional</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1176,22 +999,22 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>nasional</td>
+      <td>internasional</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1200,22 +1023,22 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.205246</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
       <td>internasional</td>
+      <td>0.046459</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1224,14 +1047,14 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
+      <td>0.046459</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.088283</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
@@ -1260,10 +1083,10 @@ menggunakan = guna</p>
     </tr>
     <tr>
       <th>75</th>
-      <td>internasional</td>
+      <td>nasional</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1272,22 +1095,22 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>76</th>
-      <td>internasional</td>
+      <td>nasional</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1296,22 +1119,22 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>77</th>
       <td>internasional</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1320,22 +1143,22 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.037868</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>78</th>
       <td>internasional</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1344,22 +1167,22 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>79</th>
-      <td>nasional</td>
+      <td>internasional</td>
+      <td>0.000000</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
@@ -1368,19 +1191,19 @@ menggunakan = guna</p>
       <td>0.0</td>
       <td>...</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>0.0</td>
     </tr>
   </tbody>
 </table>
-<p>80 rows × 2400 columns</p>
+<p>80 rows × 2769 columns</p>
 </div></div></div>
 </div>
 <p>Proses untuk membuat TF-IDF dan membentuk VSM dalam dataframe.</p>
@@ -1399,8 +1222,8 @@ menggunakan = guna</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># with open(&#39;tfidf_model.pkl&#39;, &#39;wb&#39;) as f:</span>
-<span class="c1">#     pickle.dump(tfidf_model, f)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;tfidf_model.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">tfidf_model</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

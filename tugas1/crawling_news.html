@@ -193,11 +193,11 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV: Ringkasan Berita</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tugas4/main.html">Ringkasan Berita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tugas4/ringkasan_berita.html">Ringkasan Berita</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V: Kata Kunci Berita</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../tugas5/main.html">Kata Kunci Berita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tugas5/keyword_extraction.html">Kata Kunci Berita</a></li>
 </ul>
 
     </div>
@@ -434,9 +434,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Library yang dibutuhkan</span>
-<span class="kn">import</span> <span class="nn">requests</span> <span class="k">as</span> <span class="nn">req</span>
 <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span> <span class="k">as</span> <span class="n">bs</span>
-<span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 </pre></div>
@@ -487,7 +485,7 @@ document.write(`
 			<span class="n">cleaned_text</span> <span class="o">=</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
 			<span class="n">texts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cleaned_text</span><span class="p">)</span>
 
-		<span class="n">berita</span><span class="p">[</span><span class="s2">&quot;tanggal&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;container !w-[1100px] overscroll-none&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+		<span class="n">berita</span><span class="p">[</span><span class="s2">&quot;tanggal&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;container !w-[1100px] overscroll-none&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;text-cnn_grey text-sm&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
 
 	<span class="k">else</span><span class="p">:</span>
 		<span class="n">text_list</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;detail-text text-cnn_black text-sm grow min-w-0&quot;</span><span class="p">)</span>
@@ -496,7 +494,7 @@ document.write(`
 				<span class="n">cleaned_text</span> <span class="o">=</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 				<span class="n">texts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cleaned_text</span><span class="p">)</span>
 
-		<span class="n">berita</span><span class="p">[</span><span class="s2">&quot;tanggal&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;container !w-[1100px] overscroll-none&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">)[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">text</span>
+		<span class="n">berita</span><span class="p">[</span><span class="s2">&quot;tanggal&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;container !w-[1100px] overscroll-none&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;text-cnn_grey text-sm mb-4&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
 
 	<span class="n">berita</span><span class="p">[</span><span class="s2">&quot;isi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
 	<span class="n">berita</span><span class="p">[</span><span class="s2">&quot;kategori&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;meta&quot;</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;dtk:namakanal&#39;</span><span class="p">})[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
@@ -506,19 +504,55 @@ document.write(`
 </div>
 </div>
 <p>Pada fungsi ini berisikan proses pembedahan dan juga pengambilan data pada sebuah website. Mengambil data sesuai struktur HTML/web yang ingin diambil datanya.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hide_ads</span><span class="p">(</span><span class="n">driver</span><span class="p">):</span>
+	<span class="k">try</span><span class="p">:</span>
+		<span class="n">js_code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">				var ads = document.querySelectorAll(</span>
+<span class="s2">						&#39;.ad-container, .banner-ad, [data-ad-unit], .ads-slot, [data-google-query-id], .bottom_banner_bar, .bn_skin, imp-css, mgbox, ad_unit, videoAdUi&#39; // Add more selectors if necessary</span>
+<span class="s2">				);</span>
+<span class="s2">				for (var i = 0; i &lt; ads.length; i++) {</span>
+<span class="s2">						ads[i].style.display = &#39;none&#39;;  // Hide the elements</span>
+<span class="s2">				}</span>
+
+<span class="s2">				// Remove elements from partner networks (example for MGID, adjust as needed)</span>
+<span class="s2">				var mgid_widgets = document.querySelectorAll(&#39;[data-type=&quot;_mgwidget&quot;]&#39;);</span>
+<span class="s2">				mgid_widgets.forEach(widget =&gt; widget.remove());</span>
+
+<span class="s2">				// Remove revive adserver</span>
+<span class="s2">				var rv_widgets = document.querySelectorAll(&#39;[data-revive-zoneid]&#39;);</span>
+<span class="s2">				rv_widgets.forEach(widget =&gt; widget.remove());</span>
+
+<span class="s2">				// Remove elements with specific ids (customize as needed)</span>
+<span class="s2">				var billboard_ad = document.getElementById(&#39;billboard_ad&#39;);</span>
+<span class="s2">				if (billboard_ad) { billboard_ad.remove(); }</span>
+<span class="s2">		&quot;&quot;&quot;</span>
+		<span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="n">js_code</span><span class="p">)</span> <span class="c1"># execute js code</span>
+	<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+		 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error executing JavaScript: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="fungsi-get-html">
 <h4>Fungsi get_html()<a class="headerlink" href="#fungsi-get-html" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_html</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
-	<span class="k">try</span><span class="p">:</span>
-		<span class="n">response</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-		<span class="k">return</span> <span class="n">bs</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;html5lib&quot;</span><span class="p">)</span>
-	
-	<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-		<span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-		<span class="k">return</span> <span class="s2">&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.chrome.options</span> <span class="kn">import</span> <span class="n">Options</span>
+
+<span class="k">def</span> <span class="nf">get_html</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+		<span class="k">try</span><span class="p">:</span>
+			<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+			<span class="n">hide_ads</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+			<span class="n">html</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+			<span class="k">return</span> <span class="n">bs</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s2">&quot;html5lib&quot;</span><span class="p">)</span>
+		
+		<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+			<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error fetching URL: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+			<span class="k">return</span> <span class="kc">None</span> 
 </pre></div>
 </div>
 </div>
@@ -530,7 +564,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_news</span><span class="p">(</span><span class="n">soup</span><span class="p">):</span>
-	<span class="n">container</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;container !w-[1100px] overscroll-none&quot;</span><span class="p">)</span>
+	<span class="n">container</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;flex flex-col gap-5&quot;</span><span class="p">)</span>
 	<span class="n">news_list</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;article&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;flex-grow&quot;</span><span class="p">)</span>
 	<span class="k">return</span> <span class="n">news_list</span>
 </pre></div>
@@ -544,45 +578,62 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">nasional</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">internasional</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-	<span class="n">url</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;https://www.cnnindonesia.com/nasional/indeks/3/&quot;</span><span class="p">,</span> <span class="s2">&quot;https://www.cnnindonesia.com/internasional/indeks/6/&quot;</span><span class="p">]</span>
+	<span class="n">options</span> <span class="o">=</span> <span class="n">Options</span><span class="p">()</span>
+	<span class="n">prefs</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="s2">&quot;profile.managed_default_content_settings.images&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># Disable images</span>
+		<span class="s2">&quot;profile.managed_default_content_settings.stylesheet&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># Disable CSS</span>
+	<span class="p">}</span>
+	<span class="n">profile_path</span> <span class="o">=</span> <span class="s2">&quot;C:/Users/LAB SISTER/AppData/Local/Google/Chrome/User Data/Profile 7&quot;</span>
+	<span class="n">options</span><span class="o">.</span><span class="n">add_experimental_option</span><span class="p">(</span><span class="s2">&quot;prefs&quot;</span><span class="p">,</span> <span class="n">prefs</span><span class="p">)</span>
+	<span class="n">options</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--user-data-dir=</span><span class="si">{</span><span class="n">profile_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+	<span class="n">options</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--headless=new&quot;</span><span class="p">)</span> <span class="c1"># Run in headless mode</span>
+	<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+
+	<span class="n">url</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;https://www.cnnindonesia.com/nasional/indeks/3/?page=&quot;</span><span class="p">,</span> <span class="s2">&quot;https://www.cnnindonesia.com/internasional/indeks/6/?page=&quot;</span><span class="p">]</span>
 	<span class="c1"># url = [&quot;https://www.cnnindonesia.com/indeks/2/&quot;]</span>
 	<span class="n">news</span> <span class="o">=</span> <span class="p">[]</span>
 
 	<span class="n">nasional_count</span> <span class="o">=</span> <span class="mi">0</span>
 	<span class="n">internasional_count</span> <span class="o">=</span> <span class="mi">0</span>
 
-	<span class="k">while</span> <span class="n">url</span><span class="p">:</span>
-		<span class="n">url_now</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-		<span class="n">count</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># - n</span>
-		<span class="n">halaman</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">get_html</span><span class="p">(</span><span class="n">url_now</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;flex gap-5 my-8 items-center justify-center undefined&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-		
+	<span class="k">try</span><span class="p">:</span>
+		<span class="k">while</span> <span class="n">url</span><span class="p">:</span>
+			<span class="n">url_now</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+			<span class="n">count</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># - n</span>
+			<span class="n">halaman</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">get_html</span><span class="p">(</span><span class="n">url_now</span><span class="p">,</span> <span class="n">driver</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;flex gap-5 my-8 items-center justify-center undefined&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
-		<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">halaman</span><span class="p">):</span>
-			<span class="n">page</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">url_now</span><span class="si">}{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span> 
-			<span class="n">soup</span> <span class="o">=</span> <span class="n">get_html</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
-			<span class="n">news_list</span> <span class="o">=</span> <span class="n">get_news</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span>
-			
-			<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">news_list</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Processing page </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
-				<span class="n">news_url</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
-				<span class="c1"># print(news_url)</span>
-				<span class="n">result</span> <span class="o">=</span> <span class="n">scrape_news</span><span class="p">(</span><span class="n">get_html</span><span class="p">(</span><span class="n">news_url</span><span class="p">))</span>
-
-				<span class="k">if</span> <span class="n">nasional_count</span> <span class="o">&gt;=</span> <span class="n">nasional</span> <span class="ow">and</span> <span class="n">internasional_count</span> <span class="o">&gt;=</span> <span class="n">internasional</span><span class="p">:</span>
-					<span class="k">return</span> <span class="n">news</span>
-
-				<span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;nasional&#39;</span> <span class="ow">and</span> <span class="n">nasional_count</span> <span class="o">&lt;</span> <span class="n">nasional</span><span class="p">:</span>
-					<span class="n">news</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-					<span class="n">nasional_count</span> <span class="o">+=</span> <span class="mi">1</span>
-
-				<span class="k">elif</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;internasional&#39;</span> <span class="ow">and</span> <span class="n">internasional_count</span> <span class="o">&lt;</span> <span class="n">internasional</span><span class="p">:</span>
-					<span class="n">news</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-					<span class="n">internasional_count</span> <span class="o">+=</span> <span class="mi">1</span>
-					
+			<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">halaman</span><span class="p">):</span>
+				<span class="n">page</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">url_now</span><span class="si">}{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span> 
+				<span class="n">soup</span> <span class="o">=</span> <span class="n">get_html</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">driver</span><span class="p">)</span>
+				<span class="n">news_list</span> <span class="o">=</span> <span class="n">get_news</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span>
 				
-			<span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
-			<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-			<span class="k">if</span> <span class="p">(</span><span class="n">nasional_count</span> <span class="o">&gt;=</span> <span class="n">nasional</span> <span class="ow">and</span> <span class="s1">&#39;nasional&#39;</span> <span class="ow">in</span> <span class="n">url_now</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">internasional_count</span> <span class="o">&gt;=</span> <span class="n">internasional</span> <span class="ow">and</span> <span class="s1">&#39;internasional&#39;</span> <span class="ow">in</span> <span class="n">url_now</span><span class="p">):</span>
-				<span class="k">break</span>
+				<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">news_list</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Processing page </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
+					<span class="n">news_url</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
+					
+					<span class="k">try</span><span class="p">:</span>
+						<span class="n">result</span> <span class="o">=</span> <span class="n">scrape_news</span><span class="p">(</span><span class="n">get_html</span><span class="p">(</span><span class="n">news_url</span><span class="p">,</span> <span class="n">driver</span><span class="p">))</span>
+
+						<span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+							<span class="k">if</span> <span class="n">nasional_count</span> <span class="o">&gt;=</span> <span class="n">nasional</span> <span class="ow">and</span> <span class="n">internasional_count</span> <span class="o">&gt;=</span> <span class="n">internasional</span><span class="p">:</span>
+								<span class="k">return</span> <span class="n">news</span>
+
+							<span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;nasional&#39;</span> <span class="ow">and</span> <span class="n">nasional_count</span> <span class="o">&lt;</span> <span class="n">nasional</span><span class="p">:</span>
+								<span class="n">news</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+								<span class="n">nasional_count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+							<span class="k">elif</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;internasional&#39;</span> <span class="ow">and</span> <span class="n">internasional_count</span> <span class="o">&lt;</span> <span class="n">internasional</span><span class="p">:</span>
+								<span class="n">news</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+								<span class="n">internasional_count</span> <span class="o">+=</span> <span class="mi">1</span>
+					<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+						<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error fetching news: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+						<span class="k">continue</span>
+						
+					
+				<span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+				<span class="k">if</span> <span class="p">(</span><span class="n">nasional_count</span> <span class="o">&gt;=</span> <span class="n">nasional</span> <span class="ow">and</span> <span class="s1">&#39;nasional&#39;</span> <span class="ow">in</span> <span class="n">url_now</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">internasional_count</span> <span class="o">&gt;=</span> <span class="n">internasional</span> <span class="ow">and</span> <span class="s1">&#39;internasional&#39;</span> <span class="ow">in</span> <span class="n">url_now</span><span class="p">):</span>
+					<span class="k">break</span>
+	<span class="k">finally</span><span class="p">:</span>
+		<span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 
 	<span class="k">return</span> <span class="n">news</span>
 </pre></div>
@@ -605,16 +656,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Processing page 1: 100%|██████████| 10/10 [00:05&lt;00:00,  1.67it/s]
-Processing page 2: 100%|██████████| 10/10 [00:07&lt;00:00,  1.32it/s]
-Processing page 3: 100%|██████████| 10/10 [00:06&lt;00:00,  1.66it/s]
-Processing page 4: 100%|██████████| 10/10 [00:06&lt;00:00,  1.52it/s]
-Processing page 5: 100%|██████████| 10/10 [00:06&lt;00:00,  1.62it/s]
-Processing page 1: 100%|██████████| 10/10 [00:05&lt;00:00,  1.76it/s]
-Processing page 2: 100%|██████████| 10/10 [00:06&lt;00:00,  1.63it/s]
-Processing page 3: 100%|██████████| 10/10 [00:05&lt;00:00,  1.74it/s]
-Processing page 4: 100%|██████████| 10/10 [00:06&lt;00:00,  1.61it/s]
-Processing page 5: 100%|██████████| 10/10 [00:06&lt;00:00,  1.57it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Processing page 1: 100%|██████████| 10/10 [00:37&lt;00:00,  3.77s/it]
+Processing page 2: 100%|██████████| 10/10 [01:23&lt;00:00,  8.40s/it]
+Processing page 3: 100%|██████████| 10/10 [01:25&lt;00:00,  8.58s/it]
+Processing page 4: 100%|██████████| 10/10 [01:45&lt;00:00, 10.54s/it]
+Processing page 5: 100%|██████████| 10/10 [02:56&lt;00:00, 17.67s/it]
+Processing page 1: 100%|██████████| 10/10 [02:25&lt;00:00, 14.56s/it]
+Processing page 2: 100%|██████████| 10/10 [02:35&lt;00:00, 15.51s/it]
+Processing page 3: 100%|██████████| 10/10 [02:27&lt;00:00, 14.76s/it]
+Processing page 4: 100%|██████████| 10/10 [02:33&lt;00:00, 15.37s/it]
+Processing page 5: 100%|██████████| 10/10 [02:45&lt;00:00, 16.51s/it]
 </pre></div>
 </div>
 </div>
@@ -628,7 +679,7 @@ Processing page 5: 100%|██████████| 10/10 [00:06&lt;00:00,  
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">news</span><span class="p">)</span>
 <span class="n">df</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;data_100.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;data_100new.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -640,7 +691,23 @@ Processing page 5: 100%|██████████| 10/10 [00:06&lt;00:00,  
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Satu tahun agresi Israel ke Gaza yang dimulai sejak 7 Oktober lalu, warga Palestina terpuruk dengan kondisi kemanusiaan yang kian parah.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Presiden Rusia Vladimir Putin menyebut akan tetap melanjutkan eksperimen rudal balistik dan hipersonik ke Ukraina.
+Rusia menguji coba rudal hipersonik tersebut ke wilayah Ukraina, pada Kamis (21/11), menandai babak baru dalam konflik antara kedua negara. Penembakan rudal tersebut dilakukan setelah Gedung Putih mengizinkan Ukraina untuk menembakkan rudal jarak jauhnya ke Rusia.
+
+Dalam sebuah pertemuan dengan pimpinan kementerian pertahanan Rusia, Putin mengklaim bahwa rudal tersebut tidak dapat dicegat oleh pertahanan udara. Ia juga mengatakan Rusia akan memulai produksi massal senjata barunya ini.
+&quot;Saat ini tidak ada cara untuk melawan rudal semacam itu, tidak ada cara untuk mencegatnya, di dunia. Dan saya akan menekankan sekali lagi: Kami akan terus menguji sistem terbaru,&quot; kata Putin, dikutip dari CNN.
+Putin juga menyebut Rusia sedang mengembangkan beberapa sistem persenjataan serupa yang akan diuji coba lebih lanjut.
+
+
+&quot;Berdasarkan hasil uji coba, senjata-senjata ini juga akan mulai diproduksi. Artinya, kami sedang mengembangkan seluruh lini sistem jarak menengah dan jarak pendek,&quot; katanya.
+Lebih lanjut, pernyataan Putin ini muncul sehari setelah Rusia menembakkan rudal &quot;Oreshnik&quot; ke kota Dnipro, Ukraina.
+
+Presiden Ukraina Volodymyr Zelensky mengutuk serangan tersebut, dan mengatakan dalam sebuah video yang diposting di Telegram bahwa &quot;hari ini, tetangga kita yang gila itu sekali lagi menunjukkan siapa dia sebenarnya dan bagaimana dia merendahkan martabat, kebebasan, dan kehidupan manusia pada umumnya.&quot;
+Zelensky mengatakan pada Jumat (22/11), Ukraina mengadakan pertemuan dengan para sekutunya untuk mengembangkan &quot;sistem pertahanan udara yang baru&quot; untuk menanggapi ancaman baru dari Rusia.
+Terpisah, dua pejabat AS dan seorang pejabat Barat mengatakan rudal balistik &quot;eksperimental&quot; tersebut membawa beberapa hulu ledak, yang mungkin merupakan pertama kalinya senjata semacam itu digunakan dalam perang.
+
+Perdana Menteri Polandia Donald Tusk, yang merupakan sekutu penting Ukraina, mengatakan konflik ini &quot;memasuki tahap yang menentukan.&quot;
+NATO dan Ukraina dijadwalkan akan melakukan pembicaraan pekan depan setelah adanya penembakan rudal eksperimental oleh Rusia tersebut.
 </pre></div>
 </div>
 </div>
